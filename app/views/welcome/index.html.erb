@@ -1,2 +1,30 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ 	<title>Mores Creek Ambulance</title>
+	<meta name="author" content="Russ Whitney">
+ 	<meta name="description" content="MCA Home Page">
+ 	<meta name="keywords" content="mores creek ambulance east boise county ems emt"> 
+	<!-- Date: 2011-09-08 -->
+</head>
+<body>
+	<h2 align="center">Welcome to Mores Creek Ambulance</h2>
+	<%= image_tag 'mca.jpg', :size => "459x345", :align => "right", :alt => "Mores Creek Ambulance" %><br>
+	<hr>
+
+	<%= link_to 'General Information', :action => 'generalinfo' %><br>
+	<%= link_to 'Volunteering and donating', :action => 'volunteerinfo' %><br>
+	<%= link_to 'Application to volunteer (MS Word)', :action => 'memberapp' %><br>
+	<%= link_to 'Our full brochure (MS Word)', :action => 'brochure' %><br>
+	<%= link_to 'Cool LifeFlight Picture', :action => 'lifeflight' %><br>
+	<br>
+	<b><%= link_to 'Members Only', :controller => 'members_only' %></b><br>
+	<b><%= link_to 'Useful Links', :action => 'links' %></b>
+	<!-- <b><a href="events.htm">Southeast Boise County Calendar of Events</a></b><br> --> <p>
+
+	<%= mail_to "webmaster@mcaems.org", "E-mail this site's webmaster" %>
+</body>
+</html>
