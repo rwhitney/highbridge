@@ -1,0 +1,55 @@
+<h1>Listing members</h1>
+
+<table>
+  <tr>
+    <th>Fullname</th>
+    <th>Portablename</th>
+    <th>Portablenumber</th>
+    <th>Email</th>
+    <th>Privilege</th>
+    <th>Streetaddress</th>
+    <th>City</th>
+    <th>Zip</th>
+    <th>Area</th>
+    <th>Homephone</th>
+    <th>Workphone</th>
+    <th>Cellorotherphone</th>
+    <th>Shirtsize</th>
+    <th>Status</th>
+    <th>Miscnotes</th>
+    <th>Password</th>
+    <th>Salt</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @members.each do |member| %>
+  <tr>
+    <td><%= member.fullname %></td>
+    <td><%= member.portablename %></td>
+    <td><%= member.portablenumber %></td>
+    <td><%= member.email %></td>
+    <td><%= member.privilege %></td>
+    <td><%= member.streetaddress %></td>
+    <td><%= member.city %></td>
+    <td><%= member.zip %></td>
+    <td><%= member.area %></td>
+    <td><%= member.homephone %></td>
+    <td><%= member.workphone %></td>
+    <td><%= member.cellorotherphone %></td>
+    <td><%= member.shirtsize %></td>
+    <td><%= member.status %></td>
+    <td><%= member.miscnotes %></td>
+    <td><%= member.password %></td>
+    <td><%= member.salt %></td>
+    <td><%= link_to 'Show', member %></td>
+    <td><%= link_to 'Edit', edit_member_path(member) %></td>
+    <td><%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Member', new_member_path %>
