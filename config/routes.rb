@@ -1,4 +1,28 @@
 Highbridge::Application.routes.draw do
+  get "welcome/index"
+
+  get "welcome/generalinfo"
+
+  get "welcome/volunteerinfo"
+
+  get "welcome/links"
+
+  get "members_only/index"
+
+  get "calendar/lionindex"
+
+  get "calendar/altindex"
+
+  get "calendar/index"
+
+  get "calendar/show"
+
+  get "calendar/shiftedit"
+
+  get "calendar/shift_signup"
+
+  get "calendar/shiftsignup"
+
   resources :shifts
 
   resources :members
