@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title><%= title %></title>
+	<title><%= motitle %></title>
 	<meta name="generator" content="TextMate http://macromates.com/">
 	<meta name="author" content="Russ Whitney">
 <%- unless @desc.nil? -%>
@@ -13,9 +13,11 @@
  	<meta name="keywords" content="mores creek ambulance east boise county ems emt"> 
 	<%# force page to expire from browser cache in 1 day %>
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_tomorrow %>">
-	<%# Date: 2011-10-28 %>
+	<%# Date: 2011-10-29 %>
+	<%= stylesheet_link_tag "nav" %>
+	<%= stylesheet_link_tag "print", :media => "print" %>
 </head>
-<body>
+<body background="<%= image_path("gray_lt.gif") %>">
 <%= yield %>
 </body>
 </html>

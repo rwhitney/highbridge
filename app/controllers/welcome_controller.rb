@@ -1,17 +1,21 @@
 class WelcomeController < ApplicationController
   def index
+    @desc = "Mores Creek Ambulance home page"
   end
 
   def generalinfo
     @title = "General Info"
+    @desc = "MCA information page"
   end
 
   def volunteerinfo
     @title = "Volunteer Info"
+    @desc = "MCA volunteer information page"
   end
 
   def links
     @title = "Links"
+    @desc = "MCA links page"
   end
 
   def memberapp
