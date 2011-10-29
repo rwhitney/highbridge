@@ -14,7 +14,7 @@ test:
     encoding: utf8
     database: highbridge_test_db
     host: localhost
-    username: highbridge_test_app
+    username: highbridge_test
     password: 0fm78481rsNy
 
 production:

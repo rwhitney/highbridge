@@ -9,9 +9,14 @@ gem 'rake', '0.9.2.2'
 gem 'mysql2', '0.3.7'
 gem 'mysql', '2.8.1'
 
+group :test do
+  gem "webrat"
+end
+
 # testing infrastructure
 group :test, :development do
-  gem "rspec-rails", "~> 2.6"
+  gem "rspec", '2.7.0'
+  gem "rspec-rails", '2.7.0'
 end
 
 # Gems used only for assets (e.g. assets:precompile) and not required
