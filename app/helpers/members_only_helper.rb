@@ -1,5 +1,5 @@
 module MembersOnlyHelper
-  def motitle
+  def title
     base_title = "Mores Creek Members Only"
     if @title.nil?
       base_title
