@@ -1,45 +1,40 @@
 require 'spec_helper'
-require 'spec_constants_helper'
 
 describe Member do
   describe "Create member" do
-    it "creates a new member" do
-      Member.create!(russ_attributes)
+    it "creates a user correctly" do
+      m1 = FactoryGirl.create(:member)
     end
     
-    it "creates encoded password correctly" do
-      m1 = Member.create!(russ_attributes)
-      Member.validate_login "russw08", "explorer"
+    it "creates an admin correctly" do
+      m1 = FactoryGirl.create(:admin)
     end
     
     it "validates email correctly" do
-      m1 = Member.new(russ_attributes)
-      m1.encode_password!
+      m1 = FactoryGirl.build(:russ)
       m1.should be_valid
-      m1.oldemail = "fred"
+      m1.email = "fred"
       m1.should_not be_valid
-      m1.oldemail = "fred.com"
+      m1.email = "fred.com"
       m1.should_not be_valid
-      m1.oldemail = "fred@fred.com"
+      m1.email = "fred@fred.com"
       m1.should be_valid
-      m1.oldemail = nil
+      m1.email = nil
       m1.should_not be_valid
     end
     
     it "validates uniqueness" do
-      m1 = Member.new(russ_attributes)
-      m1.encode_password!
+      m1 = FactoryGirl.build(:russ)
       m1.should be_valid
-      m2 = Member.new(lisa_attributes)
-      m2.encode_password!
+      m2 = FactoryGirl.build(:lisa)
       m2.should be_valid
 
-      russ = Member.create!(russ_attributes)
+      russ = FactoryGirl.create(:russ)
       
       m1.should_not be_valid
       m2.should be_valid
       
-      lisa = Member.create!(lisa_attributes)
+      lisa = FactoryGirl.create(:lisa)
       
       m1.should_not be_valid
       m2.should_not be_valid

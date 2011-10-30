@@ -30,4 +30,9 @@ RSpec.configure do |config|
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+
+  # extend the controller specs with a file called controller_macros.rb
+  # in the /spec/support subdir.  This makes it easier to login for
+  # the controller tests with devise
+  config.extend ControllerMacros, :type => :controller
 end

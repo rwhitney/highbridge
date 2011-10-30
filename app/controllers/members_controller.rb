@@ -43,7 +43,6 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(params[:member])
-    @member.encode_password!
 
     respond_to do |format|
       if @member.save

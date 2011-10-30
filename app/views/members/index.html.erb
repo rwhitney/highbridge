@@ -6,7 +6,6 @@
     <th>Portablename</th>
     <th>Portablenumber</th>
     <th>Email</th>
-    <th>Privilege</th>
     <th>Streetaddress</th>
     <th>City</th>
     <th>Zip</th>
@@ -17,8 +16,7 @@
     <th>Shirtsize</th>
     <th>Status</th>
     <th>Miscnotes</th>
-    <th>Password</th>
-    <th>Salt</th>
+    <th>Admin</th>
     <th></th>
     <th></th>
     <th></th>
@@ -29,8 +27,7 @@
     <td><%= member.fullname %></td>
     <td><%= member.portablename %></td>
     <td><%= member.portablenumber %></td>
-    <td><%= member.oldemail %></td>
-    <td><%= member.privilege %></td>
+    <td><%= member.email %></td>
     <td><%= member.streetaddress %></td>
     <td><%= member.city %></td>
     <td><%= member.zip %></td>
@@ -41,8 +38,7 @@
     <td><%= member.shirtsize %></td>
     <td><%= member.status %></td>
     <td><%= member.miscnotes %></td>
-    <td><%= member.password %></td>
-    <td><%= member.salt %></td>
+    <td><%= member.admin %></td>
     <td><%= link_to 'Show', member %></td>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
     <td><%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete %></td>

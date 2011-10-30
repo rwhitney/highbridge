@@ -1,3 +1,5 @@
+require "shift_members_validator"
+
 class Shift < ActiveRecord::Base
   belongs_to :e1, :class_name => 'Member', :foreign_key => "e1member_id"
   belongs_to :e2, :class_name => 'Member', :foreign_key => "e2member_id"
@@ -6,6 +8,7 @@ class Shift < ActiveRecord::Base
   validates_presence_of :shiftdate, :shiftnum
   validates_numericality_of :shiftnum
   validates_inclusion_of :shiftnum, :in => 1..4
+  validates_with ShiftMembersValidator #verifies shift has at least one member
   
   def self.find_all_in_month(thedate)
     firstdate = Date.new(thedate.year, thedate.month, 1)

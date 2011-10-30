@@ -11,13 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111030130512) do
+ActiveRecord::Schema.define(:version => 20111030172245) do
 
   create_table "members", :force => true do |t|
     t.string   "fullname"
     t.string   "portablename"
     t.integer  "portablenumber"
-    t.string   "privilege"
     t.string   "streetaddress"
     t.string   "city"
     t.string   "zip"
@@ -28,12 +27,10 @@ ActiveRecord::Schema.define(:version => 20111030130512) do
     t.string   "shirtsize"
     t.string   "status"
     t.string   "miscnotes"
-    t.string   "password"
-    t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "email",                                 :default => "",    :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -42,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20111030130512) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "admin",                                 :default => false
   end
 
   add_index "members", ["email"], :name => "index_members_on_email", :unique => true

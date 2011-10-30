@@ -1,23 +1,22 @@
 require 'spec_helper'
-require 'spec_constants_helper'
 
 describe Shift do
   before(:each) do
-    @russ = Member.create!(russ_attributes)
-    @lisa = Member.create!(lisa_attributes)
-    @paul = Member.create!(paul_attributes)
-    @drew = Member.create!(drew_attributes)
-    @dennis = Member.create!(dennis_attributes)
+    @russ = FactoryGirl.create(:russ)
+    @lisa = FactoryGirl.create(:lisa)
+    @paul = FactoryGirl.create(:paul)
+    @drew = FactoryGirl.create(:drew)
+    @dennis = FactoryGirl.create(:dennis)
   end
   
   describe "Create Shift" do
     it "creates a new shift" do
-      s = Shift.new
-      s.e1 = @lisa
-      s.driver = @russ
-      s.shiftdate = Date.today
-      s.shiftnum = 1
-      s.save
+      FactoryGirl.create(:shift1, :e1member_id => @dennis.id, :dmember_id => @russ.id)
+    end
+    
+    it "validates at least one member" do
+      s = FactoryGirl.build(:shift2)
+      s.should_not be_valid
     end
   end
 end

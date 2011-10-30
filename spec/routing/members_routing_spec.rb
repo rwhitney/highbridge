@@ -2,7 +2,6 @@ require "spec_helper"
 
 describe MembersController do
   describe "routing" do
-
     it "routes to #index" do
       get("/members").should route_to("members#index")
     end
@@ -20,7 +19,8 @@ describe MembersController do
     end
 
     it "routes to #create" do
-      post("/members").should route_to("members#create")
+      post("/members").should route_to("devise/registrations#create")
+      # post("/members").should route_to("members#create")
     end
 
     it "routes to #update" do

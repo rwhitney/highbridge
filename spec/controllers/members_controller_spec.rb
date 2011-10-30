@@ -19,35 +19,12 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe MembersController do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Member. As you add validations to Member, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
-    {
-      :fullname => "fullname",
-      :portablename => "fulln10",
-      :portablenumber => 10,
-      :email => "fulln@domain.com",
-      :privilege => "Normal",
-      :streetaddress => "234 storybrook way",
-      :city => "Eagle",
-      :zip => "12345",
-      :area => "RC",
-      :homephone => "234-5678",
-      :workphone => nil,
-      :cellorotherphone => "867-5309",
-      :shirtsize => "XXL",
-      :status => "Probationary",
-      :miscnotes => nil,
-      :password => "fritz",
-      :salt => "123",
-    }
-  end
+  login_user  # this creates and logins in :user from /spec/factories/members.rb
 
   describe "GET index" do
     it "assigns all members as @members" do
-      member = Member.create! valid_attributes
+      #member = Member.find :first
+      member = @current_user
       get :index
       assigns(:members).should eq([member])
     end
@@ -55,7 +32,7 @@ describe MembersController do
 
   describe "GET show" do
     it "assigns the requested member as @member" do
-      member = Member.create! valid_attributes
+      member = FactoryGirl.create(:lisa)
       get :show, :id => member.id
       assigns(:member).should eq(member)
     end
@@ -70,7 +47,7 @@ describe MembersController do
 
   describe "GET edit" do
     it "assigns the requested member as @member" do
-      member = Member.create! valid_attributes
+      member = @current_user
       get :edit, :id => member.id
       assigns(:member).should eq(member)
     end
@@ -80,18 +57,19 @@ describe MembersController do
     describe "with valid params" do
       it "creates a new Member" do
         expect {
-          post :create, :member => valid_attributes
+          post :create, :member => FactoryGirl.build(:lisa)
+          #FactoryGirl.create(:lisa)
         }.to change(Member, :count).by(1)
       end
 
       it "assigns a newly created member as @member" do
-        post :create, :member => valid_attributes
+        post :create, :member => FactoryGirl.build(:paul)
         assigns(:member).should be_a(Member)
         assigns(:member).should be_persisted
       end
 
       it "redirects to the created member" do
-        post :create, :member => valid_attributes
+        post :create, :member => FactoryGirl.build(:drew)
         response.should redirect_to(Member.last)
       end
     end
