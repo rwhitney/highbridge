@@ -1,20 +1,7 @@
 require 'spec_helper'
 
 describe CalendarController do
-
-  describe "GET 'lionindex'" do
-    it "returns http success" do
-      get 'lionindex'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'altindex'" do
-    it "returns http success" do
-      get 'altindex'
-      response.should be_success
-    end
-  end
+  login_user
 
   describe "GET 'index'" do
     it "returns http success" do
@@ -23,31 +10,18 @@ describe CalendarController do
     end
   end
 
-  describe "GET 'show'" do
-    it "returns http success" do
-      get 'show'
-      response.should be_success
-    end
-  end
-
   describe "GET 'shiftedit'" do
     it "returns http success" do
-      get 'shiftedit'
+      get 'shiftedit', :date => Date.today
       response.should be_success
     end
   end
 
-  describe "GET 'shift_signup'" do
-    it "returns http success" do
-      get 'shift_signup'
-      response.should be_success
-    end
-  end
-
-  describe "GET 'shiftsignup'" do
-    it "returns http success" do
-      get 'shiftsignup'
-      response.should be_success
+  describe "POST 'shiftsignup'" do
+    it "successfully redirects" do
+      post "shiftsignup", :received => Date.today, :shiftdate => Date.today, :position => 'D, 1'
+      
+      response.should redirect_to :action => :index, :thedate => Date.today
     end
   end
 

@@ -41,18 +41,18 @@ FactoryGirl.define do
   factory :lisa, :class => Member do
     fullname "Lisa Whitney"
     portablename "lisaw07"
-    portablenumber 7
+    portablenumber "7"
     email "lisa@whitneyhome.com"
     streetaddress "56 Falcon Drive"
     city "Boise"
     zip "83716"
     area "HC/OS"
     homephone "367-9235"
-    workphone nil
-    cellorotherphone nil
+    workphone "367-9235"
+    cellorotherphone "367-9235"
     shirtsize "M"
     status "Probationary"                # "Associate", "Active", "Probationary"
-    miscnotes nil
+    miscnotes "EMT-B"
     password "password"
     admin false
   end

@@ -19,12 +19,14 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ShiftsController do
+  login_admin
+  
   before(:each) do
-    @russ = Member.create!(russ_attributes)
-    @lisa = Member.create!(lisa_attributes)
-    @paul = Member.create!(paul_attributes)
-    @drew = Member.create!(drew_attributes)
-    @dennis = Member.create!(dennis_attributes)
+    @russ = FactoryGirl.create(:russ)
+    @lisa = FactoryGirl.create(:lisa)
+    @paul = FactoryGirl.create(:paul)
+    @drew = FactoryGirl.create(:drew)
+    @dennis = FactoryGirl.create(:dennis)
   end
   
   # This should return the minimal set of attributes required to create a valid
@@ -32,9 +34,9 @@ describe ShiftsController do
   # update the return value of this method accordingly.
   def valid_attributes
     {
-      :e1member_id => @paul,
-      :e2member_id => @lisa,
-      :dmember_id => @russ,
+      :e1member_id => @paul.id,
+      :e2member_id => @lisa.id,
+      :dmember_id => @russ.id,
       :shiftdate => Date.today,
       :shiftnum => 1,
     }

@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe MembersOnlyController do
   render_views
+  login_user
   
   before(:each) do
     @base_title = "Mores Creek Members Only"

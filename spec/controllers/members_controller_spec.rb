@@ -19,7 +19,20 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe MembersController do
-  login_user  # this creates and logins in :user from /spec/factories/members.rb
+  login_admin  # this creates and logins in :user from /spec/factories/members.rb
+
+  def valid_attributes
+    m = FactoryGirl.build(:lisa)
+    {
+      :fullname => m.fullname,
+      :portablename => m.portablename,
+      :portablenumber => m.portablenumber,
+      :email => m.email,
+      :status => m.status,
+      :password => m.password,
+      :admin => m.admin
+    }
+  end
 
   describe "GET index" do
     it "assigns all members as @members" do
@@ -56,24 +69,25 @@ describe MembersController do
   describe "POST create" do
     describe "with valid params" do
       it "doesn't get an error" do
-        post :create, :member => FactoryGirl.build(:lisa)
+        post :create, :member => valid_attributes
+        
+        response.should redirect_to Member.last
       end
       
       it "creates a new Member" do
         expect {
-          post :create, :member => FactoryGirl.build(:lisa)
-          #FactoryGirl.create(:lisa)
+          post :create, :member => valid_attributes
         }.to change(Member, :count).by(1)
       end
 
       it "assigns a newly created member as @member" do
-        post :create, :member => FactoryGirl.build(:paul)
+        post :create, :member => valid_attributes
         assigns(:member).should be_a(Member)
         assigns(:member).should be_persisted
       end
 
       it "redirects to the created member" do
-        post :create, :member => FactoryGirl.build(:drew)
+        post :create, :member => valid_attributes
         response.should redirect_to(Member.last)
       end
     end
