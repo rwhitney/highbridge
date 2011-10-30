@@ -55,6 +55,10 @@ describe MembersController do
 
   describe "POST create" do
     describe "with valid params" do
+      it "doesn't get an error" do
+        post :create, :member => FactoryGirl.build(:lisa)
+      end
+      
       it "creates a new Member" do
         expect {
           post :create, :member => FactoryGirl.build(:lisa)

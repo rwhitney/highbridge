@@ -1,2 +1,87 @@
-<h1>Calendar#shiftedit</h1>
-<p>Find me in app/views/calendar/shiftedit.html.erb</p>
+<%= form_tag :controller => "calendar", :action => "shiftsignup" do %>
+<h1>Shift Signup</h1>
+<table border="0" cellpadding="3" cellspacing="0" align="center">
+	<tr>
+		<td colspan=5 align=center>
+			<%= hidden_field_tag 'received', @formdate %>
+			<%= hidden_field_tag 'shiftdate', @shiftdate %><br />
+		</td>
+	</tr>
+	<tr>
+		<td colspan=5 align=center>
+			<b>Sign up for a shift on <%= @shiftdate.strftime("%a, %b %e, %Y") %></b><br />
+		</td>
+	</tr> 
+	<tr>
+		<td align=right>
+			<b>Username:</b>
+		</td>
+		<td colspan=2>
+			<%= current_member.portablename %><br />
+		</td>
+	</tr> 
+	<tr>
+		<td align=right valign="top">
+			<b>Position:</b>
+		</td>
+		<% nextshift = 0 -%>
+		<% for shiftindex in 1..4 do -%>
+		<td valign="top">
+			<b><%= ["1st","2nd","3rd","4th"][shiftindex-1] %> Shift Positions</b><br />
+			(from <%= "%02d:00 to %02d:00" % [(shiftindex-1)*6, shiftindex*6] %>)<br />
+			<% theshift = @shifts[nextshift] unless @shifts.nil? || @shifts.count <= nextshift -%>
+			<% unless theshift.nil? || theshift.shiftnum != shiftindex -%>
+				<% nextshift += 1 -%>
+				<% if theshift.isfull? -%>
+				<font color=green>
+					<b>SHIFT FULL</b><br />
+				</font>
+				<% elsif theshift.user_is_signedup?(current_member) -%>
+				<font color=green>
+					You are already<br />
+					signed up as<br />
+					<%= theshift.user_is_signedup_as(current_member) %>.<br />
+				</font>
+				<% else -%>
+					<% if theshift.e1 == nil -%>
+						<%= radio_button_tag "position", "E1," + shiftindex.to_s %>EMT 1<br />
+					<% else -%>
+						<font color=green>
+							&nbsp;&nbsp;&nbsp;EMT 1 - <%= theshift.e1.portablename %>
+						</font>
+					<% end -%>
+					<% if theshift.e2 == nil -%>
+						<%= radio_button_tag "position", "E2," + shiftindex.to_s %>EMT 2<br />
+					<% else -%>
+						<font color=green>
+							&nbsp;&nbsp;&nbsp;EMT 2 - <%= theshift.e2.portablename %>
+						</font>
+					<% end -%>
+					<% if theshift.driver == nil -%>
+						<%= radio_button_tag "position", "D," + shiftindex.to_s %>Driver<br />
+					<% else -%>
+						<font color=green>
+							&nbsp;&nbsp;&nbsp;Driver - <%= theshift.driver.portablename %>
+						</font>
+					<% end -%>
+				<% end -%>
+			<% else -%>
+				<%= radio_button_tag "position", "E1," + shiftindex.to_s %>EMT 1<br />
+				<%= radio_button_tag "position", "E2," + shiftindex.to_s %>EMT 2<br />
+				<%= radio_button_tag "position", "D," + shiftindex.to_s %>Driver<br />
+			<% end -%>
+		</td>
+		<% end -%>
+	</tr>
+	<tr>
+		<td colspan="5" align="center">
+			<%= submit_tag "Sign Up For This Shift" %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="5" align="center" class="header">
+			<%= link_to "Return to the Calendar", :action => "index", :thedate => @shiftdate.to_s %>
+		</td>
+	</tr>
+</table>
+<% end -%>  <%# form %>

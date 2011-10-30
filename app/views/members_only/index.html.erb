@@ -1,5 +1,5 @@
 <h1 align="center">Mores Creek Ambulance Members Page</h1><br />
-<h2 align="center"><%= current_member.portablename %> (<%= link_to('logout', destroy_member_session_path, :method => :delete) %>)</h2><br />
+<h2 align="center"><%= current_member.portablename %> <%= button_to "Logout", destroy_member_session_path, :method => :delete %></h2><br />
 <strong>All information on this page and subsequent pages is Mores Creek
 member confidential. Do not share this information with anyone
 outside of MCA without permission from the board.</strong>

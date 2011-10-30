@@ -1,12 +1,6 @@
 class CalendarController < ApplicationController
   before_filter :authenticate_member!
   
-  def lionindex
-  end
-
-  def altindex
-  end
-
   def index
     @desc = "MCA Monthly Shift Calendar"
     @today = Date.today
@@ -32,16 +26,45 @@ class CalendarController < ApplicationController
     @members = @members.sort_by { |m| [m.status, -m.monthly_total] }
   end
 
-  def show
-  end
-
   def shiftedit
-  end
-
-  def shift_signup
+    @formdate = Date.today
+    begin
+      @shiftdate = params[:date].to_date unless params[:date].nil?
+    rescue
+      @shiftdate = nil
+    end
+    if @shiftdate.nil? || @shiftdate < @formdate - 3.days
+      redirect_to :action => 'index'
+    else
+      begin
+        @shifts = Shift.find_all_in_day(@shiftdate)
+      rescue
+        @shifts = nil
+      end
+    end
   end
 
   def shiftsignup
+    formdate = params[:received].to_date
+    shiftdate = params[:shiftdate].to_date
+    position = params[:position].split ','
+    shiftnum = position[1].to_i if position.count == 2
+    position = position[0]
+    oldestdate = Date.today - 3.days
+    if formdate >= oldestdate && shiftdate >= oldestdate && ['e1','e2','d'].include?(position.downcase) && (1..4).include?(shiftnum)
+      shift = Shift.find_by_date_and_num shiftdate, shiftnum
+      if shift.nil?
+        shift = Shift.new
+        shift.shiftdate = shiftdate
+        shift.shiftnum = shiftnum
+        shift.assign_member position, current_member
+        shift.save
+      else
+        shift.assign_member position, current_member
+        shift.save
+      end
+    end
+    redirect_to :action => 'index', :thedate => shiftdate.to_s
   end
 
 end

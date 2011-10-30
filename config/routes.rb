@@ -20,19 +20,11 @@ Highbridge::Application.routes.draw do
 
   get "members_only/index"
 
-  get "calendar/lionindex"
-
-  get "calendar/altindex"
-
   get "calendar/index"
-
-  get "calendar/show"
 
   get "calendar/shiftedit"
 
-  get "calendar/shift_signup"
-
-  get "calendar/shiftsignup"
+  post "calendar/shiftsignup"
 
   resources :shifts
 

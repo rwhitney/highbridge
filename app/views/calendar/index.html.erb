@@ -1,6 +1,6 @@
 	<div id="wrapper">
 	<div id="banner">
-		<div id="login"><%= @user.portablename %></div>
+		<div id="login"><%= current_member.portablename %></div>
 		<h1>Mores Creek Shift Calendar</h1>
 	</div>
 	<div id="sidebar">
@@ -17,7 +17,7 @@
 		<h3><%= section %></h3>
 		<ul>
 			<%- end -%>
-			<li><span><%= member.monthly_total %></span><%= member.portablename %></li>
+			<li><span><%= member.monthly_total %></span><%- if member.portablename == current_member.portablename -%><em><%- end -%><%= member.portablename %><%- if member.portablename == current_member.portablename -%></em><%- end -%></li>
 		<%- end -%>
 		<%- if section != nil -%>
 		</ul>
@@ -32,14 +32,14 @@
 					<tr>
 						<td id="tblhdr1"><h2><%= @caldate.strftime("%B %Y")%></h2></td>
 						<td id="tblhdr2">
-							<%= link_to image_tag('RefreshButton.png', :alt => "Refresh the calendar", :class => 'img-center'), {:action => "lionindex", :date => "#{@caldate}"} %>
+							<%= link_to image_tag('RefreshButton.png', :alt => "Refresh the calendar", :class => 'img-center'), {:action => "index", :date => "#{@caldate}"} %>
 						</td>
 						<td id="tblhdr3">
-							<img src="/images/TodayButton.png" alt="find a new month" class="img-right" usemap="#monthnavmap" />
+							<%= image_tag 'TodayButton.png', :alt => "find today", :class => "img-right", :usemap => "#monthnavmap" %>
 							<map name="monthnavmap">
-								<area shape="rect" coords="2,2,26,21" title=<%= (@caldate - 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "lionindex", :date => "#{@caldate - 1.month}") %> />
-								<area shape="rect" coords="28,2,86,21" title=<%= @today.strftime("\"Show today (%a %b %e)\"") %> href=<%- if @caldate.year == @today.year && @caldate.month == @today.month -%>"#today"<%- else -%><%= url_for(:action => "lionindex", :anchor => "today") %><%- end -%> />
-								<area shape="rect" coords="88,2,113,21" title=<%= (@caldate + 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "lionindex", :date => "#{@caldate + 1.month}") %> />
+								<area shape="rect" coords="2,2,26,21" title=<%= (@caldate - 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "index", :date => "#{@caldate - 1.month}") %> />
+								<area shape="rect" coords="28,2,86,21" title=<%= @today.strftime("\"Show today (%a %b %e)\"") %> href=<%- if @caldate.year == @today.year && @caldate.month == @today.month -%>"#today"<%- else -%><%= url_for(:action => "index", :anchor => "today") %><%- end -%> />
+								<area shape="rect" coords="88,2,113,21" title=<%= (@caldate + 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "index", :date => "#{@caldate + 1.month}") %> />
 							</map>
 						</td>
 					</tr>
@@ -80,7 +80,7 @@
 			<%- for shiftnum in 1..4 -%>
 				<%- if nextshift != nil && nextshift.shiftnum == shiftnum -%>
 					<%- shifttime = ["00:00 - 06:00", "06:00 - 12:00", "12:00 - 18:00", "18:00 - 24:00"][shiftnum-1] -%>
-		<div class=<%= "\"s#{shiftnum} #{nextshift.status}\"" %> title=<%= "\"Shift #{shiftnum} (#{shifttime})\"" %>>
+		<div class="<%= "s#{shiftnum} #{nextshift.status}" %>" title="<%= "Shift #{shiftnum} (#{shifttime})" %>">
 			<ul>
 				<%- if nextshift.has_member?(@user) || thedate < @today - 3.days -%>
 				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portablename %><%- else -%>&nbsp;<%- end -%></li>
@@ -96,7 +96,7 @@
 					<%- shiftindex += 1 -%>
 					<%- nextshift = (shiftindex < @shifts.count) ? @shifts[shiftindex] : nil -%>
 				<%- else -%>
-		<div class=<%= "\"s#{shiftnum} empty\"" %>></div>
+		<div class="<%= "s#{shiftnum} empty" %>"></div>
 				<%- end -%>
 			<%- end -%>
 		<%- end -%>

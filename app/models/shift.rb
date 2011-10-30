@@ -10,22 +10,22 @@ class Shift < ActiveRecord::Base
   validates_inclusion_of :shiftnum, :in => 1..4
   validates_with ShiftMembersValidator #verifies shift has at least one member
   
-  def self.find_all_in_month(thedate)
+  def Shift.find_all_in_month(thedate)
     firstdate = Date.new(thedate.year, thedate.month, 1)
     lastdate = Date.new(thedate.year, thedate.month, Time.days_in_month(thedate.month, thedate.year))
-    self.find_all_between_days(firstdate, lastdate)
+    Shift.find_all_between_days(firstdate, lastdate)
   end
   
-  def self.find_all_between_days(firstdate, lastdate)
-    find(:all, :conditions => ["shiftdate >= ? and shiftdate <= ?", firstdate.to_date, lastdate.to_date], :order => 'shiftdate ASC, shiftnum ASC', :readonly => true)
+  def Shift.find_all_between_days(firstdate, lastdate)
+    Shift.find(:all, :conditions => ["shiftdate >= ? and shiftdate <= ?", firstdate.to_date, lastdate.to_date], :order => 'shiftdate ASC, shiftnum ASC', :readonly => true)
   end
   
-  def self.find_all_in_day(thedate)
-    find(:all, :conditions => ["shiftdate = ?", thedate.to_date], :order => 'shiftnum ASC', :readonly => true)
+  def Shift.find_all_in_day(thedate)
+    Shift.find(:all, :conditions => ["shiftdate = ?", thedate.to_date], :order => 'shiftnum ASC', :readonly => true)
   end
   
-  def self.find_by_date_and_num(thedate, shiftnum)
-    find(:first, :conditions => ["shiftdate = ? and shiftnum = ?", thedate.to_date, shiftnum])
+  def Shift.find_by_date_and_num(thedate, shiftnum)
+    Shift.find(:first, :conditions => ["shiftdate = ? and shiftnum = ?", thedate.to_date, shiftnum])
   end
   
   def assign_member(position, member)
