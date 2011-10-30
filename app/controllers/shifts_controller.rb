@@ -1,4 +1,6 @@
 class ShiftsController < ApplicationController
+  before_filter :authenticate_member!
+  
   # GET /shifts
   # GET /shifts.json
   def index

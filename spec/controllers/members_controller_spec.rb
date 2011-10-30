@@ -24,7 +24,25 @@ describe MembersController do
   # Member. As you add validations to Member, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {
+      :fullname => "fullname",
+      :portablename => "fulln10",
+      :portablenumber => 10,
+      :email => "fulln@domain.com",
+      :privilege => "Normal",
+      :streetaddress => "234 storybrook way",
+      :city => "Eagle",
+      :zip => "12345",
+      :area => "RC",
+      :homephone => "234-5678",
+      :workphone => nil,
+      :cellorotherphone => "867-5309",
+      :shirtsize => "XXL",
+      :status => "Probationary",
+      :miscnotes => nil,
+      :password => "fritz",
+      :salt => "123",
+    }
   end
 
   describe "GET index" do

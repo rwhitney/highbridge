@@ -6,4 +6,8 @@ module ApplicationHelper
   def utc_string_tomorrow
     utc_string(Time.now + 1.day)
   end
+
+  def utc_string_yesterday
+    utc_string(Time.now - 1.day)
+  end
 end

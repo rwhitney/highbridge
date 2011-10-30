@@ -3,6 +3,9 @@ Highbridge::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
+  
+  # Need a default url for devise
+  config.action_mailer.default_url_options = { :host => 'http://www.mcaems.org' }
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false

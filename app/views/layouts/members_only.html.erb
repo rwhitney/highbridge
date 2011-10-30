@@ -16,8 +16,11 @@
 	<%# Date: 2011-10-29 %>
 	<%= stylesheet_link_tag "nav" %>
 	<%= stylesheet_link_tag "print", :media => "print" %>
+	<%= csrf_meta_tags %>
 </head>
 <body background="<%= image_path("gray_lt.gif") %>">
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <%= yield %>
 </body>
 </html>

@@ -1,9 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Mores Creek Ambulance</title>
+	<title><%= title %></title>
 	<meta name="generator" content="TextMate http://macromates.com/">
 	<meta name="author" content="Russ Whitney">
 <%- unless @desc.nil? -%>
@@ -11,15 +12,15 @@
 <%- end -%>
  	<meta name="keywords" content="mores creek ambulance east boise county ems emt"> 
 	<%# force page to expire from browser cache in 1 day %>
-	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_tomorrow %>">
+	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_yesterday %>">
 	<%# Date: 2011-10-29 %>
-	<%= stylesheet_link_tag "nav" %>
-	<%= stylesheet_link_tag "print", :media => "print" %>
+	<%= stylesheet_link_tag "lioncal" %>
+	<%= javascript_include_tag "calscript" %>
 	<%= csrf_meta_tags %>
 </head>
+<body>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
-<body background="<%= image_path("gray_lt.gif") %>">
 <%= yield %>
 </body>
 </html>

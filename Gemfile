@@ -4,6 +4,7 @@ gem 'rails', '3.1.1'
 gem 'execjs', '1.2.9'
 gem 'therubyracer', '0.9.8'
 gem 'rake', '0.9.2.2'
+gem 'devise', '1.4.9'
 
 # we no longer use sqlite3 in any environments
 gem 'mysql2', '0.3.7'

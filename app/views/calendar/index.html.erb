@@ -1,2 +1,111 @@
-<h1>Calendar#index</h1>
-<p>Find me in app/views/calendar/index.html.erb</p>
+	<div id="wrapper">
+	<div id="banner">
+		<div id="login"><%= @user.portablename %></div>
+		<h1>Mores Creek Shift Calendar</h1>
+	</div>
+	<div id="sidebar">
+		<h2><%= @caldate.strftime("%B") %> hours</h2>
+		<%- section = nil -%>
+		<%- for member in @members -%>
+			<%- if section == nil -%>
+				<%- section = member.status -%>
+		<h3><%= section %></h3>
+		<ul>
+			<%- elsif section != member.status -%>
+				<%- section = member.status -%>
+		</ul>
+		<h3><%= section %></h3>
+		<ul>
+			<%- end -%>
+			<li><span><%= member.monthly_total %></span><%= member.portablename %></li>
+		<%- end -%>
+		<%- if section != nil -%>
+		</ul>
+		<%- end -%>
+	</div>
+	<div id="maincontent">
+	<table class="caltable">
+		<thead>
+		<tr class="hdrrow">
+			<th colspan=7>
+				<table id="caltablehdr">
+					<tr>
+						<td id="tblhdr1"><h2><%= @caldate.strftime("%B %Y")%></h2></td>
+						<td id="tblhdr2">
+							<%= link_to image_tag('RefreshButton.png', :alt => "Refresh the calendar", :class => 'img-center'), {:action => "lionindex", :date => "#{@caldate}"} %>
+						</td>
+						<td id="tblhdr3">
+							<img src="/images/TodayButton.png" alt="find a new month" class="img-right" usemap="#monthnavmap" />
+							<map name="monthnavmap">
+								<area shape="rect" coords="2,2,26,21" title=<%= (@caldate - 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "lionindex", :date => "#{@caldate - 1.month}") %> />
+								<area shape="rect" coords="28,2,86,21" title=<%= @today.strftime("\"Show today (%a %b %e)\"") %> href=<%- if @caldate.year == @today.year && @caldate.month == @today.month -%>"#today"<%- else -%><%= url_for(:action => "lionindex", :anchor => "today") %><%- end -%> />
+								<area shape="rect" coords="88,2,113,21" title=<%= (@caldate + 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "lionindex", :date => "#{@caldate + 1.month}") %> />
+							</map>
+						</td>
+					</tr>
+				</table>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+
+<%- thedate = @startday -%>
+<%- shiftindex = 0 -%>
+<%- for weeknum in 1..@numweeks -%>
+<tr>
+	<%- for daynum in 1..7 -%>
+	<%- nextshift = (shiftindex < @shifts.count) ? @shifts[shiftindex] : nil -%>
+		<%- if thedate == @today -%>
+	<td class="today"><a name="today"></a>
+		<%- elsif daynum == 1 || daynum == 7 -%>
+	<td class="weekend">
+		<%- else -%>
+	<td>
+		<%- end -%>
+		<%- 
+		if thedate == @today
+			daystr = thedate.strftime("%B %e")
+		elsif weeknum == 1
+			daystr = thedate.strftime("%a %e")
+		else
+			daystr = thedate.strftime("%e")
+		end
+			-%>
+		<%- if thedate >= @today - 3.days -%>
+		<div class="daynum"><%= link_to daystr, {:action => :shiftedit, :date => thedate}, :class => 'daylink' %></div>
+		<%- else -%>
+		<div class="daynum"><%= daystr %></div>
+		<%- end -%>
+		<%- if nextshift != nil && nextshift.shiftdate == thedate -%>
+			<%- for shiftnum in 1..4 -%>
+				<%- if nextshift != nil && nextshift.shiftnum == shiftnum -%>
+					<%- shifttime = ["00:00 - 06:00", "06:00 - 12:00", "12:00 - 18:00", "18:00 - 24:00"][shiftnum-1] -%>
+		<div class=<%= "\"s#{shiftnum} #{nextshift.status}\"" %> title=<%= "\"Shift #{shiftnum} (#{shifttime})\"" %>>
+			<ul>
+				<%- if nextshift.has_member?(@user) || thedate < @today - 3.days -%>
+				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portablename %><%- else -%>&nbsp;<%- end -%></li>
+				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portablename %><%- else -%>&nbsp;<%- end -%></li>
+				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portablename %><%- else -%>&nbsp;<%- end -%></li>
+				<%- else -%>
+				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portablename %><%- else -%><%= link_to 'sign up', {:action => 'shift_signup', :date => "#{thedate}", :shift => "#{shiftnum}", :pos => "e1"}, :class => "#{nextshift.status}link" %><%- end -%></li>
+				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portablename %><%- else -%><%= link_to 'sign up', {:action => 'shift_signup', :date => "#{thedate}", :shift => "#{shiftnum}", :pos => "e2"}, :class => "#{nextshift.status}link" %><%- end -%></li>
+				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portablename %><%- else -%><%= link_to 'sign up', {:action => 'shift_signup', :date => "#{thedate}", :shift => "#{shiftnum}", :pos => "driver"}, :class => "#{nextshift.status}link" %><%- end -%></li>
+				<%- end -%>
+			</ul>
+		</div>
+					<%- shiftindex += 1 -%>
+					<%- nextshift = (shiftindex < @shifts.count) ? @shifts[shiftindex] : nil -%>
+				<%- else -%>
+		<div class=<%= "\"s#{shiftnum} empty\"" %>></div>
+				<%- end -%>
+			<%- end -%>
+		<%- end -%>
+	</td>
+	<%- thedate += 1 -%>
+	<%- end -%> <%# for daynum %>
+</tr>
+<%- end -%> <%# for weeknum %>
+		</tbody>
+	</table>
+	</div> <%# div maincontent %>
+	</div> <%# div wrapper %>

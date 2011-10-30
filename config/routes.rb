@@ -1,5 +1,7 @@
+# See how all your routes lay out with "rake routes"
 Highbridge::Application.routes.draw do
-  # See how all your routes lay out with "rake routes"
+  devise_for :members
+
   root :to => 'welcome#index'
 
   get "welcome/index"

@@ -12,15 +12,15 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :fullname %><br />
+    <%= f.label :fullname, "Full name" %><br />
     <%= f.text_field :fullname %>
   </div>
   <div class="field">
-    <%= f.label :portablename %><br />
+    <%= f.label :portablename, "Portable name" %><br />
     <%= f.text_field :portablename %>
   </div>
   <div class="field">
-    <%= f.label :portablenumber %><br />
+    <%= f.label :portablenumber, "Portable number" %><br />
     <%= f.number_field :portablenumber %>
   </div>
   <div class="field">
@@ -28,11 +28,11 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :privilege %><br />
+    <%= f.label :privilege, "Privilege (active, admin, webadmin)" %><br />
     <%= f.text_field :privilege %>
   </div>
   <div class="field">
-    <%= f.label :streetaddress %><br />
+    <%= f.label :streetaddress, "Street Address" %><br />
     <%= f.text_field :streetaddress %>
   </div>
   <div class="field">
@@ -44,40 +44,36 @@
     <%= f.text_field :zip %>
   </div>
   <div class="field">
-    <%= f.label :area %><br />
+    <%= f.label :area, "Area (CC, LP, WR, HC/OS, MRR, RCM, RC, RV, IC, TC)" %><br />
     <%= f.text_field :area %>
   </div>
   <div class="field">
-    <%= f.label :homephone %><br />
+    <%= f.label :homephone, "Home Phone" %><br />
     <%= f.text_field :homephone %>
   </div>
   <div class="field">
-    <%= f.label :workphone %><br />
+    <%= f.label :workphone, "Work Phone" %><br />
     <%= f.text_field :workphone %>
   </div>
   <div class="field">
-    <%= f.label :cellorotherphone %><br />
+    <%= f.label :cellorotherphone, "Cell or Other Phone" %><br />
     <%= f.text_field :cellorotherphone %>
   </div>
   <div class="field">
-    <%= f.label :shirtsize %><br />
+    <%= f.label :shirtsize, "Shirt Size (e.g. S, M, L, XL, etc.)" %><br />
     <%= f.text_field :shirtsize %>
   </div>
   <div class="field">
-    <%= f.label :status %><br />
+    <%= f.label :status, "Status (Associate, Active, Probationary)" %><br />
     <%= f.text_field :status %>
   </div>
   <div class="field">
-    <%= f.label :miscnotes %><br />
+    <%= f.label :miscnotes, "Miscellaneous Notes" %><br />
     <%= f.text_field :miscnotes %>
   </div>
   <div class="field">
     <%= f.label :password %><br />
     <%= f.text_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :salt %><br />
-    <%= f.text_field :salt %>
   </div>
   <div class="actions">
     <%= f.submit %>

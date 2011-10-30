@@ -1,4 +1,6 @@
 class MembersController < ApplicationController
+  before_filter :authenticate_member!
+  
   # GET /members
   # GET /members.json
   def index
@@ -41,6 +43,7 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     @member = Member.new(params[:member])
+    @member.encode_password!
 
     respond_to do |format|
       if @member.save

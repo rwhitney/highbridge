@@ -6,11 +6,13 @@ class ApplicationController < ActionController::Base
   clear_helpers
 
 protected
-  def authenticate
+  def old_authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      m = Member.validate_login username, password
-      @user = m
-      # m != nil   <- shouldn't need this
+      if @user
+        @user
+      else
+        @user = Member.validate_login username, password
+      end
     end
   end
 end
