@@ -58,6 +58,12 @@ class MembersController < ApplicationController
   # PUT /members/1
   # PUT /members/1.json
   def update
+    # this if statement allows devise to accept record when password is not filled in
+    if params[:member][:password].blank?
+      params[:member].delete(:password)
+      params[:member].delete(:password_confirmation)
+    end
+    
     @member = Member.find(params[:id])
 
     respond_to do |format|
