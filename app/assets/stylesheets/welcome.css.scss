@@ -1,3 +1,120 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	margin: 0 auto 0 auto;
+	padding: 0;
+	width: 800px;
+	//text-align: center;
+}
+
+#banner {
+	margin: 0;
+	padding: 0;
+	height: 158px;
+	
+	#logo {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		float: left;
+		width: 180px;
+	}
+	
+	#mca-banner {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		float: left;
+	}
+}
+
+#wrapper {
+	margin: 0;
+	padding: 0;
+	width: 800px;
+	height: auto;
+	background: url(light-blue-bg.png) repeat-y left top;
+}
+
+#sidebar {
+	padding: 8px;
+	margin: 0;
+	float: left;
+	width: 164px;
+	height: auto;
+	
+	ul {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 0.9em;
+		line-height: 2em;
+		color: #705454;
+		list-style-type: none;
+		text-align: right;
+		margin: 0;
+		padding: 8px;
+
+		li {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}
+
+#maincontent {
+	padding: 20px 8px 20px 8px;
+	margin: 0 0 0 180px;
+	width: 592px;
+	height: auto;
+	text-align: center;
+	
+	h1 {
+		font-size: 1.75em;
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		text-align: center;
+		color: #333333;
+	}
+
+	h2 {
+		font-size: 1.25em;
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		font-weight: normal;
+		text-align: center;
+		color: #44290a;
+	}
+
+	h3 {
+		font-size: 1em;
+		font-family: Arial, Helvetica, sans-serif;
+		font-weight: bold;
+		text-align: center;
+		color: #44290a;
+	}
+
+	p {
+		font-size: 0.80em;
+		font-weight: normal;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: left;
+		color: #333333;
+		padding: 0;
+		margin: 0 0 0.8em 0;
+	}
+	
+	em {
+		font-weight: bold;
+		font-style: italic;
+		color: #222222;
+		text-align: center;
+	}
+
+	img {
+		padding: 0;
+		margin: 0 auto 0 auto;
+		border: 0;
+	}
+}
+
+

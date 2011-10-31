@@ -1,18 +1,23 @@
-<h2 align="center">Welcome to Mores Creek Ambulance</h2>
-<%= image_tag 'mca.jpg', :size => "459x345", :align => "right", :alt => "Mores Creek Ambulance" %><br>
-<hr>
-
+<h2>Unity... Compassion... Diligence... Professionalism...</h2>
 <p>
-	<%= link_to 'General Information', :action => 'generalinfo' %><br>
-	<%= link_to 'Volunteering and donating', :action => 'volunteerinfo' %><br>
-	<%= link_to 'Application to volunteer (MS Word)', :action => 'memberapp' %><br>
-	<%= link_to 'Our full brochure (MS Word)', :action => 'brochure' %><br>
-	<%= link_to 'Cool LifeFlight Picture', :action => 'lifeflight' %>
+	Mores Creek Ambulance is a volunteer organization commited to providing emergency
+	medical service with care and compassion for our community, friends and neighbors.
+</p>
+<%= image_tag("MCA-Area-Map.png", :size => "308x326", :alt => "Mores Creek service area") %>
+<p>
+	The Mores Creek Ambulance services are extends from High Bridge (the county line
+	on Highway 21) to milemarker 29.5 on Highway 21 and from Bogus Basin to Atlanta.
 </p>
 <p>
-	<b><%= link_to 'Members Only', :controller => 'members_only' %></b><br>
-	<b><%= link_to 'Useful Links', :action => 'links' %></b>
+	Mores Creek Ambulance is a part of East Boise County EMS. Our sister units are Idaho
+	City, Placerville and Lowman. Where necessary, we back up the other units and they
+	back up ours.
 </p>
 <p>
-	<%= mail_to "webmaster@mcaems.org", "E-mail this site's webmaster" %>
+	Our units are all EMT-B certified.
+</p>
+<p>
+	If you live in the area of Mores Creek, consider 
+	<%= link_to 'volunteering', :action => 'volunteerinfo' %> to be part of our ambulance
+	staff.
 </p>

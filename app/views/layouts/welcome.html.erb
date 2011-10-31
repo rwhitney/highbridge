@@ -1,11 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
-
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title><%= title %></title>
-	<meta name="generator" content="TextMate http://macromates.com/">
 	<meta name="author" content="Russ Whitney">
 <%- unless @desc.nil? -%>
  	<meta name="description" content="<%= @desc %>">
@@ -13,11 +11,30 @@
  	<meta name="keywords" content="mores creek ambulance east boise county ems emt"> 
 	<%# force page to expire from browser cache in 1 day %>
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_tomorrow %>">
-	<%# Date: 2011-10-28 %>
+	<%# Date: 2011-10-31 %>
+	<%= stylesheet_link_tag "welcome" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+	<div id="banner">
+		<%= link_to(image_tag("header-logo.png", :id => "logo", :size => "180x175", :alt => "Mores Creek Ambulance Logo"), :action => "index") %>
+		<%= image_tag("header-banner.png", :id => "mca-banner", :size => "608x175", :alt => "") %>
+	</div> <%# banner %>
+	<div id="wrapper">
+		<div id="sidebar">
+			<ul>
+				<li><%= link_to 'General Information', :action => 'generalinfo' %></li>
+				<li><%= link_to 'Volunteering', :action => 'volunteerinfo' %></li>
+				<li><%= link_to 'Donating', :action => 'volunteerinfo' %></li>
+				<li><%= link_to 'Useful Links', :action => 'links' %></li>
+				<li><%= link_to 'Members Only', :controller => 'members_only', :action => 'index' %></li>
+			</ul>
+		</div> <%# sidebar %>
+		<div id="maincontent">
+<%- if notice -%><p class="notice"><%= notice %></p><%- end -%>
+<%- if alert -%><p class="alert"><%= alert %></p><%- end -%>
 <%= yield %>
+		</div> <%# maincontent %>
+	</div>  <%# wrapper %>
 </body>
 </html>
