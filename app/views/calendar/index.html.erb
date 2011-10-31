@@ -50,13 +50,13 @@
 		<%- else -%>
 		<div class="daynum"><%= daystr %></div>
 		<%- end -%>
-		<%- if nextshift != nil && nextshift.shiftdate == thedate -%>
+		<%- unless nextshift.nil? || nextshift.shiftdate != thedate -%>
 			<%- for shiftnum in 1..4 -%>
-				<%- if nextshift != nil && nextshift.shiftnum == shiftnum -%>
+				<%- unless nextshift.nil? || nextshift.shiftdate != thedate || nextshift.shiftnum != shiftnum -%>
 					<%- shifttime = ["00:00 - 06:00", "06:00 - 12:00", "12:00 - 18:00", "18:00 - 24:00"][shiftnum-1] -%>
 		<div class="<%= "s#{shiftnum} #{nextshift.status}" %>" title="<%= "Shift #{shiftnum} (#{shifttime})" %>">
 			<ul>
-				<%- if nextshift.has_member?(@user) || thedate < @today - 3.days -%>
+				<%- if nextshift.has_member?(current_member) || thedate < @today - 3.days -%>
 				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portablename %><%- else -%>&nbsp;<%- end -%></li>
 				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portablename %><%- else -%>&nbsp;<%- end -%></li>
 				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portablename %><%- else -%>&nbsp;<%- end -%></li>
@@ -81,3 +81,6 @@
 <%- end -%> <%# for weeknum %>
 		</tbody>
 	</table>
+<p>
+<%= link_to 'Back to Members Only', :controller => 'members_only', :action => 'index' %>
+</p>
