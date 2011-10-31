@@ -41,4 +41,16 @@ class Member < ActiveRecord::Base
   def get_all_members
     #Member.find(:all, :conditions => ["shiftdate = ?", thedate.to_date], :order => 'shiftnum ASC', :readonly => true)
   end
+  
+  def has_home_phone
+    homephone && homephone.strip.length > 0
+  end
+  
+  def has_work_phone
+    workphone && workphone.strip.length > 0
+  end
+  
+  def has_cell_phone
+    cellorotherphone && cellorotherphone.strip.length > 0
+  end
 end

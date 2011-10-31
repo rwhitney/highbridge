@@ -1,10 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
+
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Mores Creek Ambulance</title>
-	<meta name="generator" content="TextMate http://macromates.com/">
+	<title><%= title %></title>
 	<meta name="author" content="Russ Whitney">
 <%- unless @desc.nil? -%>
  	<meta name="description" content="<%= @desc %>">
@@ -13,15 +13,61 @@
 	<%# force page to expire from browser cache in 1 day %>
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_tomorrow %>">
 	<%# Date: 2011-10-29 %>
-	<%= stylesheet_link_tag "nav" %>
-	<%= stylesheet_link_tag "print", :media => "print" %>
+	<%= stylesheet_link_tag "welcome" %>
+	<%= javascript_include_tag :all %>
 	<%= csrf_meta_tags %>
 </head>
-<p class="notice"><%= notice %></p>
-<%- if alert != notice -%>
-<p class="alert"><%= alert %></p>
-<%- end -%>
-<body background="<%= image_path("gray_lt.gif") %>">
+<body>
+	<div id="banner">
+		<%= link_to(image_tag("header-logo.png", :id => "logo", :size => "180x175", :alt => "Mores Creek Ambulance Logo"), 
+		:controller => "/welcome", :action => "index") %>
+<% if controller.controller_name != 'welcome' %>
+		<%= image_tag("header-banner-mo.png", :id => "mca-banner", :size => "608x175", :alt => "") %>
+<% else %>
+		<%= image_tag("header-banner.png", :id => "mca-banner", :size => "608x175", :alt => "") %>
+<% end %>
+	</div> <%# banner %>
+	<div id="wrapper">
+		<div id="sidebar">
+<% unless current_member.nil? %>
+			<div id="signinstatus">
+				You are <%= current_member.portablename %>
+				<%= button_to "Logout", destroy_member_session_path, :method => :delete %>
+			</div>
+<% end %>
+			<ul>
+				<li><%= link_to_unless_current 'Home Page', :controller => '/welcome', :action => 'index' %></li>
+				<li><%= link_to_unless_current 'Members Only', :controller => '/members_only', :action => 'index' %></li>
+<% unless current_member.nil? %>
+				<li><%= link_to_unless_current 'Calendar', :controller => 'calendar', :action => 'index' %></li>
+				<li><%= link_to_unless_current 'Roster', :controller => 'members', :action => 'index' %></li>
+<% end %>
+				<li><%= link_to_unless_current 'General Information', :controller => '/welcome', :action => 'generalinfo' %></li>
+				<li><%= link_to_unless_current 'Getting Involved', :controller => '/welcome', :action => 'volunteerinfo' %></li>
+				<li><%= link_to_unless_current 'Useful Links', :controller => '/welcome', :action => 'links' %></li>
+<% unless current_member.nil? %>
+				<li><%= link_to_unless_current 'Photos', :controller => 'members_only', :action => 'photos' %></li>
+				<li><%= link_to_unless_current 'Radio Operations', :controller => 'members_only', :action => 'radio' %></li>
+<% end %>
+			</ul>
+<% if controller.controller_name != 'welcome' %>
+			<hr>
+			<p>
+				All information on this page (and the rest of the members-only area) is Mores Creek 
+				member confidential. Do not share this information with 
+				anyone outside of MCA without permission from the board.
+			</p>
+			<hr>
+<% end %>
+		</div> <%# sidebar %>
+		<div id="maincontent">
+<%- if notice -%><p class="notice"><%= notice %></p><%- end -%>
+<%- if alert -%><p class="alert"><%= alert %></p><%- end -%>
 <%= yield %>
+		</div> <%# maincontent %>
+		<div id="footer">
+			Copyright (c) 2011, Mores Creek Ambulance
+		</div>
+	</div>  <%# wrapper %>
 </body>
 </html>

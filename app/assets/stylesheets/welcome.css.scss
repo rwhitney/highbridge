@@ -76,6 +76,15 @@ body {
 	}
 }
 
+#footer {
+	clear: both;
+	margin: 0 0 0 180px;
+	text-align: center;
+	font-style: italic;
+	font-size: 0.8em;
+	color: #666666;
+}
+
 #maincontent {
 	padding: 20px 8px 20px 8px;
 	margin: 0 0 0 180px;
@@ -169,10 +178,12 @@ body {
 		
 		th {
 			font-size: 1.1em;
+			padding: 2px;
 			border: 1px solid #666666;
 			background-color: #CCCCCC;
 		}
 		td {
+			padding: 2px;
 			border: 1px solid #999999;
 		}
 	}

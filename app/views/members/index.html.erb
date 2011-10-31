@@ -1,51 +1,44 @@
-<h1>Listing members</h1>
+<h1>Mores Creek Roster</h1>
 
 <table>
   <tr>
-    <th>Fullname</th>
-    <th>Portablename</th>
-    <th>Portablenumber</th>
+    <th>Name</th>
+    <th>Num</th>
     <th>Email</th>
-    <th>Streetaddress</th>
-    <th>City</th>
-    <th>Zip</th>
     <th>Area</th>
-    <th>Homephone</th>
-    <th>Workphone</th>
-    <th>Cellorotherphone</th>
-    <th>Shirtsize</th>
+    <th>Phone</th>
     <th>Status</th>
-    <th>Miscnotes</th>
-    <th>Admin</th>
     <th></th>
+<% if current_member.admin? %>
     <th></th>
-    <th></th>
+<% end %>
   </tr>
 
 <% @members.each do |member| %>
   <tr>
     <td><%= member.fullname %></td>
-    <td><%= member.portablename %></td>
     <td><%= member.portablenumber %></td>
     <td><%= member.email %></td>
-    <td><%= member.streetaddress %></td>
-    <td><%= member.city %></td>
-    <td><%= member.zip %></td>
     <td><%= member.area %></td>
-    <td><%= member.homephone %></td>
-    <td><%= member.workphone %></td>
-    <td><%= member.cellorotherphone %></td>
-    <td><%= member.shirtsize %></td>
+    <td>
+		<% if member.has_home_phone %>h.&nbsp;<%= member.homephone %><% end %>
+		<% if member.has_home_phone && (member.has_work_phone || member.has_cell_phone) %><br /><% end %>
+		<% if member.has_work_phone %>w.&nbsp;<%= member.workphone %><% end %>
+		<% if member.has_work_phone && member.has_cell_phone %><br /><% end %>
+		<% if member.has_cell_phone %>m.&nbsp;<%= member.cellorotherphone %><% end %>
+	</td>
     <td><%= member.status %></td>
-    <td><%= member.miscnotes %></td>
-    <td><%= member.admin %></td>
-    <td><%= link_to 'Show', member %></td>
+    <td><%= link_to 'Details', member %></td>
+<% if current_member.admin? %>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
-    <td><%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete %></td>
+<% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<% if current_member.admin? %>
 <%= link_to 'New Member', new_member_path %>
+<% end %>
+
+<table >

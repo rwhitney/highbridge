@@ -1,0 +1,72 @@
+<h2>Mores Creek Ambulance Radio Operations</h2>
+<h3>General Info</h3>
+
+<p>
+	Radio traffic should be kept brief and clear. The use of "codes" and other shortcuts that may 
+	cause confusion should be avoided whenever possible. Before keying the microphone, listen to 
+	make certain nobody else is using the frequency. After keying the microphone, wait about 
+	one second before speaking. This gives all the downstream repeaters and receivers the time to 
+	"listen".
+</p>
+
+<p>
+	All of our radios have a scan mode that allows them to monitor more than one frequency. Once 
+	you arrive on-scene, you may elect to turn scan mode off if monitoring Boise county is not 
+	necessary.
+</p>
+
+<h3>Specific Radio Instructions (Still Under Construction)</h3>
+
+<p>
+	<ul>
+		<li><%= link_to 'Kenwood (portable) instructions', :action => 'radio_kenwood' %></li>
+		<li><%= link_to 'Kenwood (ambulance) instructions', :action => 'radio_kenwooda' %></li>
+	</ul>
+</p>
+
+<h3>Radio Frequencies</h3>
+
+<table>
+	<tr><th></th><th>Kenwood</th><th>Bendix King</th><th>Receive Freq.</th><th>Transmit Freq.</th><th>Sub-audible tone</th></tr>
+	<tr><td>StateComm 1</td><td>EMS F1</td><td>1</td><td>155.340</td><td>155.340</td><td>none</td></tr>
+	<tr><td>StateComm 2</td><td>EMS F2</td><td>2</td><td>155.280</td><td>155.280</td><td>none</td></tr>
+
+	<tr><td>Boise County (Hawley repeater)</td><td>HAWLEY</td><td>3</td><td>155.520</td><td>159.150</td><td>114.8</td></tr>
+	<tr><td>Boise County (Pilot repeater)</td><td>PILOT</td><td>4</td><td>155.520</td><td>159.150</td><td>123.0</td></tr>
+	<tr><td>Boise County (Shaw repeater)</td><td>SHAW MTN</td><td>5</td><td>155.520</td><td>159.150</td><td>141.3</td></tr>
+
+	<tr><td>Boise County (no repeater)</td><td>CAR/CAR</td><td>6</td><td>155.520</td><td>155.520</td><td>none</td></tr>
+	<tr><td>Boise County Fire 1</td><td>BCF 1</td><td>7</td><td>154.295</td><td>154.295</td><td>none</td></tr>
+	<tr><td>Boise County Fire 2</td><td>BCF 2</td><td>8</td><td>154.280</td><td>154.280</td><td>none</td></tr>
+
+	<tr><td>Weather</td><td>WEATHER</td><td>14</td><td>162.550</td><td>n/a</td><td>n/a</td></tr>
+</table>
+
+<p>
+	MCA Cap (toneout) codes: 847.5, 682.5
+</p>
+
+<p>
+	StateComm 1 is used to give patient reports to St. Al's and St. Lukes. Both hospitals monitor this frequency. 
+	StateComm 2 is our primary frequency, and goes directly to State Comm. Someone on the crew should always be 
+	monitoring StateComm 2. When monitoring Boise county dispatch, you can monitor any of the 4 (Hawley, Pilot, 
+	Shaw, car/car) frequencies, since they are all the same <em>receive</em> frequency. If you need to talk to Boise 
+	county, your best choice will normally be Shaw, which is located west of Hilltop. Pilot, located north of 
+	Idaho City, would be a good backup. Hawley is near Banks, and is usually a poor choice for us. Car/car, BCF1, 
+	and BCF2 do not use repeaters. These frequencies are good for short range only.
+</p>
+
+<p>
+	<ul>
+		<li><%= link_to 'Boise County 10-codes', :action => 'radio_codes' %></li>
+		<li><%= link_to 'Boise County Phonetic Alphabet', :action => 'radio_alphabet' %></li>
+	</ul>
+</p>
+
+<h3>Area scanner pages:</h3>
+<p>
+	<ul>
+		<li><a href="http://home.inreach.com/relliott/freqs.html">Scanner1</a></li>
+ 		<li><a href="http://www.myscannerpage.com/boise.html">Scanner2</a></li>
+	</ul>
+</p>
