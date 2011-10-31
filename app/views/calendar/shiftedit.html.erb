@@ -1,5 +1,10 @@
 <%= form_tag :controller => "calendar", :action => "shiftsignup" do %>
-<h1>Shift Signup</h1>
+<%- if notice -%>
+<p class="notice"><%= notice %></p>
+<%- end -%>
+<%- if alert -%>
+<p class="alert"><%= alert %></p>
+<%- end -%>
 <table border="0" cellpadding="3" cellspacing="0" align="center">
 	<tr>
 		<td colspan=5 align=center>

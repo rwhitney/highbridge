@@ -1,29 +1,3 @@
-	<div id="wrapper">
-	<div id="banner">
-		<div id="login"><%= current_member.portablename %></div>
-		<h1>Mores Creek Shift Calendar</h1>
-	</div>
-	<div id="sidebar">
-		<h2><%= @caldate.strftime("%B") %> hours</h2>
-		<%- section = nil -%>
-		<%- for member in @members -%>
-			<%- if section == nil -%>
-				<%- section = member.status -%>
-		<h3><%= section %></h3>
-		<ul>
-			<%- elsif section != member.status -%>
-				<%- section = member.status -%>
-		</ul>
-		<h3><%= section %></h3>
-		<ul>
-			<%- end -%>
-			<li><span><%= member.monthly_total %></span><%- if member.portablename == current_member.portablename -%><em><%- end -%><%= member.portablename %><%- if member.portablename == current_member.portablename -%></em><%- end -%></li>
-		<%- end -%>
-		<%- if section != nil -%>
-		</ul>
-		<%- end -%>
-	</div>
-	<div id="maincontent">
 	<table class="caltable">
 		<thead>
 		<tr class="hdrrow">
@@ -107,5 +81,3 @@
 <%- end -%> <%# for weeknum %>
 		</tbody>
 	</table>
-	</div> <%# div maincontent %>
-	</div> <%# div wrapper %>

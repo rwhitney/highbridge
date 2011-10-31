@@ -14,16 +14,44 @@
 	<%# force page to expire from browser cache in 1 day %>
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_yesterday %>">
 	<%# Date: 2011-10-29 %>
-	<%= stylesheet_link_tag "lioncal" %>
+	<%= stylesheet_link_tag "calendar" %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
-<%- if notice -%>
-<p class="notice"><%= notice %></p>
-<%- end -%>
-<%- if alert -%>
-<p class="alert"><%= alert %></p>
-<%- end -%>
+	<div id="wrapper">
+	<div id="banner">
+		<div id="login"><%= current_member.portablename %></div>
+		<h1>Mores Creek Shift Calendar</h1>
+	</div>
+	<div id="sidebar">
+		<h2><%= @caldate.strftime("%B") %> hours</h2>
+		<%- section = nil -%>
+		<%- for member in @members -%>
+			<%- if section == nil -%>
+				<%- section = member.status -%>
+		<h3><%= section %></h3>
+		<ul>
+			<%- elsif section != member.status -%>
+				<%- section = member.status -%>
+		</ul>
+		<h3><%= section %></h3>
+		<ul>
+			<%- end -%>
+			<li><span><%= member.monthly_total %></span><%- if member.portablename == current_member.portablename -%><em><%- end -%><%= member.portablename %><%- if member.portablename == current_member.portablename -%></em><%- end -%></li>
+		<%- end -%>
+		<%- if section != nil -%>
+		</ul>
+		<%- end -%>
+	</div>
+	<div id="maincontent">
+	<%- if notice -%>
+	<p class="notice"><%= notice %></p>
+	<%- end -%>
+	<%- if alert -%>
+	<p class="alert"><%= alert %></p>
+	<%- end -%>
 <%= yield %>
+	</div> <%# div maincontent %>
+	</div> <%# div wrapper %>
 </body>
 </html>

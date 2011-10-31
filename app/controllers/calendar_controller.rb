@@ -19,11 +19,7 @@ class CalendarController < ApplicationController
     @startday = @caldate - @caldate.wday
     @endday = @startday + (@numweeks * 7 - 1)
     @shifts = Shift.find_all_between_days(@startday, @endday)
-    @members = Member.find :all
-    for member in @members do
-      member.monthly_total = Shift.calc_monthly_total(@shifts, @caldate.month, member)
-    end
-    @members = @members.sort_by { |m| [m.status, -m.monthly_total] }
+    get_member_list
   end
 
   def shiftedit
@@ -42,6 +38,8 @@ class CalendarController < ApplicationController
         @shifts = nil
       end
     end
+    @caldate = @shiftdate
+    get_member_list
   end
 
   def shiftsignup
@@ -65,6 +63,15 @@ class CalendarController < ApplicationController
       end
     end
     redirect_to :action => 'index', :thedate => shiftdate.to_s
+  end
+  
+protected
+  def get_member_list
+    @members = Member.find :all
+    for member in @members do
+      member.monthly_total = Shift.calc_monthly_total(@shifts, @caldate.month, member)
+    end
+    @members = @members.sort_by { |m| [m.status, -m.monthly_total] }
   end
 
 end
