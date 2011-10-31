@@ -1,133 +1,98 @@
-<h1 align="center">Mores Creek Ambulance Members Page</h1><br />
-<h2 align="center"><%= current_member.portablename %> <%= button_to "Logout", destroy_member_session_path, :method => :delete %></h2><br />
-<strong>All information on this page and subsequent pages is Mores Creek
-member confidential. Do not share this information with anyone
-outside of MCA without permission from the board.</strong>
-<p>&nbsp;</p>
-<div align="center">
-	<%= image_tag 'bar_blue.gif', :alt => '', :size => "560x11" %>
-</div>
-<div align="center">
-<h3>Meeting Schedule</h3></div>
-The monthly general meeting is at 19:00 on the second Tuesday of the month at the ambulance shed unless otherwise indicated.
-The monthly board meeting is at 19:00 on the second Wednesday of the month at the ambulance shed.
-<p>&nbsp;</p>
-<div align="center">
-<h2>
-	<%= image_tag 'calendar.gif', :border => "0" %>
-	<strong>
-		<%= link_to "On-line Calendar", :controller => "calendar" %>
-	</strong>
-	<%= image_tag 'calendar.gif', :border => "0" %>
-</h2><br />
-	
-</div>
-<div align="center">
-<h2><a href="https://www.idahopercs.org/default.cfm?page=login"><strong>Online PCRs</strong></a></h2><br />
-</div>
-<div align="center">
-	<%= image_tag 'bar_blue.gif', :alt => '', :size => "560x11" %>
-</div>
-<div align="center">
-<h3>New Info</h3></div>
-<table>
-<tbody>
-<tr>
-<td><a href="BPMachine/"
-<b="">New BP Instructions</a></td></tr>
-<tr>
-<td><a href="radio/radio.htm"><strong>Radio Operations and Frequencies</strong></a></td>
-<td><%= image_tag 'radio.gif' %></td></tr>
-<tr>
-<td>
-	<a href="images/TrailerHitchTest.jpg"><strong>Interesting Extrication Scenario - What Would You Do?</strong></a></td></tr></tbody></table><br />
-<br /><br />
-<div align="center">
-	<%= image_tag 'bar_blue.gif', :alt => '', :size => "560x11" %>
-</div>
-<div align="center">
-<h3>Web Links</h3></div>
-<table width="100%">
-<tbody>
-<tr>
-<td><a href="roster.pdf"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Member Roster (PDF)</a></td>
-<td><a href="roster.xls"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Member Roster (Excel)</a></td></tr>
-<tr>
-<td><a href="http://www.healthandwelfare.idaho.gov/DesktopModules/ArticlesSortable/ArticlesSrtView.aspx?tabID=0&amp;ItemID=1187&amp;mid=10964&amp;wversion=Staging"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Health and Welfare, pediatric and adult guidelines</a></td>
-<td><a href="checkofflist.doc"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>New EMT Checkoff List (DOC)</a></td></tr>
-<tr>
-<td><a href="lz.htm"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Life Flight Landing Zones</a></td>
-<td><a href="LZs.pdf"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Area Map w/ LZs (PDF format)</a></td></tr>
-<tr>
-<td><a href="generalminutes/"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>General Meeting Minutes</a></td>
-<td><a href="boardminutes/"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Board Minutes</a></td></tr>
-<tr>
-<td><a href="adboardminutes/"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Advisory Board Meeting Minutes</a></td>
-<td><a href="treas/"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>MCA Treasury Reports</a></td></tr>
-<tr>
-<td><a href="ambops.htm"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Ambulance Operations</a></td>
-<td><a href="hepbform.doc"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Hep-B Form (MSWord)</a></td></tr>
-<tr>
-<td><a href="MCAAssessment.htm"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>MCA Patient Assessment Form</a></td>
-<td><a href="DriverOrientation.doc"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Driver Orientation form (MS Word)</a></td></tr>
-<tr>
-<td><a href="checkofflist.doc"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>New Member Checkoff List (MW Word)</a></td>
-<td><a href="images/voucher.jpg"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Immunization Voucher</a></td></tr>
-<tr>
-<td><a href="EMT-BRecertForm.doc"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>EMT Recert List (MW Word)</a></td>
-<td><a href="PCRGuide.pdf"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Online PCR Guide</a></td></tr>
-<tr>
-<td><a href="SOPs.htm"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>MCA SOPs</a></td>
-<td><a href="bylaws.htm"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>MCA Bylaws</a></td></tr>
-<tr>
-<td><a href="InfectionControlA.pdf"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Infection Control Part 1</a></td>
-<td><a href="InfectionControlB.pdf"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>Infection Control Part 2</a></td></tr></tbody></table><br />
-<a href="CO.pdf"><%= image_tag 'blueball.gif', :alt => '', :border => '0' %>CO Detector Manual</a><%= image_tag 'blueball.gif', :alt => '', :border => '0' %><br />
-<br />
-<div align="center">
-	<%= image_tag 'bar_blue.gif', :alt => '', :size => "560x11" %>
-</div>
-<div align="center">
-<h3>E-mail Links</h3></div>
-<table width="100%">
-<tbody>
-<tr>
-<td>
-	<%= image_tag 'greenball.gif', :alt => '', :border => '0' %>
-	<%= mail_to "mcaallmembers@mcaems.org", "All MCA members" %>
-</td>
-<td>&nbsp;</td></tr>
-<tr>
-<td><br />
-</td>
-<td><br />
-</td></tr>
-<tr>
-	<td>
-		<%= image_tag 'greenball.gif', :alt => '', :border => '0' %>
-		<%= mail_to "mcaboard@mcaems.org", "All board members" %>
-	</td>
-	<td>
-		<%= image_tag 'greenball.gif', :alt => '', :border => '0' %>
-		<%= mail_to "emsdoc@cableone.net", "Dr. Sturkie" %>
-	</td>
-</tr>
-<tr>
-<td><br />
-</td>
-<td><br />
-</td></tr>
-<tr>
-	<td>
-		<%= image_tag 'greenball.gif', :alt => '', :border => '0' %>
-		<%= mail_to "michaelb@idhw.state.id.us", "Idaho State EMS Director (Brad Michaelson)" %>
-	</td>
-	<td>
-		<%= image_tag 'greenball.gif', :alt => '', :border => '0' %>
-		<%= mail_to "statecom@idhw.state.id.us", "State Comm (Shana Monroe)" %>
-	</td>
-</tr></tbody></table>
+<%- if false -%>
+<%= image_tag 'Ambulance-Rear-Side.png', :class => 'img-right', :alt => 'Mores Creek Ambulance', :size => '173x175' %>
+<%- end -%>
+<h3>Meeting Schedule</h3>
 <p>
-	<br />
-	<%= link_to(image_tag('mcahome.gif', :alt => '', :border => '0'), :controller => "welcome") %>
+	<ul>
+		<li>The next general meeting is <%= @date_general.strftime("%a, %b %d") %> at 19:30</li>
+		<li>The next board meeting is <%= @date_board.strftime("%a, %b %d") %> at 19:30</li>
+	</ul>
 </p>
+<p>
+	(The monthly board meeting is on the first Tuesday of the month and the monthly general meeting is 
+	on the second Wednesday of the month. Both meetings are held at the Wilderness Ranch fire station.)
+</p>
+
+<h3><a href="https://www.idahopercs.org/default.cfm?page=login">Online PCRs</a></h3>
+
+<h3>Web Links</h3>
+
+<table class="nolines">
+	<tbody>
+		<tr>
+		<td><a href="http://www.healthandwelfare.idaho.gov/DesktopModules/ArticlesSortable/ArticlesSrtView.aspx?tabID=0&amp;ItemID=1187&amp;mid=10964&amp;wversion=Staging">Health and Welfare, pediatric and adult guidelines</a></td>
+		<td><a href="checkofflist.doc">New EMT Checkoff List (DOC)</a></td></tr>
+		<tr>
+		<td><a href="lz.htm">Life Flight Landing Zones</a></td>
+		<td><a href="LZs.pdf">Area Map w/ LZs (PDF format)</a></td></tr>
+		<tr>
+		<td><a href="generalminutes/">General Meeting Minutes</a></td>
+		<td><a href="boardminutes/">Board Minutes</a></td></tr>
+		<tr>
+		<td><a href="adboardminutes/">Advisory Board Meeting Minutes</a></td>
+		<td><a href="treas/">MCA Treasury Reports</a></td></tr>
+		<tr>
+		<td><a href="ambops.htm">Ambulance Operations</a></td>
+		<td><a href="hepbform.doc">Hep-B Form (MSWord)</a></td></tr>
+		<tr>
+		<td><a href="MCAAssessment.htm">MCA Patient Assessment Form</a></td>
+		<td><a href="DriverOrientation.doc">Driver Orientation form (MS Word)</a></td></tr>
+		<tr>
+		<td><a href="checkofflist.doc">New Member Checkoff List (MW Word)</a></td>
+		<td><a href="images/voucher.jpg">Immunization Voucher</a></td></tr>
+		<tr>
+		<td><a href="EMT-BRecertForm.doc">EMT Recert List (MW Word)</a></td>
+		<td><a href="PCRGuide.pdf">Online PCR Guide</a></td></tr>
+		<tr>
+		<td><a href="SOPs.htm">MCA SOPs</a></td>
+		<td><a href="bylaws.htm">MCA Bylaws</a></td></tr>
+		<tr>
+		<td><a href="InfectionControlA.pdf">Infection Control Part 1</a></td>
+		<td><a href="InfectionControlB.pdf">Infection Control Part 2</a></td></tr>
+	</tbody>
+</table>
+<h3>
+	<a href="CO.pdf">CO Detector Manual</a>
+</h3>
+
+<h3>E-mail Links</h3>
+<table class="nolines">
+	<tbody>
+		<tr>
+		<td>
+	
+			<%= mail_to "mcaallmembers@mcaems.org", "All MCA members" %>
+		</td>
+		<td>&nbsp;</td></tr>
+		<tr>
+		<td><br />
+		</td>
+		<td><br />
+		</td></tr>
+		<tr>
+			<td>
+		
+				<%= mail_to "mcaboard@mcaems.org", "All board members" %>
+			</td>
+			<td>
+		
+				<%= mail_to "emsdoc@cableone.net", "Dr. Sturkie" %>
+			</td>
+		</tr>
+		<tr>
+		<td><br />
+		</td>
+		<td><br />
+		</td></tr>
+		<tr>
+			<td>
+		
+				<%= mail_to "michaelb@idhw.state.id.us", "Idaho State EMS Director (Brad Michaelson)" %>
+			</td>
+			<td>
+		
+				<%= mail_to "statecom@idhw.state.id.us", "State Comm (Shana Monroe)" %>
+			</td>
+		</tr>
+	</tbody>
+</table>

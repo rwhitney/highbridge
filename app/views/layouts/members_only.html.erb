@@ -5,7 +5,6 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title><%= title %></title>
-	<meta name="generator" content="TextMate http://macromates.com/">
 	<meta name="author" content="Russ Whitney">
 <%- unless @desc.nil? -%>
  	<meta name="description" content="<%= @desc %>">
@@ -14,14 +13,43 @@
 	<%# force page to expire from browser cache in 1 day %>
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_tomorrow %>">
 	<%# Date: 2011-10-29 %>
-	<%= stylesheet_link_tag "nav" %>
-	<%= stylesheet_link_tag "print", :media => "print" %>
+	<%= stylesheet_link_tag "welcome" %>
 	<%= javascript_include_tag :all %>
 	<%= csrf_meta_tags %>
 </head>
-<body background="<%= image_path("gray_lt.gif") %>">
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<body>
+		<div id="banner">
+			<%= link_to(image_tag("header-logo.png", :id => "logo", :size => "180x175", :alt => "Mores Creek Ambulance Logo"), 
+			:controller => "welcome", :action => "index") %>
+			<%= image_tag("header-banner-mo.png", :id => "mca-banner", :size => "608x175", :alt => "") %>
+		</div> <%# banner %>
+		<div id="wrapper">
+			<div id="sidebar">
+				<div id="signinstatus">
+					Welcome <%= current_member.portablename %>!
+					<%= button_to "Logout", destroy_member_session_path, :method => :delete %>
+				</div>
+				<ul>
+					<li><%= link_to 'Calendar', :controller => 'calendar', :action => 'index' %></li>
+					<li><%= link_to 'Roster', :action => 'roster' %></li>
+					<li><%= link_to 'Photos', :action => 'photos' %></li>
+					<li><%= link_to 'Radio Operations', :action => 'radio' %></li>
+					<li><%= link_to 'Members Home Page', :action => 'index' %></li>
+					<li><%= link_to 'Home Page', :controller => 'welcome', :action => 'index' %></li>
+				</ul>
+				<hr>
+				<p>
+					All information on this page (and the rest of the members-only area) is Mores Creek 
+					member confidential. Do not share this information with 
+					anyone outside of MCA without permission from the board.
+				</p>
+				<hr>
+			</div> <%# sidebar %>
+			<div id="maincontent">
+<%- if notice -%><p class="notice"><%= notice %></p><%- end -%>
+<%- if alert -%><p class="alert"><%= alert %></p><%- end -%>
 <%= yield %>
+			</div> <%# maincontent %>
+		</div>  <%# wrapper %>
 </body>
 </html>

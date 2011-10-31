@@ -37,4 +37,8 @@ class Member < ActiveRecord::Base
   validates_inclusion_of :status, :in => ["Associate", "Active", "Probationary"]
   validates_inclusion_of :portablenumber, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
                                                           # but it would be mystifying to be out of this range
+
+  def get_all_members
+    #Member.find(:all, :conditions => ["shiftdate = ?", thedate.to_date], :order => 'shiftnum ASC', :readonly => true)
+  end
 end
