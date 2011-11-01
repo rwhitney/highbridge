@@ -14,18 +14,27 @@
 <% end %>
   </tr>
 
+<% ["EMT","First Responder","Driver","Non Call"].each do |training| %>
+	<% @members = Member.get_members_ordered_by_training(training) %>
+	<% if @members.count > 0 %>
+  <tr>
+    <th colspan=<% if current_member.admin? %>"8"<% else %>"7"<% end %>>
+		<%= pluralize(@members.count, training) %>
+	</th>
+  </tr>
+
 <% @members.each do |member| %>
   <tr>
-    <td><%= member.fullname %></td>
-    <td><%= member.portablenumber %></td>
+    <td><%= member.last_name + ', ' + member.first_name %></td>
+    <td><%= member.portable_number %></td>
     <td><%= member.email %></td>
     <td><%= member.area %></td>
     <td>
-		<% if member.has_home_phone %>h.&nbsp;<%= member.homephone %><% end %>
+		<% if member.has_home_phone %>h.&nbsp;<%= member.home_phone %><% end %>
 		<% if member.has_home_phone && (member.has_work_phone || member.has_cell_phone) %><br /><% end %>
-		<% if member.has_work_phone %>w.&nbsp;<%= member.workphone %><% end %>
+		<% if member.has_work_phone %>w.&nbsp;<%= member.work_phone %><% end %>
 		<% if member.has_work_phone && member.has_cell_phone %><br /><% end %>
-		<% if member.has_cell_phone %>m.&nbsp;<%= member.cellorotherphone %><% end %>
+		<% if member.has_cell_phone %>m.&nbsp;<%= member.cell_or_other_phone %><% end %>
 	</td>
     <td><%= member.status %></td>
     <td><%= link_to 'Details', member %></td>
@@ -33,12 +42,12 @@
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
 <% end %>
   </tr>
-<% end %>
+<% end %> <%# for each member %>
+<% end %> <%# if members.count > 0 %>
+<% end %> <%# loop for training %>
 </table>
 
 <br />
 <% if current_member.admin? %>
 <%= link_to 'New Member', new_member_path %>
 <% end %>
-
-<table >

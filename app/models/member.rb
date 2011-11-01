@@ -6,9 +6,9 @@ class Member < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :portablename, :fullname, :portablenumber, :streetaddress
-  attr_accessible :city, :zip, :area, :homephone, :workphone, :cellorotherphone
-  attr_accessible :shirtsize, :status, :miscnotes
+  attr_accessible :portable_name, :full_name, :portable_number, :street_address
+  attr_accessible :city, :zip, :area, :home_phone, :work_phone, :cell_or_other_phone
+  attr_accessible :shirt_size, :status, :misc_notes, :first_name, :last_name, :training_level
   attr_accessor :monthly_total
 
   EmailAddress = begin
@@ -31,26 +31,27 @@ class Member < ActiveRecord::Base
   has_many :e2shifts, :class_name => 'Shift', :foreign_key => "e2member_id"
   has_many :drivershifts, :class_name => 'Shift', :foreign_key => "dmember_id"
   
-  validates_presence_of :fullname, :portablename, :portablenumber, :email, :status
-  validates_uniqueness_of :portablename, :portablenumber
+  validates_presence_of :full_name, :portable_name, :portable_number, :email, :status, :training_level
+  validates_uniqueness_of :portable_name, :portable_number
   validates_format_of :email, :with => EmailAddress
-  validates_inclusion_of :status, :in => ["Associate", "Active", "Probationary"]
-  validates_inclusion_of :portablenumber, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
+  validates_inclusion_of :status, :in => ["Associate", "Active", "Probationary", "LOA"]
+  validates_inclusion_of :training_level, :in => ["EMT", "Driver", "First Responder", "Non Call"]
+  validates_inclusion_of :portable_number, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
                                                           # but it would be mystifying to be out of this range
 
-  def get_all_members
-    #Member.find(:all, :conditions => ["shiftdate = ?", thedate.to_date], :order => 'shiftnum ASC', :readonly => true)
+  def Member.get_members_ordered_by_training(training)
+    Member.find(:all, :conditions => ["training_level = ?", training], :order => 'last_name ASC, first_name ASC', :readonly => true)
   end
   
   def has_home_phone
-    homephone && homephone.strip.length > 0
+    home_phone && home_phone.strip.length > 0
   end
   
   def has_work_phone
-    workphone && workphone.strip.length > 0
+    work_phone && work_phone.strip.length > 0
   end
   
   def has_cell_phone
-    cellorotherphone && cellorotherphone.strip.length > 0
+    cell_or_other_phone && cell_or_other_phone.strip.length > 0
   end
 end

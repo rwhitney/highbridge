@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :member do
-    fullname "Mini User"
-    portablename "miniu999"
-    portablenumber 999
+    full_name "Mini User"
+    portable_name "miniu999"
+    portable_number 999
     email "mini@comcast.net"
     status "Active"           # "Associate", "Active", "Probationary"
     password "fritz1234"
@@ -10,9 +10,9 @@ FactoryGirl.define do
   end
   
   factory :admin, :class => Member do
-    fullname "Big Daddy"
-    portablename "bigd998"
-    portablenumber 998
+    full_name "Big Daddy"
+    portable_name "bigd998"
+    portable_number 998
     email "bigd@aol.com"
     status "Active"           # "Associate", "Active", "Probationary"
     password "Zackomoto"
@@ -20,96 +20,96 @@ FactoryGirl.define do
   end
   
   factory :russ, :class => Member do
-    fullname "Russ Whitney"
-    portablename "russw08"
-    portablenumber 8
+    full_name "Russ Whitney"
+    portable_name "russw08"
+    portable_number 8
     email "russ@whitneyhome.com"
-    streetaddress "56 Falcon Drive"
+    street_address "56 Falcon Drive"
     city "Boise"
     zip "83716"
     area "HC/OS"
-    homephone "367-9235"
-    workphone nil
-    cellorotherphone "991-4108"
-    shirtsize "L"
+    home_phone "367-9235"
+    work_phone nil
+    cell_or_other_phone "991-4108"
+    shirt_size "L"
     status "Probationary"                # "Associate", "Active", "Probationary"
-    miscnotes "web admin"
+    misc_notes "web admin"
     password "explorer"
     admin true
   end
   
   factory :lisa, :class => Member do
-    fullname "Lisa Whitney"
-    portablename "lisaw07"
-    portablenumber "7"
+    full_name "Lisa Whitney"
+    portable_name "lisaw07"
+    portable_number "7"
     email "lisa@whitneyhome.com"
-    streetaddress "56 Falcon Drive"
+    street_address "56 Falcon Drive"
     city "Boise"
     zip "83716"
     area "HC/OS"
-    homephone "367-9235"
-    workphone "367-9235"
-    cellorotherphone "367-9235"
-    shirtsize "M"
+    home_phone "367-9235"
+    work_phone "367-9235"
+    cell_or_other_phone "367-9235"
+    shirt_size "M"
     status "Probationary"                # "Associate", "Active", "Probationary"
-    miscnotes "EMT-B"
+    misc_notes "EMT-B"
     password "password"
     admin false
   end
 
   factory :drew, :class => Member do
-    fullname "Drew Bodie"
-    portablename "drew44"
-    portablenumber 44
+    full_name "Drew Bodie"
+    portable_name "drew44"
+    portable_number 44
     email "drewbodie2002@yahoo.com"
-    streetaddress "5 Buckboard Place"
+    street_address "5 Buckboard Place"
     city "Boise"
     zip "83716"
     area "WR"
-    homephone "344-2243"
-    workphone nil
-    cellorotherphone nil
-    shirtsize nil
+    home_phone "344-2243"
+    work_phone nil
+    cell_or_other_phone nil
+    shirt_size nil
     status "Active"                    # "Associate", "Active", "Probationary"
-    miscnotes "President"
+    misc_notes "President"
     password "password"
     admin true
   end
 
   factory :paul, :class => Member do
-    fullname "Paul Bucca"
-    portablename "paulb31"
-    portablenumber 31
+    full_name "Paul Bucca"
+    portable_name "paulb31"
+    portable_number 31
     email "pjbucca@msn.com"
-    streetaddress "11 Forst Drive"
+    street_address "11 Forst Drive"
     city "Boise"
     zip "83716"
     area "WR"
-    homephone "409-3962"
-    workphone nil
-    cellorotherphone nil
-    shirtsize nil
+    home_phone "409-3962"
+    work_phone nil
+    cell_or_other_phone nil
+    shirt_size nil
     status "Active"                      # "Associate", "Active", "Probationary"
-    miscnotes "WRFPD/Chassis Officer"
+    misc_notes "WRFPD/Chassis Officer"
     password "password"
     admin false
   end
 
   factory :dennis, :class => Member do
-    fullname "Dennis Bradshaw"
-    portablename "dennisb01"
-    portablenumber 1
+    full_name "Dennis Bradshaw"
+    portable_name "dennisb01"
+    portable_number 1
     email "bd_team@juno.com"
-    streetaddress "136 Gold Fork Ridge Rd"
+    street_address "136 Gold Fork Ridge Rd"
     city "Boise"
     zip "83716"
     area "CC"
-    homephone "392-2288"
-    workphone nil
-    cellorotherphone nil
-    shirtsize nil
+    home_phone "392-2288"
+    work_phone nil
+    cell_or_other_phone nil
+    shirt_size nil
     status "Active"                      # "Associate", "Active", "Probationary"
-    miscnotes "Adv. Board Rep."
+    misc_notes "Adv. Board Rep."
     password "password"
     admin true
   end

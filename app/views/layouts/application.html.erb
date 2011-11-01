@@ -28,7 +28,7 @@
 <% end %>
 <% if current_member %>
 		<div id="signinstatus">
-			<%= current_member.portablename %>
+			<%= current_member.portable_name %>
 			<%= button_to "Logout", destroy_member_session_path, :method => :delete %>
 		</div>
 <% end %>

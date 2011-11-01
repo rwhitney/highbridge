@@ -24,9 +24,9 @@ describe MembersController do
   def valid_attributes
     m = FactoryGirl.build(:lisa)
     {
-      :fullname => m.fullname,
-      :portablename => m.portablename,
-      :portablenumber => m.portablenumber,
+      :full_name => m.full_name,
+      :portable_name => m.portable_name,
+      :portable_number => m.portable_number,
       :email => m.email,
       :status => m.status,
       :password => m.password,

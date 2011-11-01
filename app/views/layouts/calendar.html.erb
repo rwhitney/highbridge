@@ -20,7 +20,7 @@
 <body>
 	<div id="wrapper">
 	<div id="banner">
-		<div id="login"><%= current_member.portablename %></div>
+		<div id="login"><%= current_member.portable_name %></div>
 		<div id="mo_nav"><%= link_to 'Members Home', :controller => "members_only", :action => "index" %></div>
 		<h1>Mores Creek Shift Calendar</h1>
 	</div>
@@ -38,7 +38,7 @@
 		<h3><%= section %></h3>
 		<ul>
 			<%- end -%>
-			<li><span><%= member.monthly_total %></span><%- if member.portablename == current_member.portablename -%><em><%- end -%><%= member.portablename %><%- if member.portablename == current_member.portablename -%></em><%- end -%></li>
+			<li><span><%= member.monthly_total %></span><%- if member.portable_name == current_member.portable_name -%><em><%- end -%><%= member.portable_name %><%- if member.portable_name == current_member.portable_name -%></em><%- end -%></li>
 		<%- end -%>
 		<%- if section != nil -%>
 		</ul>
