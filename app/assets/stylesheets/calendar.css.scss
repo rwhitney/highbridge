@@ -11,6 +11,48 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 75px;
+	background-image: url(LeatherTop.png);
+	background-repeat: repeat-x;
+
+	#login {
+		margin: 0;
+		height: 30px;
+		padding: 30px 16px 0 0;
+		float: right;
+		color: #44290a;
+		font-weight: normal;
+		text-align: right;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+	}
+	
+	#mo_nav {
+		margin: 0;
+		height: 30px;
+		padding: 30px 0 0 16px;
+		float: left;
+		color: #44290a;
+		font-weight: normal;
+		text-align: left;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 16px;
+		
+		a {
+			&:hover { color: #FFFFFF };
+			&:visited { color: #44290a };
+		}
+	}
+
+	h1 {
+		margin: 0 150px 0 150px;
+		padding: 18px 0 0 0;
+		font-size: 28px;
+		height: 60px;
+		font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+		font-weight: normal;
+		text-align: center;
+		color: #44290a;
+	}
 }
 
 #wrapper {
@@ -47,31 +89,50 @@ body {
 	float: right;
 	width: 173px;
 	height: auto;
-}
 
-#login {
-	margin: 0;
-	height: 30px;
-	padding: 30px 16px 0 0;
-	float: right;
-	color: #44290a;
-	font-weight: normal;
-	text-align: right;
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 16px;
-}
+	h2 {
+		font-size: 1.1em;
+		font-weight: normal;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: left;
+		color: #333333;
+		padding: 0;
+		margin: 0 0 0.8em 0;
+	}
 
-h1 {
-	margin: 0;
-	padding: 18px 100px 0 100px;
-	background-image: url(LeatherTop.png);
-	background-repeat: repeat-x;
-	font-size: 28px;
-	height: 60px;
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-	font-weight: normal;
-	text-align: center;
-	color: #44290a;
+	h3 {
+		font-size: 0.75em;
+		font-weight: bold;
+		font-family: Arial, Helvetica, sans-serif;
+		color: #1577aa;
+		padding: 0;
+		margin: 0.8em 0 0.25em 0;
+	}
+
+	ul {
+		font-size: 0.75em;
+		font-weight: normal;
+		font-family: Arial, Helvetica, sans-serif;
+		color: #333333;
+		padding: 0;
+		margin: 0;
+		list-style-type: none;
+
+		li {
+			margin: 0 0 0 1em;
+			padding: 0;
+
+			span {
+				float: left;
+				width: 2em;
+			}
+		}
+	}
+
+	em {
+		font-weight: bold;
+		font-style: normal;
+	}
 }
 
 .caltable {
@@ -80,45 +141,6 @@ h1 {
 	width: 100%;
 	margin: 0;
 	padding: 0;
-}
-
-#sidebar h2 {
-	font-size: 1.1em;
-	font-weight: normal;
-	font-family: Arial, Helvetica, sans-serif;
-	text-align: left;
-	color: #333333;
-	padding: 0;
-	margin: 0 0 0.8em 0;
-}
-
-#sidebar h3 {
-	font-size: 0.75em;
-	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #1577aa;
-	padding: 0;
-	margin: 0.8em 0 0.25em 0;
-}
-
-#sidebar ul {
-	font-size: 0.75em;
-	font-weight: normal;
-	font-family: Arial, Helvetica, sans-serif;
-	color: #333333;
-	padding: 0;
-	margin: 0;
-	list-style-type: none;
-}
-
-#sidebar ul li {
-	margin: 0 0 0 1em;
-	padding: 0;
-}
-
-#sidebar ul li span {
-	float: left;
-	width: 2em;
 }
 
 .caltable h2 {
@@ -283,7 +305,3 @@ a:hover.hastwolink, a:hover.hasonelink {
 	width: 1.5em;
 }
 
-em {
-	font-weight: bold;
-	font-style: normal;
-}

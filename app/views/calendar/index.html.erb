@@ -56,15 +56,17 @@
 					<%- shifttime = ["00:00 - 06:00", "06:00 - 12:00", "12:00 - 18:00", "18:00 - 24:00"][shiftnum-1] -%>
 		<div class="<%= "s#{shiftnum} #{nextshift.status}" %>" title="<%= "Shift #{shiftnum} (#{shifttime})" %>">
 			<ul>
-				<%- if nextshift.has_member?(current_member) || thedate < @today - 3.days -%>
+				<%# if nextshift.has_member?(current_member) || thedate < @today - 3.days -%>
 				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portablename %><%- else -%>&nbsp;<%- end -%></li>
 				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portablename %><%- else -%>&nbsp;<%- end -%></li>
 				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portablename %><%- else -%>&nbsp;<%- end -%></li>
-				<%- else -%>
-				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portablename %><%- else -%><%= link_to 'sign up', {:action => 'shift_signup', :date => "#{thedate}", :shift => "#{shiftnum}", :pos => "e1"}, :class => "#{nextshift.status}link" %><%- end -%></li>
-				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portablename %><%- else -%><%= link_to 'sign up', {:action => 'shift_signup', :date => "#{thedate}", :shift => "#{shiftnum}", :pos => "e2"}, :class => "#{nextshift.status}link" %><%- end -%></li>
-				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portablename %><%- else -%><%= link_to 'sign up', {:action => 'shift_signup', :date => "#{thedate}", :shift => "#{shiftnum}", :pos => "driver"}, :class => "#{nextshift.status}link" %><%- end -%></li>
-				<%- end -%>
+				<%# else -%>
+<% if false %>
+				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portablename %><%- else -%><%= link_to 'sign up', calendar_path(:action => 'shiftsignup', :received => "#{@today}", :shiftdate => "#{thedate}", :position => "e1,#{shiftnum}"), :class => "#{nextshift.status}link", :remote => true, :method => :post %><%- end -%></li>
+				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portablename %><%- else -%><%= link_to 'sign up', calendar_path(:action => 'shiftsignup', :received => "#{@today}", :shiftdate => "#{thedate}", :position => "e2,#{shiftnum}"), :class => "#{nextshift.status}link", :remote => true, :method => :post %><%- end -%></li>
+				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portablename %><%- else -%><%= link_to 'sign up', calendar_path(:action => 'shiftsignup', :received => "#{@today}", :shiftdate => "#{thedate}", :position => "d,#{shiftnum}"), :class => "#{nextshift.status}link", :remote => true, :method => :post %><%- end -%></li>
+<% end %>
+				<%# end -%>
 			</ul>
 		</div>
 					<%- shiftindex += 1 -%>
