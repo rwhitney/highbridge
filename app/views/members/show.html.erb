@@ -73,6 +73,6 @@
   <%= @member.admin %>
 </p>
 
-<%= link_to 'Destroy', member, confirm: 'Are you sure?', method: :delete %>
+<%= link_to 'Destroy', @member, confirm: 'Are you sure?', method: :delete %> |
 <%= link_to 'Edit', edit_member_path(@member) %> |
 <%= link_to 'Back', members_path %>

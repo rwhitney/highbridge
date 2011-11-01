@@ -6,13 +6,14 @@ body {
 	margin: 0 auto 0 auto;
 	padding: 0;
 	width: 800px;
-	//text-align: center;
 }
 
 #banner {
+	position: relative;
 	margin: 0;
 	padding: 0;
 	height: 158px;
+	width: 788px;
 	
 	#logo {
 		margin: 0;
@@ -27,6 +28,19 @@ body {
 		padding: 0;
 		border: 0;
 		float: left;
+		width: 608px;
+	}
+
+	#signinstatus {
+		position: absolute;
+		left: 688px;
+		top: 120px;
+		width: 100px;
+		margin: 0;
+		padding: 0;
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 0.9em;
+		text-align: center;
 	}
 }
 
@@ -36,6 +50,15 @@ body {
 	width: 800px;
 	height: auto;
 	background: url(light-blue-bg.png) repeat-y left top;
+
+	#footer {
+		clear: both;
+		margin: 0 0 0 180px;
+		text-align: center;
+		font-style: italic;
+		font-size: 0.8em;
+		color: #666666;
+	}
 }
 
 #sidebar {
@@ -67,22 +90,6 @@ body {
 		text-align: center;
 		color: #666666;
 	}
-	
-	#signinstatus {
-		padding: 15px 0 15px 0;
-		font-family: Arial, Helvetica, sans-serif;
-		font-size: 0.9em;
-		text-align: center;
-	}
-}
-
-#footer {
-	clear: both;
-	margin: 0 0 0 180px;
-	text-align: center;
-	font-style: italic;
-	font-size: 0.8em;
-	color: #666666;
 }
 
 #maincontent {
@@ -144,6 +151,16 @@ body {
 		text-align: left;
 		color: #333333;
 		padding: 0;
+		margin: 0 0 0.8em 0;
+	}
+	
+	p.small {
+		font-size: 0.70em;
+		font-weight: normal;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		color: #666666;
+		padding: 20px 0 0 0;
 		margin: 0 0 0.8em 0;
 	}
 	

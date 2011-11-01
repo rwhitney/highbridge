@@ -26,15 +26,15 @@
 <% else %>
 		<%= image_tag("header-banner.png", :id => "mca-banner", :size => "608x175", :alt => "") %>
 <% end %>
+<% if current_member %>
+		<div id="signinstatus">
+			<%= current_member.portablename %>
+			<%= button_to "Logout", destroy_member_session_path, :method => :delete %>
+		</div>
+<% end %>
 	</div> <%# banner %>
 	<div id="wrapper">
 		<div id="sidebar">
-<% unless current_member.nil? %>
-			<div id="signinstatus">
-				You are <%= current_member.portablename %>
-				<%= button_to "Logout", destroy_member_session_path, :method => :delete %>
-			</div>
-<% end %>
 			<ul>
 				<li><%= link_to_unless_current 'Home Page', :controller => '/welcome', :action => 'index' %></li>
 				<li><%= link_to_unless_current 'Members Only', :controller => '/members_only', :action => 'index' %></li>
