@@ -72,10 +72,10 @@ describe WelcomeController do
       response.should be_success
     end
 
-    it "returns a document of type msword" do
+    it "returns a document of type pdf" do
       get 'memberapp'
-      response.headers['Content-Type'].should == "application/msword"
-      response.headers['Content-Disposition'].should == 'attachment; filename="application.doc"'
+      response.headers['Content-Type'].should == "application/pdf"
+      response.headers['Content-Disposition'].should == 'attachment; filename="application.pdf"'
     end
   end
 
@@ -85,10 +85,10 @@ describe WelcomeController do
       response.should be_success
     end
 
-    it "returns a document of type msword" do
+    it "returns a document of type pdf" do
       get 'brochure'
-      response.headers['Content-Type'].should == "application/msword"
-      response.headers['Content-Disposition'].should == 'attachment; filename="MCABrochure.doc"'
+      response.headers['Content-Type'].should == "application/pdf"
+      response.headers['Content-Disposition'].should == 'attachment; filename="MCABrochure.pdf"'
     end
   end
 

@@ -25,6 +25,9 @@ describe MembersController do
     m = FactoryGirl.build(:lisa)
     {
       :full_name => m.full_name,
+      :first_name => m.first_name,
+      :last_name => m.last_name,
+      :training_level => m.training_level,
       :portable_name => m.portable_name,
       :portable_number => m.portable_number,
       :email => m.email,
