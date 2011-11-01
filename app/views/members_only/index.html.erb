@@ -1,21 +1,16 @@
-<%- if false -%>
-<%= image_tag 'Ambulance-Rear-Side.png', :class => 'img-right', :alt => 'Mores Creek Ambulance', :size => '173x175' %>
-<%- end -%>
 <h3>Meeting Schedule</h3>
-<p>
-	<ul>
-		<li>
-			The general meeting is in 
-			<%= distance_of_time_in_words(Time.now, Time.new(@date_general.year, @date_general.month, @date_general.day, 19, 30)) %>
-			(<%= @date_general.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
-		</li>
-		<li>
-			The board meeting is in
-			<%= distance_of_time_in_words(Time.now, Time.new(@date_board.year, @date_board.month, @date_board.day, 19, 30)) %>
-			(<%= @date_board.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
-		</li>
-	</ul>
-</p>
+<ul>
+	<li>
+		The general meeting is in 
+		<%= distance_of_time_in_words(Time.now, Time.new(@date_general.year, @date_general.month, @date_general.day, 19, 30)) %>
+		(<%= @date_general.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
+	</li>
+	<li>
+		The board meeting is in
+		<%= distance_of_time_in_words(Time.now, Time.new(@date_board.year, @date_board.month, @date_board.day, 19, 30)) %>
+		(<%= @date_board.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
+	</li>
+</ul>
 
 <h3><a href="https://www.idahopercs.org/default.cfm?page=login">Online PCRs</a></h3>
 
@@ -26,9 +21,6 @@
 		<tr>
 		<td><a href="http://www.healthandwelfare.idaho.gov/DesktopModules/ArticlesSortable/ArticlesSrtView.aspx?tabID=0&amp;ItemID=1187&amp;mid=10964&amp;wversion=Staging">Health and Welfare, pediatric and adult guidelines</a></td>
 		<td><a href="checkofflist.doc">New EMT Checkoff List (DOC)</a></td></tr>
-		<tr>
-		<td><a href="lz.htm">Life Flight Landing Zones</a></td>
-		<td><a href="LZs.pdf">Area Map w/ LZs (PDF format)</a></td></tr>
 		<tr>
 		<td><a href="generalminutes/">General Meeting Minutes</a></td>
 		<td><a href="boardminutes/">Board Minutes</a></td></tr>

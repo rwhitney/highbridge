@@ -20,6 +20,8 @@ Highbridge::Application.routes.draw do
   get "members_only/radio_alphabet"
   get "members_only/photos"
   get "members_only/roster"
+  get "members_only/landing_zones"
+  get "members_only/landing_zones_pdf"
 
   get "calendar/index"
   get "calendar/shiftedit"

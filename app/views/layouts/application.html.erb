@@ -39,15 +39,16 @@
 				<li><%= link_to_unless_current 'Home Page', :controller => '/welcome', :action => 'index' %></li>
 				<li><%= link_to_unless_current 'Members Only', :controller => '/members_only', :action => 'index' %></li>
 <% unless current_member.nil? %>
-				<li><%= link_to_unless_current 'Calendar', :controller => 'calendar', :action => 'index' %></li>
-				<li><%= link_to_unless_current 'Roster', :controller => 'members', :action => 'index' %></li>
+				<li><%= link_to_unless_current 'Calendar', :controller => '/calendar', :action => 'index', :anchor => 'today' %></li>
+				<li><%= link_to_unless_current 'Roster', :controller => '/members', :action => 'index' %></li>
+				<li><%= link_to_unless_current 'Landing Zones', :controller => '/members_only', :action => 'landing_zones' %>
 <% end %>
 				<li><%= link_to_unless_current 'General Information', :controller => '/welcome', :action => 'generalinfo' %></li>
 				<li><%= link_to_unless_current 'Getting Involved', :controller => '/welcome', :action => 'volunteerinfo' %></li>
 				<li><%= link_to_unless_current 'Useful Links', :controller => '/welcome', :action => 'links' %></li>
 <% unless current_member.nil? %>
-				<li><%= link_to_unless_current 'Photos', :controller => 'members_only', :action => 'photos' %></li>
-				<li><%= link_to_unless_current 'Radio Operations', :controller => 'members_only', :action => 'radio' %></li>
+				<li><%= link_to_unless_current 'Photos', :controller => '/members_only', :action => 'photos' %></li>
+				<li><%= link_to_unless_current 'Radio Operations', :controller => '/members_only', :action => 'radio' %></li>
 <% end %>
 			</ul>
 <% if controller.controller_name != 'welcome' %>

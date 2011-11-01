@@ -4,7 +4,7 @@ class MembersOnlyController < ApplicationController
   def index
     @title = "Home Page"
     @desc = "MCA members-only home page"
-    @date_general = MembersOnlyController.find_next_nth_day_of_week(3, 2)  # 2nd Wednesday of the month
+    @date_general = MembersOnlyController.find_next_nth_day_of_week(2, 2)  # 2nd Wednesday of the month
     @date_board   = MembersOnlyController.find_next_nth_day_of_week(2, 1)  # 1st Tuesday of the month
   end
   
@@ -42,7 +42,16 @@ class MembersOnlyController < ApplicationController
     @title = "Roster"
     @desc = "MCA member roster"
   end
-
+  
+  def landing_zones
+    @title = "Landing Zones"
+    @desc = "MCA area landing zones"
+  end
+  
+  def landing_zones_pdf
+    send_file "app/assets/documents/LZs.pdf", :type => "application/pdf", :disposition => "attachment"
+  end
+  
 protected
   def MembersOnlyController.find_next_nth_day_of_week(day_of_week, nth)
     today = Date.today
