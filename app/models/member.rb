@@ -2,7 +2,7 @@
 class Member < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -53,5 +53,9 @@ class Member < ActiveRecord::Base
   
   def has_cell_phone
     cell_or_other_phone && cell_or_other_phone.strip.length > 0
+  end
+  
+  def last_name_first
+    last_name + ", " + first_name
   end
 end

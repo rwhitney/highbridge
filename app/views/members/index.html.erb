@@ -4,14 +4,11 @@
   <tr>
     <th>Name</th>
     <th>Num</th>
-    <th>Email</th>
     <th>Area</th>
     <th>Phone</th>
     <th>Status</th>
-    <th></th>
-<% if current_member.admin? %>
-    <th></th>
-<% end %>
+	<th>Notes</th>
+	<th <% if current_member.admin? %>colspan=2<% end %>>
   </tr>
 
 <% ["EMT","First Responder","Driver","Non Call"].each do |training| %>
@@ -25,9 +22,8 @@
 
 <% @members.each do |member| %>
   <tr>
-    <td><%= member.last_name + ', ' + member.first_name %></td>
+	<td><%= mail_to member.email, member.last_name_first %><br /><%= member.portable_name %></td>
     <td><%= member.portable_number %></td>
-    <td><%= member.email %></td>
     <td><%= member.area %></td>
     <td>
 		<% if member.has_home_phone %>h.&nbsp;<%= member.home_phone %><% end %>
@@ -37,6 +33,7 @@
 		<% if member.has_cell_phone %>m.&nbsp;<%= member.cell_or_other_phone %><% end %>
 	</td>
     <td><%= member.status %></td>
+	<td class="small"><%= member.misc_notes %></td>
     <td><%= link_to 'Details', member %></td>
 <% if current_member.admin? %>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>

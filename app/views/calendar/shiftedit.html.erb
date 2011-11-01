@@ -53,21 +53,21 @@
 					<% else -%>
 						<font color=green>
 							&nbsp;&nbsp;&nbsp;EMT 1 - <%= theshift.e1.portable_name %>
-						</font>
+						</font><br />
 					<% end -%>
 					<% if theshift.e2 == nil -%>
 						<%= radio_button_tag "position", "E2," + shiftindex.to_s %>EMT 2<br />
 					<% else -%>
 						<font color=green>
 							&nbsp;&nbsp;&nbsp;EMT 2 - <%= theshift.e2.portable_name %>
-						</font>
+						</font><br />
 					<% end -%>
 					<% if theshift.driver == nil -%>
 						<%= radio_button_tag "position", "D," + shiftindex.to_s %>Driver<br />
 					<% else -%>
 						<font color=green>
 							&nbsp;&nbsp;&nbsp;Driver - <%= theshift.driver.portable_name %>
-						</font>
+						</font><br />
 					<% end -%>
 				<% end -%>
 			<% else -%>
