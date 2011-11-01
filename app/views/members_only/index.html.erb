@@ -4,8 +4,16 @@
 <h3>Meeting Schedule</h3>
 <p>
 	<ul>
-		<li>The next general meeting is <%= @date_general.strftime("%a, %b %d") %><sup>*</sup> at 19:30</li>
-		<li>The next board meeting is <%= @date_board.strftime("%a, %b %d") %><sup>*</sup> at 19:30</li>
+		<li>
+			The general meeting is in 
+			<%= distance_of_time_in_words(Time.now, Time.new(@date_general.year, @date_general.month, @date_general.day, 19, 30)) %>
+			(<%= @date_general.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
+		</li>
+		<li>
+			The board meeting is in
+			<%= distance_of_time_in_words(Time.now, Time.new(@date_board.year, @date_board.month, @date_board.day, 19, 30)) %>
+			(<%= @date_board.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
+		</li>
 	</ul>
 </p>
 
@@ -13,7 +21,7 @@
 
 <h3>Web Links</h3>
 
-<table class="nolines">
+<table class="nolines wide">
 	<tbody>
 		<tr>
 		<td><a href="http://www.healthandwelfare.idaho.gov/DesktopModules/ArticlesSortable/ArticlesSrtView.aspx?tabID=0&amp;ItemID=1187&amp;mid=10964&amp;wversion=Staging">Health and Welfare, pediatric and adult guidelines</a></td>
@@ -47,51 +55,40 @@
 		<td><a href="InfectionControlB.pdf">Infection Control Part 2</a></td></tr>
 	</tbody>
 </table>
-<h3>
-	<a href="CO.pdf">CO Detector Manual</a>
-</h3>
 
 <h3>E-mail Links</h3>
-<table class="nolines">
+<table class="nolines wide">
 	<tbody>
 		<tr>
-		<td>
-	
-			<%= mail_to "mcaallmembers@mcaems.org", "All MCA members" %>
-		</td>
-		<td>&nbsp;</td></tr>
-		<tr>
-		<td><br />
-		</td>
-		<td><br />
-		</td></tr>
-		<tr>
 			<td>
-		
-				<%= mail_to "mcaboard@mcaems.org", "All board members" %>
+				<%= mail_to "mcaallmembers@mcaems.org", "All MCA members" %>
 			</td>
 			<td>
-		
-				<%= mail_to "emsdoc@cableone.net", "Dr. Sturkie" %>
+				<%= mail_to "mcaboard@mcaems.org", "All board members" %>
 			</td>
 		</tr>
 		<tr>
-		<td><br />
-		</td>
-		<td><br />
-		</td></tr>
+			<td>
+				<%= mail_to "emsdoc@cableone.net", "Dr. Sturkie" %>
+			</td>
+			<td>
+				<%= mail_to "statecom@idhw.state.id.us", "State Comm (Shana Monroe)" %>
+			</td>
+		</tr>
 		<tr>
 			<td>
-		
 				<%= mail_to "michaelb@idhw.state.id.us", "Idaho State EMS Director (Brad Michaelson)" %>
 			</td>
 			<td>
-		
-				<%= mail_to "statecom@idhw.state.id.us", "State Comm (Shana Monroe)" %>
+				&nbsp;
 			</td>
 		</tr>
 	</tbody>
 </table>
+
+<h3>
+	<a href="CO.pdf">CO Detector Manual</a>
+</h3>
 
 <p class="small">
 	<sup>*</sup>(The monthly board meeting is on the first Tuesday of the month and the monthly general meeting is 

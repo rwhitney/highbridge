@@ -76,7 +76,7 @@ body {
 		list-style-type: none;
 		text-align: right;
 		margin: 0;
-		padding: 8px;
+		padding: 8px 8px 100px 8px;
 
 		li {
 			margin: 0;
@@ -211,6 +211,14 @@ body {
 		td {
 			padding: 2px;
 			border: 0px;
+		}
+	}
+	
+	table.wide {
+		width: 100%;
+		
+		td {
+			width: 50%;
 		}
 	}
 }
