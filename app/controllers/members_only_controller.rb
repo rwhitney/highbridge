@@ -1,11 +1,26 @@
 class MembersOnlyController < ApplicationController
   before_filter :authenticate_member!
   
+  BoardMeetingHour    = 19
+  BoardMeetingMin     = 30
+  BoardMeetingWeek    = 1     # 1st week of the month
+  BoardMeetingWday    = 2     # Tuesday
+  
+  GeneralMeetingHour  = 19
+  GeneralMeetingMin   = 30
+  GeneralMeetingWeek  = 2     # 2nd week of the month
+  GeneralMeetingWday  = 2     # Tuesday
+  
   def index
     @title = "Home Page"
     @desc = "MCA members-only home page"
-    @date_general = MembersOnlyController.find_next_nth_day_of_week(2, 2)  # 2nd Wednesday of the month
-    @date_board   = MembersOnlyController.find_next_nth_day_of_week(2, 1)  # 1st Tuesday of the month
+    @date_general = MembersOnlyController.find_next_nth_day_of_week(GeneralMeetingWday, 
+      GeneralMeetingWeek, GeneralMeetingHour, GeneralMeetingMin)
+    @date_board   = MembersOnlyController.find_next_nth_day_of_week(BoardMeetingWday, 
+    BoardMeetingWeek, BoardMeetingHour, BoardMeetingMin)
+    
+    @time_general = Time.new(@date_general.year, @date_general.month, @date_general.day, GeneralMeetingHour, GeneralMeetingMin)
+    @time_board   = Time.new(@date_board.year, @date_board.month, @date_board.day, BoardMeetingHour, BoardMeetingMin)
     @sheets = ["members_only"]
   end
   
@@ -182,13 +197,14 @@ protected
     dirlist.sort! { |x,y| y[:year] <=> x[:year] }  # sort descending
   end
 
-  def MembersOnlyController.find_next_nth_day_of_week(day_of_week, nth)
-    today = Date.today
-    date_this_month = MembersOnlyController.find_nth_day_of_week(today.year, today.month, day_of_week, nth)
-    if date_this_month >= today
+  def MembersOnlyController.find_next_nth_day_of_week(day_of_week, nth, hour, min)
+    now = Time.now
+    date_this_month = MembersOnlyController.find_nth_day_of_week(now.year, now.month, day_of_week, nth)
+    time_this_month = Time.new(date_this_month.year, date_this_month.month, date_this_month.day, hour, min)
+    if time_this_month >= now
       date_this_month
     else
-      next_month = Date.new(today.year, today.month, 1) + 1.month
+      next_month = Date.new(now.year, now.month, 1) + 1.month
       MembersOnlyController.find_nth_day_of_week(next_month.year, next_month.month, day_of_week, nth)
     end
   end

@@ -2,12 +2,12 @@
 	<tr>
 		<td>
 			<h3>General meeting</h3>
-			in <%= distance_of_time_in_words(Time.now, Time.new(@date_general.year, @date_general.month, @date_general.day, 19, 30)) %><br />
+			in <%= distance_of_time_in_words(Time.now, @time_general) %><br />
 			(<%= @date_general.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
 		</td>
 		<td>
 			<h3>Board meeting</h3>
-			in <%= distance_of_time_in_words(Time.now, Time.new(@date_board.year, @date_board.month, @date_board.day, 19, 30)) %><br />
+			in <%= distance_of_time_in_words(Time.now, @time_board) %><br />
 			(<%= @date_board.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
 		</td>
 	</tr>
