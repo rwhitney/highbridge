@@ -1,0 +1,20 @@
+<h1>General Membership Meeting Notes</h1>
+
+<% if @notes_list.count > 0 %>
+<ul>
+	<% @notes_list.each do |notedir| %>
+	<li><%= "#{notedir[:year]}" %></li>
+	<ul>
+		<% notedir[:list].each do |entry| %>
+		<% month = %w(January February March April May June July August September October November December)[entry[:month]] %>
+		<li><%= link_to month, :action => 'general_notes', :year => notedir[:year], :month => entry[:month] %></li>
+		<% end %>
+	</ul>
+	<% end %>
+</ul>
+<% else %>
+<p>
+	No general meeting notes
+</p>
+<% end %>
+<%= link_to "Return to Members Only", :action => "index" %>

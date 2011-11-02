@@ -19,11 +19,11 @@ class WelcomeController < ApplicationController
   end
 
   def memberapp
-    send_file "app/assets/documents/application.pdf", :type => "application/pdf", :disposition => "attachment"
+    send_file "app/assets/documents/misc/application.pdf", :type => "application/pdf", :disposition => "attachment"
   end
   
   def brochure
-    send_file "app/assets/documents/MCABrochure.pdf", :type => "application/pdf", :disposition => "attachment"
+    send_file "app/assets/documents/misc/MCABrochure.pdf", :type => "application/pdf", :disposition => "attachment"
   end
   
   def lifeflight

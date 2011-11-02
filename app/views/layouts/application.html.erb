@@ -14,6 +14,11 @@
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_tomorrow %>">
 	<%# Date: 2011-10-29 %>
 	<%= stylesheet_link_tag "welcome" %>
+	<% if @sheets %>
+		<% @sheets.each do |sheet| %>
+	<%= stylesheet_link_tag sheet %>
+		<% end %>
+	<% end %>
 	<%= javascript_include_tag :all %>
 	<%= csrf_meta_tags %>
 </head>

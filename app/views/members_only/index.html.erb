@@ -1,47 +1,63 @@
-<h3>Meeting Schedule</h3>
-The general meeting is in 
-<%= distance_of_time_in_words(Time.now, Time.new(@date_general.year, @date_general.month, @date_general.day, 19, 30)) %>
-(<%= @date_general.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
-<br />
-The board meeting is in
-<%= distance_of_time_in_words(Time.now, Time.new(@date_board.year, @date_board.month, @date_board.day, 19, 30)) %>
-(<%= @date_board.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
-
-<h3><a href="https://www.idahopercs.org/default.cfm?page=login">Online PCRs</a></h3>
-
-<h3>Web Links</h3>
-
-<table class="nolines wide">
-	<tbody>
-		<tr>
-		<td><a href="http://www.healthandwelfare.idaho.gov/DesktopModules/ArticlesSortable/ArticlesSrtView.aspx?tabID=0&amp;ItemID=1187&amp;mid=10964&amp;wversion=Staging">Health and Welfare, pediatric and adult guidelines</a></td>
-		<td><a href="checkofflist.doc">New EMT Checkoff List (DOC)</a></td></tr>
-		<tr>
-		<td><a href="generalminutes/">General Meeting Minutes</a></td>
-		<td><a href="boardminutes/">Board Minutes</a></td></tr>
-		<tr>
-		<td><a href="adboardminutes/">Advisory Board Meeting Minutes</a></td>
-		<td><a href="treas/">MCA Treasury Reports</a></td></tr>
-		<tr>
-		<td><a href="ambops.htm">Ambulance Operations</a></td>
-		<td><a href="hepbform.doc">Hep-B Form (MSWord)</a></td></tr>
-		<tr>
-		<td><a href="MCAAssessment.htm">MCA Patient Assessment Form</a></td>
-		<td><a href="DriverOrientation.doc">Driver Orientation form (MS Word)</a></td></tr>
-		<tr>
-		<td><a href="checkofflist.doc">New Member Checkoff List (MW Word)</a></td>
-		<td><a href="images/voucher.jpg">Immunization Voucher</a></td></tr>
-		<tr>
-		<td><a href="EMT-BRecertForm.doc">EMT Recert List (MW Word)</a></td>
-		<td><a href="PCRGuide.pdf">Online PCR Guide</a></td></tr>
-		<tr>
-		<td><a href="SOPs.htm">MCA SOPs</a></td>
-		<td><a href="bylaws.htm">MCA Bylaws</a></td></tr>
-		<tr>
-		<td><a href="InfectionControlA.pdf">Infection Control Part 1</a></td>
-		<td><a href="InfectionControlB.pdf">Infection Control Part 2</a></td></tr>
-	</tbody>
+<table class="nolines wide meeting">
+	<tr>
+		<td>
+			<h3>General meeting</h3>
+			in <%= distance_of_time_in_words(Time.now, Time.new(@date_general.year, @date_general.month, @date_general.day, 19, 30)) %><br />
+			(<%= @date_general.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
+		</td>
+		<td>
+			<h3>Board meeting</h3>
+			in <%= distance_of_time_in_words(Time.now, Time.new(@date_board.year, @date_board.month, @date_board.day, 19, 30)) %><br />
+			(<%= @date_board.strftime("%a, %b %d") %><sup>*</sup> at 19:30)
+		</td>
+	</tr>
 </table>
+
+<div id="boxarea">
+	<div id="minutes" class="linkblk">
+		<h4>Meeting Minutes &amp; Reports</h4>
+		<ul>
+			<li><%= link_to 'Board meetings', :action => 'board_notes' %></li>
+			<li><%= link_to 'General Meetings', :action => 'general_notes' %></li>
+			<li><%= link_to 'Advisory Board Meetings', :action => 'advisory_notes' %></li>
+			<li><%= link_to 'Treasury Reports', :action => 'treasury_notes' %></li>
+		</ul>
+	</div>
+
+	<div id="reference" class="linkblk">
+		<h4>Reference Materials</h4>
+		<ul>
+			<li><%= link_to 'Standard Operating Procedures (SOPs)', :action => 'sops' %></li>
+			<li><%= link_to 'Bylaws', :action => 'bylaws' %></li>
+			<li><%= link_to 'Ambulance Operations', :action => 'ambulance_ops' %></li>
+			<li><%= link_to 'Online PCR Guide', :action => 'serve_file', :name => 'PCRGuide.pdf' %></li>
+			<li>Infection Control 
+				(<%= link_to 'Part 1', :action => 'serve_file', :name => 'InfectionControlA.pdf' %> &amp; 
+				<%= link_to 'Part 2', :action => 'serve_file', :name => 'InfectionControlB.pdf' %>)
+			</li>
+			<li><%= link_to 'CO Detector Manual', :action => 'serve_file', :name => 'CO.pdf' %></li>
+		</ul>
+	</div>
+
+	<div id="forms" class="linkblk">
+		<h4>Forms</h4>
+		<ul>
+			<li><%= link_to 'Online PCRs', 'https://www.idahopercs.org/default.cfm?page=login' %></li>
+			<li><%= link_to 'Patient Assessment Form', :action => 'serve_file', :name => 'MCAAssessment.htm' %></li>
+			<li><%= link_to 'Immunization Voucher', :action => 'serve_file', :name => 'voucher.jpg' %></li>
+			<li><%= link_to 'Hep-B Form', :action => 'serve_file', :name => 'hepbform.pdf' %></li>
+		</ul>
+	</div>
+
+	<div id="checkoff-lists" class="linkblk">
+		<h4>Check-off Lists</h4>
+		<ul>
+			<li><%= link_to 'New Member Checkoff List', :action => 'serve_file', :name => 'checkofflist.pdf' %></li>
+			<li><%= link_to 'Driver Orientation List', :action => 'serve_file', :name => 'DriverOrientation.pdf' %></li>
+			<li><%= link_to 'EMT Recertification List', :action => 'serve_file', :name => 'EMT-BRecertForm.pdf' %></li>
+		</ul>
+	</div>
+</div>
 
 <h3>E-mail Links</h3>
 <table class="nolines wide">
@@ -72,10 +88,6 @@ The board meeting is in
 		</tr>
 	</tbody>
 </table>
-
-<h3>
-	<a href="CO.pdf">CO Detector Manual</a>
-</h3>
 
 <p class="small">
 	<sup>*</sup>(The monthly board meeting is on the first Tuesday of the month and the monthly general meeting is 

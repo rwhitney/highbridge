@@ -6,6 +6,60 @@ class MembersOnlyController < ApplicationController
     @desc = "MCA members-only home page"
     @date_general = MembersOnlyController.find_next_nth_day_of_week(2, 2)  # 2nd Wednesday of the month
     @date_board   = MembersOnlyController.find_next_nth_day_of_week(2, 1)  # 1st Tuesday of the month
+    @sheets = ["members_only"]
+  end
+  
+  def board_notes
+    @title = "Board Meeting Notes"
+    @notes_list = MembersOnlyController.get_notes_assets("app/assets/documents/board")
+    if params[:year] && params[:month]
+      serve_up_asset(@notes_list, params[:year], params[:month])
+    else
+      @desc = "MCA board meeting notes page"
+    end
+  end
+  
+  def general_notes
+    @title = "General Meeting Notes"
+    @notes_list = MembersOnlyController.get_notes_assets("app/assets/documents/general")
+    if params[:year] && params[:month]
+      serve_up_asset(@notes_list, params[:year], params[:month])
+    else
+      @desc = "MCA general membership meeting notes page"
+    end
+  end
+  
+  def advisory_notes
+    @title = "Advisory Board Meeting Notes"
+    @notes_list = MembersOnlyController.get_notes_assets("app/assets/documents/advisory")
+    if params[:year] && params[:month]
+      serve_up_asset(@notes_list, params[:year], params[:month])
+    else
+      @desc = "MCA advisory board meeting notes page"
+    end
+  end
+  
+  def treasury_notes
+    @title = "Treasury Notes"
+    @notes_list = MembersOnlyController.get_notes_assets("app/assets/documents/treasury")
+    if params[:year] && params[:month]
+      serve_up_asset(@notes_list, params[:year], params[:month])
+    else
+      @desc = "MCA advisory board meeting notes page"
+    end
+  end
+  
+  def sops
+    send_file "app/assets/documents/misc/SOPs.htm", :type => "text/html", :disposition => "inline"
+  end
+  
+  def bylaws
+    send_file "app/assets/documents/misc/Bylaws.htm", :type => "text/html", :disposition => "inline"
+  end
+  
+  def ambulance_ops
+    @title = "Ambulance Operations"
+    @desc = "MCA ambulance operations page"
   end
   
   def radio
@@ -48,11 +102,86 @@ class MembersOnlyController < ApplicationController
     @desc = "MCA area landing zones"
   end
   
-  def landing_zones_pdf
-    send_file "app/assets/documents/LZs.pdf", :type => "application/pdf", :disposition => "attachment"
+  def serve_file
+    fname = params[:name]
+    if fname && fname.downcase =~ /\.(pdf|doc|htm|jpg)\Z/
+      ext = $1
+      mime_type = case ext
+        when "pdf" then "application/pdf"
+        when "doc" then "application/word"
+        when "htm" then "text/html"
+        when "jpg" then "image/jpeg"
+        else "text/plain"
+      end
+      send_file "app/assets/documents/misc/#{fname}", :type => mime_type, :disposition => (ext =~ /htm|jpg/ ? "inline" : "attachment")
+    else
+      raise ActionController::RoutingError.new('Not Found')
+    end
   end
   
 protected
+  def serve_up_asset(assets, year, month)
+    asset = MembersOnlyController.find_notes_asset(assets, year, month)
+    if asset.nil?
+      raise ActionController::RoutingError.new('Not Found')
+    else
+      mimetype = case asset[:type]
+        when :htm then "text/html"
+        when :pdf then "application/pdf"
+        else "text/plain"
+        end
+      send_file asset[:fullname], :type => mimetype, :disposition => asset[:type] == :htm ? "inline" : "attachment"
+    end
+  end
+
+  def MembersOnlyController.find_notes_asset(assets, year, month)
+    assets.each do |dir_entry| 
+      if dir_entry[:year] == year.to_i
+        dir_entry[:list].each do |file_entry| 
+          if file_entry[:month] == month.to_i
+            return file_entry;
+          end
+        end
+      end
+    end
+    nil
+  end
+  
+  MonthAbbrevs = /jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec/
+
+  def MembersOnlyController.get_notes_assets(path)
+    dirlist = [];
+    Dir.foreach(path) do |entry|
+      if entry =~ /\A\d{4}\Z/
+        subpath = "#{path}/#{entry}"
+        filelist = [];
+        Dir.foreach(subpath) do |subentry|
+          subentry.downcase!
+          if subentry =~ /\A\d{4}(#{MonthAbbrevs})(.*)\.(htm)\Z/ ||
+            subentry =~ /\A\d{4}-\d{2}(#{MonthAbbrevs})(.*)\.(pdf)\Z/ ||
+            subentry =~ /\A(#{MonthAbbrevs})(.*)\d{4}\.(htm)\Z/
+            month_abbr = $1
+            extra_name = $2
+            file_type = $3
+            unless extra_name =~ /(header|draft)/
+              # we have an html file
+              month = %w(jan feb mar apr may jun jul aug sep oct nov dec).index(month_abbr)
+              o = { :month => month, :name => subentry, :fullname => "#{subpath}/#{subentry}", :type => file_type.to_sym }
+              filelist.push o
+            end
+          end
+        end
+        
+        if filelist.count > 0
+          slist = filelist.sort { |x, y| x[:month] <=> y[:month] }
+          o = { :year => entry.to_i, :list => slist }
+          dirlist.push o
+        end
+      end
+    end
+    dirlist.sort! { |x,y| y[:year] <=> x[:year] }  # sort descending
+  end
+
   def MembersOnlyController.find_next_nth_day_of_week(day_of_week, nth)
     today = Date.today
     date_this_month = MembersOnlyController.find_nth_day_of_week(today.year, today.month, day_of_week, nth)

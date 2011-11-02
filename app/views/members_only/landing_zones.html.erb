@@ -1,9 +1,9 @@
 <h2>MCA Area Landing Zones</h2>
 
-<%= link_to image_tag('LZs.png', :size => '598 × 761', :alt => 'click to download PDF'), :action => 'landing_zones_pdf' %>
+<%= link_to image_tag('LZs.png', :size => '598 × 761', :alt => 'click to download PDF'), :action => 'serve_file', :name => 'LZs.pdf' %>
 <div class="iconbox">
-<%= link_to image_tag('PDF-sm.png', :size => '64x64', :alt => 'PDF'), :action => 'landing_zones_pdf' %><br />
-<%= link_to 'Full-size LZ Map', :action => 'landing_zones_pdf' %>
+<%= link_to image_tag('PDF-sm.png', :size => '64x64', :alt => 'PDF'), :action => 'serve_file', :name => 'LZs.pdf' %><br />
+<%= link_to 'Full-size LZ Map', :action => 'serve_file', :name => 'LZs.pdf' %>
 </div>
 <p>
 	Following are the coordinates for the LZ's in our area. Lifeflight should have these coordinates in their 

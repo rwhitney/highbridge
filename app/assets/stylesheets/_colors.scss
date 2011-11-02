@@ -1,0 +1,36 @@
+/* primary triad colors */
+
+$primary_blue: #1d6fb9;
+$primary_yellow: #dfad23;
+$primary_red: #df5523;
+
+/* calendar specific colors */
+
+$leather_text: #44290a;
+$leather_text_highlight: #FFFFFF;
+$cal_blue: #1577aa;
+$cal_offwhite: #fbfbfb;
+$cal_dayborder: #cccccc;
+$cal_today: #e8eff7;   				/* light blue */
+$cal_daynumber: #cab2b2; 			/* light red */
+$cal_todaylink: #0092ef;  			/* bright blue */
+$cal_shiftgreen: #e1eee1;			/* light green */
+$cal_shiftgreenborder: #a0c9a0; 	/* darker green (brightness of 78) */
+$cal_shiftyellow: #eeeebf;			/* light yellow */
+$cal_shiftyellowborder: #c6c635;	/* darker yellow (brightness of 78) */
+$cal_shiftred: #eee1e1;				/* light red */
+$cal_shiftredborder: #c9a0a0;		/* darker red (brightness of 78) */
+$cal_shiftreddark: #705454;			/* darker link */
+
+/* global text colors */
+
+$standard_text: #333333;
+$bolder_text: #222222;
+$subtle_text: #666666;
+$sidebar_text: #705454;				/* kind of a dark red */
+$header2_text: #44290a;				/* an even darker red, brown almost */
+$header3_text: #44290a;				/* same */
+
+$table_border: $standard_text;
+$table_hdr_bg: #cccccc;
+$table_cell_border: #999999;
