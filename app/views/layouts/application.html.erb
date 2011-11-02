@@ -53,7 +53,6 @@
 				<li><%= link_to_unless_current 'Useful Links', :controller => '/welcome', :action => 'links' %></li>
 <% unless current_member.nil? %>
 				<li><%= link_to_unless_current 'Photos', :controller => '/members_only', :action => 'photos' %></li>
-				<li><%= link_to_unless_current 'Radio Operations', :controller => '/members_only', :action => 'radio' %></li>
 <% end %>
 			</ul>
 <% if controller.controller_name != 'welcome' %>

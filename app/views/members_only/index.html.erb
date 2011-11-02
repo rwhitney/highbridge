@@ -15,11 +15,13 @@
 
 <div id="boxarea">
 	<div id="minutes" class="linkblk">
-		<h4>Meeting Minutes &amp; Reports</h4>
+		<h4>Administrative Material</h4>
 		<ul>
-			<li><%= link_to 'Board meetings', :action => 'board_notes' %></li>
-			<li><%= link_to 'General Meetings', :action => 'general_notes' %></li>
-			<li><%= link_to 'Advisory Board Meetings', :action => 'advisory_notes' %></li>
+			<li><%= link_to 'Standard Operating Procedures (SOPs)', :action => 'sops' %></li>
+			<li><%= link_to 'Bylaws', :action => 'bylaws' %></li>
+			<li><%= link_to 'Board Meeting Notes', :action => 'board_notes' %></li>
+			<li><%= link_to 'General Meeting Notes', :action => 'general_notes' %></li>
+			<li><%= link_to 'Advisory Board Meeting Notes', :action => 'advisory_notes' %></li>
 			<li><%= link_to 'Treasury Reports', :action => 'treasury_notes' %></li>
 		</ul>
 	</div>
@@ -27,14 +29,13 @@
 	<div id="reference" class="linkblk">
 		<h4>Reference Materials</h4>
 		<ul>
-			<li><%= link_to 'Standard Operating Procedures (SOPs)', :action => 'sops' %></li>
-			<li><%= link_to 'Bylaws', :action => 'bylaws' %></li>
 			<li><%= link_to 'Ambulance Operations', :action => 'ambulance_ops' %></li>
 			<li><%= link_to 'Online PCR Guide', :action => 'serve_file', :name => 'PCRGuide.pdf' %></li>
 			<li>Infection Control 
 				(<%= link_to 'Part 1', :action => 'serve_file', :name => 'InfectionControlA.pdf' %> &amp; 
 				<%= link_to 'Part 2', :action => 'serve_file', :name => 'InfectionControlB.pdf' %>)
 			</li>
+			<li><%= link_to_unless_current 'Radio Operations', :controller => '/members_only', :action => 'radio' %></li>
 			<li><%= link_to 'CO Detector Manual', :action => 'serve_file', :name => 'CO.pdf' %></li>
 		</ul>
 	</div>
