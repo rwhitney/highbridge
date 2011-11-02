@@ -46,7 +46,6 @@
 <% unless current_member.nil? %>
 				<li><%= link_to_unless_current 'Calendar', :controller => '/calendar', :action => 'index', :anchor => 'today' %></li>
 				<li><%= link_to_unless_current 'Roster', :controller => '/members', :action => 'index' %></li>
-				<li><%= link_to_unless_current 'Landing Zones', :controller => '/members_only', :action => 'landing_zones' %>
 <% end %>
 				<li><%= link_to_unless_current 'General Information', :controller => '/welcome', :action => 'generalinfo' %></li>
 				<li><%= link_to_unless_current 'Getting Involved', :controller => '/welcome', :action => 'volunteerinfo' %></li>

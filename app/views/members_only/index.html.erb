@@ -30,32 +30,33 @@
 		<h4>Reference Materials</h4>
 		<ul>
 			<li><%= link_to 'Ambulance Operations', :action => 'ambulance_ops' %></li>
-			<li><%= link_to 'Online PCR Guide', :action => 'serve_file', :name => 'PCRGuide.pdf' %></li>
+			<li><%= link_to 'CO Detector Manual', :action => 'serve_file', :name => 'CO.pdf' %></li>
+			<li><%= link_to 'Landing Zones', :controller => 'members_only', :action => 'landing_zones' %>
 			<li>Infection Control 
 				(<%= link_to 'Part 1', :action => 'serve_file', :name => 'InfectionControlA.pdf' %> &amp; 
 				<%= link_to 'Part 2', :action => 'serve_file', :name => 'InfectionControlB.pdf' %>)
 			</li>
-			<li><%= link_to_unless_current 'Radio Operations', :controller => '/members_only', :action => 'radio' %></li>
-			<li><%= link_to 'CO Detector Manual', :action => 'serve_file', :name => 'CO.pdf' %></li>
+			<li><%= link_to 'Online PCR Guide', :action => 'serve_file', :name => 'PCRGuide.pdf' %></li>
+			<li><%= link_to 'Radio Operations', :controller => 'members_only', :action => 'radio' %></li>
 		</ul>
 	</div>
 
 	<div id="forms" class="linkblk">
 		<h4>Forms</h4>
 		<ul>
-			<li><%= link_to 'Online PCRs', 'https://www.idahopercs.org/default.cfm?page=login' %></li>
-			<li><%= link_to 'Patient Assessment Form', :action => 'serve_file', :name => 'MCAAssessment.htm' %></li>
+			<li><%= link_to 'Online PCRs!', 'https://www.idahopercs.org/default.cfm?page=login' %></li>
 			<li><%= link_to 'Immunization Voucher', :action => 'serve_file', :name => 'voucher.jpg' %></li>
 			<li><%= link_to 'Hep-B Form', :action => 'serve_file', :name => 'hepbform.pdf' %></li>
+			<li><%= link_to 'Patient Assessment Form', :action => 'serve_file', :name => 'MCAAssessment.htm' %></li>
 		</ul>
 	</div>
 
 	<div id="checkoff-lists" class="linkblk">
 		<h4>Check-off Lists</h4>
 		<ul>
-			<li><%= link_to 'New Member Checkoff List', :action => 'serve_file', :name => 'checkofflist.pdf' %></li>
 			<li><%= link_to 'Driver Orientation List', :action => 'serve_file', :name => 'DriverOrientation.pdf' %></li>
 			<li><%= link_to 'EMT Recertification List', :action => 'serve_file', :name => 'EMT-BRecertForm.pdf' %></li>
+			<li><%= link_to 'New Member Checkoff List', :action => 'serve_file', :name => 'checkofflist.pdf' %></li>
 		</ul>
 	</div>
 </div>
