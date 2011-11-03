@@ -20,8 +20,8 @@ class Shift < ActiveRecord::Base
     Shift.find(:all, :conditions => ["shiftdate >= ? and shiftdate <= ?", firstdate.to_date, lastdate.to_date], :order => 'shiftdate ASC, shiftnum ASC', :readonly => true)
   end
   
-  def Shift.find_all_in_day(thedate)
-    Shift.find(:all, :conditions => ["shiftdate = ?", thedate.to_date], :order => 'shiftnum ASC', :readonly => true)
+  def Shift.find_all_in_day(thedate, readonly = true)
+    Shift.find(:all, :conditions => ["shiftdate = ?", thedate.to_date], :order => 'shiftnum ASC', :readonly => readonly)
   end
   
   def Shift.find_by_date_and_num(thedate, shiftnum)
@@ -30,13 +30,20 @@ class Shift < ActiveRecord::Base
   
   def assign_member(position, member)
     position = position.downcase
-    if position == 'e1'
-      self.e1 = member
-    elsif position == 'e2'
-      self.e2 = member
-    elsif position == 'd' || position == 'driver'
-      self.driver = member
+    case position.downcase
+      when 'e1' then self.e1 = member
+      when 'e2' then self.e2 = member
+      when 'd' || 'driver' then self.driver = member
     end
+  end
+  
+  def assign_member_with_portable_number(position, portable_number)
+    member = Member.get_with_portable_number(portable_number)
+    assign_member(position, member)
+  end
+  
+  def clear_member(position)
+    assign_member(position, nil)
   end
   
   def Shift.calc_monthly_total(shifts, month, member)

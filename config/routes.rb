@@ -32,7 +32,9 @@ Highbridge::Application.routes.draw do
 
   get "calendar/index"
   get "calendar/shiftedit"
+  get "calendar/shiftedit2"
   post "calendar/shiftsignup"
+  post "calendar/shiftsignup2"
 
   resources :shifts
   resources :members

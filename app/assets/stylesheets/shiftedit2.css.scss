@@ -1,0 +1,94 @@
+@import "colors";
+
+.se_weekend {
+	background-color: $cal_offwhite;  /* subtle off white for weekends */
+}
+
+.se_today {
+	background-color: $cal_today;  /* light blue */
+}
+
+#se_day {
+	margin: 1em auto 0 auto;
+	padding: 0;
+	border: 1px solid $standard_text;
+	width: 20em;
+	height: 33em;
+	
+	#se_dayname {
+		color: $cal_todaylink; /* dark blue */
+		text-align: right;
+		font-size: 1.25em;
+		margin: 0.5em 1.5em 1em 0;
+	}
+	
+	.se_s1, .se_s2, .se_s3, .se_s4 {
+		margin: 0 2em 1em 2em;
+		height: 6em;
+
+		ul {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 1em;
+			line-height: 1;
+			color: $cal_shiftreddark;
+			list-style-type: none;
+			margin: 1em;
+			padding: 0;
+
+			li {
+				margin: 0 0 0.2em 0;
+				padding: 0;
+			}
+
+			span {
+				float: left;
+				width: 4em;
+			}
+		}
+	}
+	
+	.se_s1 {
+		background: url(Shift-One.png) no-repeat right center;
+	}
+	
+	.se_s2 {
+		background: url(Shift-Two.png) no-repeat right center;
+	}
+	
+	.se_s3 {
+		background: url(Shift-Three.png) no-repeat right center;
+	}
+	
+	.se_s4 {
+		background: url(Shift-Four.png) no-repeat right center;
+	}
+	
+	.se_full, .se_hastwo, .se_hasone, .se_empty {
+		-moz-border-radius: 0.25em 0.5em 0.25em 0.5em ;
+		border-radius: 0.25em;
+		border: 1px solid;
+	}
+
+	.se_full {
+		background-color: $cal_shiftgreen;
+		border-color: $cal_shiftgreenborder;
+	}
+	.se_hastwo {
+		background-color: $cal_shiftyellow;
+		border-color: $cal_shiftyellowborder;
+	}
+	
+	.se_hasone {
+		background-color: $cal_shiftred;
+		border-color: $cal_shiftredborder;
+	}
+	
+	.se_empty {
+		border-color: $subtle_text;
+	}
+}
+
+#return_tags {
+	margin: 15px 0 0 0;
+	text-align: center;
+}

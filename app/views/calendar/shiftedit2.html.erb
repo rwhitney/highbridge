@@ -1,0 +1,66 @@
+<%- if notice -%>
+<p class="notice"><%= notice %></p>
+<%- end -%>
+<%- if alert -%>
+<p class="alert"><%= alert %></p>
+<%- end -%>
+
+<%= form_tag :controller => "calendar", :action => "shiftsignup2" do %>
+<%= hidden_field_tag 'received', @formdate %>
+<%= hidden_field_tag 'shiftdate', @shiftdate %><br />
+<% if @caldate == @today %>
+<div id="se_day" class="se_today">
+<% elsif @caldate.wday == 0 || @caldate.wday == 6 %>
+<div id="se_day" class="se_weekend">
+<% else %>
+<div id="se_day">
+<% end %>
+	<p id="se_dayname">
+		<%= @caldate.strftime("%B %e") %>
+	</p>
+	
+	<% shiftindex = 0 %>
+	<% (1..4).each do |shift_num| %>
+		<% nextshift = (shiftindex < @shifts.count) ? @shifts[shiftindex] : nil %>
+		<% if nextshift.nil? || nextshift.shiftnum != shift_num %>
+			<% shift_status = "empty" %>
+			<% emt1 = nil %>
+			<% emt2 = nil %>
+			<% d = nil %>
+		<% else %>
+			<% shift_status = nextshift.status %>
+			<% emt1 = nextshift.e1.nil? ? "" : nextshift.e1.portable_number %>
+			<% emt2 = nextshift.e2.nil? ? "" : nextshift.e2.portable_number %>
+			<% d = nextshift.driver.nil? ? "" : nextshift.driver.portable_number %>
+			<% shiftindex += 1 %>
+		<% end %>
+	
+		<div class="<%= "se_s#{shift_num} se_#{shift_status}" %>">
+			<ul>
+				<li>
+					<span>EMT 1</span>
+					<%= select_tag "s#{shift_num}_emt1", 
+						options_from_collection_for_select(@portables, :portable_number, :portable_name, emt1), 
+							:include_blank => true %>
+				</li>
+				<li>
+					<span>EMT 2</span>
+					<%= select_tag "s#{shift_num}_emt2", 
+						options_from_collection_for_select(@portables, :portable_number, :portable_name, emt2), 
+							:include_blank => true %>
+				</li>
+				<li>
+					<span>Driver</span>
+					<%= select_tag "s#{shift_num}_d", 
+						options_from_collection_for_select(@portables, :portable_number, :portable_name, d), 
+							:include_blank => true %>
+				</li>
+			</ul>
+		</div>
+	<% end %>
+</div>
+<div id="return_tags">
+	<%= submit_tag "Submit Changes" %><br />
+	<%= link_to "Return to the Calendar", :action => "index", :thedate => @shiftdate.to_s %>
+</div>
+<% end %>

@@ -46,7 +46,7 @@
 		end
 			-%>
 		<%- if thedate >= @today - 3.days -%>
-		<div class="daynum"><%= link_to daystr, {:action => :shiftedit, :date => thedate}, :class => 'daylink' %></div>
+		<div class="daynum"><%= link_to daystr, {:action => current_member.admin? ? :shiftedit2 : :shiftedit, :date => thedate}, :class => 'daylink' %></div>
 		<%- else -%>
 		<div class="daynum"><%= daystr %></div>
 		<%- end -%>
@@ -56,17 +56,9 @@
 					<%- shifttime = ["00:00 - 06:00", "06:00 - 12:00", "12:00 - 18:00", "18:00 - 24:00"][shiftnum-1] -%>
 		<div class="<%= "s#{shiftnum} #{nextshift.status}" %>" title="<%= "Shift #{shiftnum} (#{shifttime})" %>">
 			<ul>
-				<%# if nextshift.has_member?(current_member) || thedate < @today - 3.days -%>
 				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portable_name %><%- else -%>&nbsp;<%- end -%></li>
 				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portable_name %><%- else -%>&nbsp;<%- end -%></li>
 				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portable_name %><%- else -%>&nbsp;<%- end -%></li>
-				<%# else -%>
-<% if false %>
-				<li><span>E1</span><%- if nextshift.e1 -%><%= nextshift.e1.portable_name %><%- else -%><%= link_to 'sign up', calendar_path(:action => 'shiftsignup', :received => "#{@today}", :shiftdate => "#{thedate}", :position => "e1,#{shiftnum}"), :class => "#{nextshift.status}link", :remote => true, :method => :post %><%- end -%></li>
-				<li><span>E2</span><%- if nextshift.e2 -%><%= nextshift.e2.portable_name %><%- else -%><%= link_to 'sign up', calendar_path(:action => 'shiftsignup', :received => "#{@today}", :shiftdate => "#{thedate}", :position => "e2,#{shiftnum}"), :class => "#{nextshift.status}link", :remote => true, :method => :post %><%- end -%></li>
-				<li><span>D</span><%- if nextshift.driver -%><%= nextshift.driver.portable_name %><%- else -%><%= link_to 'sign up', calendar_path(:action => 'shiftsignup', :received => "#{@today}", :shiftdate => "#{thedate}", :position => "d,#{shiftnum}"), :class => "#{nextshift.status}link", :remote => true, :method => :post %><%- end -%></li>
-<% end %>
-				<%# end -%>
 			</ul>
 		</div>
 					<%- shiftindex += 1 -%>

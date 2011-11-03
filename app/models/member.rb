@@ -38,7 +38,18 @@ class Member < ActiveRecord::Base
   validates_inclusion_of :training_level, :in => ["EMT", "Driver", "First Responder", "Non Call"]
   validates_inclusion_of :portable_number, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
                                                           # but it would be mystifying to be out of this range
-
+  def Member.get_all_portable_names
+    Member.find(:all, :select => 'portable_number, portable_name', :order => 'portable_name ASC', :readonly => true)
+  end
+  
+  def Member.get_with_portable_number(portable_number)
+    if portable_number.nil? || portable_number.to_s.length == 0
+      nil
+    else
+      Member.find(:first, :conditions => ["portable_number = ?", portable_number])
+    end
+  end
+  
   def Member.get_members_ordered_by_training(training)
     Member.find(:all, :conditions => ["training_level = ?", training], :order => 'last_name ASC, first_name ASC', :readonly => true)
   end

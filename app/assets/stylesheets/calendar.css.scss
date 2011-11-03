@@ -83,6 +83,12 @@ body {
 	.alert {
 		color: $primary_red;
 	}
+	
+	h3 {
+		color: $standard_text;
+		font-weight: bold;
+		text-align: center;
+	}
 }
 
 #sidebar {
@@ -161,19 +167,19 @@ body {
 	padding: 0;
 	margin: 0;
 	border: 0px;
-}
 
-#caltablehdr tr {
-	height: auto;
-	margin: 0;
-	padding: 0;
-}
+	tr {
+		height: auto;
+		margin: 0;
+		padding: 0;
+	}
 
-#caltablehdr td {
-	width: 33%;
-	border: 0px;
-	margin: 0;
-	padding: 0;
+	td {
+		width: 33%;
+		border: 0px;
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .img-right {
@@ -184,31 +190,55 @@ body {
 	float: center;
 }
 
-.caltable .hdrrow {
-	vertical-align: bottom;
-	height: 2em;
-}
+.caltable {
+	.hdrrow {
+		vertical-align: bottom;
+		height: 2em;
+	}
+	
+	thead th {
+		text-align: left bottom;
+	}
 
-.caltable thead th {
-	text-align: left bottom;
-}
+	tbody {
+		tr {
+			vertical-align: top;
+			height: 11em;
+		}
 
-.caltable tbody tr {
-	vertical-align: top;
-	height: 11em;
-}
+		td {
+			/* background-color: white; */	/* stark white for weekdays */
+			border: 1px solid $cal_dayborder;
+		}
 
-.caltable tbody td {
-	/* background-color: white; */	/* stark white for weekdays */
-	border: 1px solid $cal_dayborder;
-}
+		td.weekend {
+			background-color: $cal_offwhite;  /* subtle off white for weekends */
+		}
 
-.caltable td.weekend {
-	background-color: $cal_offwhite;  /* subtle off white for weekends */
-}
+		td.today {
+			background-color: $cal_today;  /* light blue */
+		}
+	}
+	
+	ul {
+		font-family: Arial, Helvetica, sans-serif;
+		font-size: 0.7em;
+		line-height: 0.95;
+		color: $cal_shiftreddark;
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
 
-.caltable td.today {
-	background-color: $cal_today;  /* light blue */
+		li {
+			margin: 0;
+			padding: 0;
+		}
+
+		span {
+			float: left;
+			width: 1.5em;
+		}
+	}
 }
 
 .daynum {
@@ -287,23 +317,4 @@ a:hover.hastwolink, a:hover.hasonelink {
 	color: $cal_shiftreddark;
 }
 
-.caltable ul {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 0.7em;
-	line-height: 0.95;
-	color: $cal_shiftreddark;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-}
-
-.cattable ul li {
-	margin: 0;
-	padding: 0;
-}
-
-.caltable ul span {
-	float: left;
-	width: 1.5em;
-}
 

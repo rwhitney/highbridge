@@ -19,7 +19,7 @@ class CalendarController < ApplicationController
     @startday = @caldate - @caldate.wday
     @endday = @startday + (@numweeks * 7 - 1)
     @shifts = Shift.find_all_between_days(@startday, @endday)
-    get_member_list
+    get_member_list @shifts
   end
 
   def shiftedit
@@ -40,8 +40,37 @@ class CalendarController < ApplicationController
     end
     @caldate = @shiftdate
     get_member_list
+    if current_member.admin?
+      @portables = Member.get_all_portable_names
+    end
+  end
+  
+  def shiftedit2
+    @sheets = ["shiftedit2"]
+    @today = Date.today
+    @formdate = @today
+    begin
+      @shiftdate = params[:date].to_date unless params[:date].nil?
+    rescue
+      @shiftdate = nil
+    end
+    if @shiftdate.nil? || @shiftdate < @formdate - 3.days
+      redirect_to :action => 'index'
+    else
+      begin
+        @shifts = Shift.find_all_in_day(@shiftdate)
+      rescue
+        @shifts = nil
+      end
+    end
+    @caldate = @shiftdate
+    get_member_list
+    if current_member.admin?
+      @portables = Member.get_all_portable_names
+    end
   end
 
+  # used by non-admins to signup for shifts on a particular day
   def shiftsignup
     formdate = params[:received].to_date
     shiftdate = params[:shiftdate].to_date
@@ -65,11 +94,62 @@ class CalendarController < ApplicationController
     redirect_to :action => 'index', :thedate => shiftdate.to_s
   end
   
+  # used by admins to change a days worth of shifts (POST)
+  def shiftsignup2
+    @today = Date.today
+    oldestdate = @today - 3.days
+    formdate = params[:received].nil? ? @today : params[:received].to_date
+    shiftdate = params[:shiftdate].nil? ? nil : params[:shiftdate].to_date
+    if shiftdate && formdate >= oldestdate && shiftdate >= oldestdate
+      @caldate = shiftdate
+      @shifts = Shift.find_all_in_day(@caldate, false)
+      check_and_change_shift(1, params[:s1_emt1], params[:s1_emt2], params[:s1_d])
+      check_and_change_shift(2, params[:s2_emt1], params[:s2_emt2], params[:s2_d])
+      check_and_change_shift(3, params[:s3_emt1], params[:s3_emt2], params[:s3_d])
+      check_and_change_shift(4, params[:s4_emt1], params[:s4_emt2], params[:s4_d])
+    end
+    redirect_to :action => 'index', :thedate => shiftdate.to_s
+  end
+  
 protected
-  def get_member_list
+  def get_shift(shiftnum)
+    @shifts.each do |shift|
+      return shift if shift.shiftdate == @caldate && shift.shiftnum == shiftnum
+    end
+    shift = Shift.new
+    shift.shiftdate = @caldate
+    shift.shiftnum = shiftnum
+    shift
+  end
+
+  def check_and_change_shift(shiftnum, emt1_portable_num, emt2_portable_num, driver_portable_num)
+    shift = get_shift(shiftnum)
+    shift_was_empty = shift.member_count == 0
+    
+    shift.assign_member_with_portable_number('e1', emt1_portable_num)
+    shift.assign_member_with_portable_number('e2', emt2_portable_num)
+    shift.assign_member_with_portable_number('d', driver_portable_num)
+    
+    shift_is_now_empty = shift.member_count == 0
+
+    # Five cases...
+    # 1. shift_was_empty && still is empty -> do nothing
+    # 2. shift_was_emtpy && now has members -> save shift
+    # 3. !shift_was_empty && was not changed -> do nothing
+    # 4. !shift_was_empty && is now empty -> delete shift
+    # 5. !shift_was_emtpy && has changed -> save shift
+    
+    if !shift_was_empty && shift_is_now_empty
+      shift.destroy
+    elsif !shift_is_now_empty
+      shift.save
+    end
+  end
+  
+  def get_member_list(monthly_shifts = Shift.find_all_in_month(@caldate))
     @members = Member.find :all
-    for member in @members do
-      member.monthly_total = Shift.calc_monthly_total(@shifts, @caldate.month, member)
+    @members.each do |member|
+      member.monthly_total = Shift.calc_monthly_total(monthly_shifts, @caldate.month, member)
     end
     @members = @members.sort_by { |m| [m.status, -m.monthly_total] }
   end
