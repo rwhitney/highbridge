@@ -14,6 +14,7 @@
 	<%# force page to expire from browser cache in 1 day %>
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_yesterday %>">
 	<%# Date: 2011-10-29 %>
+	<%= favicon_link_tag %>
 	<%= stylesheet_link_tag "calendar" %>
 	<% if @sheets %>
 		<% @sheets.each do |sheet| %>
