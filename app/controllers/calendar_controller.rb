@@ -151,7 +151,7 @@ protected
   MemberStatusList = ["Active","Probationary","Not Active","Associate","LOA","Past Member"]
   
   def get_member_list(monthly_shifts = Shift.find_all_in_month(@caldate))
-    @members = Member.find :all
+    @members = Member.get_all_but_past
     @members.each do |member|
       member.monthly_total = Shift.calc_monthly_total(monthly_shifts, @caldate.month, member)
     end

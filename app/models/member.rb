@@ -50,6 +50,10 @@ class Member < ActiveRecord::Base
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
   end
+  
+  def Member.get_all_but_past
+    Member.find(:all, :conditions => ['status != "Past Member"'], :order => 'portable_name ASC', :readonly => true)
+  end
 
   def Member.get_all_portable_names
     Member.find(:all, :select => 'portable_number, portable_name', :conditions => ['status != "Past Member"'], :order => 'portable_name ASC', :readonly => true)

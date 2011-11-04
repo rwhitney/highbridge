@@ -11,7 +11,7 @@
 	<th <% if current_member.admin? %>colspan=2<% end %>>
   </tr>
 
-<% @members = MembersHelper.get_members_in_roster_order %>
+<% @members = MembersHelper.get_members_in_roster_order(current_member) %>
 <% category = "" %>
 <% @members.each do |member| %>
 	<% member_category = MembersHelper.get_category(member) %>

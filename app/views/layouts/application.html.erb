@@ -49,7 +49,7 @@
 				<li><%= link_to_unless_current 'Home Page', :controller => '/welcome', :action => 'index' %></li>
 				<li><%= link_to_unless_current 'Members Only', :controller => '/members_only', :action => 'index' %></li>
 <% unless current_member.nil? %>
-				<li><%= link_to_unless_current 'Calendar', :controller => '/calendar', :action => 'index', :anchor => 'today' %></li>
+				<li><%= link_to_unless_current 'Calendar', :controller => '/calendar', :action => 'index' %></li>
 				<li><%= link_to_unless_current 'Roster', :controller => '/members', :action => 'index' %></li>
 <% end %>
 				<li><%= link_to_unless_current 'General Information', :controller => '/welcome', :action => 'generalinfo' %></li>

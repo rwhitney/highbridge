@@ -29,8 +29,13 @@ module MembersHelper
     end
   end
   
-  def MembersHelper.get_members_in_roster_order
-  	@members = Member.find :all
+  def MembersHelper.get_members_in_roster_order(current_member)
+    if current_member.admin?
+  	  @members = Member.find :all
+  	else
+  	  @members = Member.get_all_but_past
+  	end
+  	  
   	@members.sort! { |x,y|
   	  xc = MembersHelper.get_category_index(x)
   	  yc = MembersHelper.get_category_index(y)
