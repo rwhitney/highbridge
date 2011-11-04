@@ -45,6 +45,8 @@ class Member < ActiveRecord::Base
   validates_inclusion_of  :training_level, :in => ["EMT", "Driver", "First Responder", "Non Call"]
   validates_inclusion_of  :portable_number, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
                                                           # but it would be mystifying to be out of this range
+  # this is the implementation from devise
+  # once I turned off validations, it no longer appears to provide this implementation
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
   end
