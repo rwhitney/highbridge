@@ -20,6 +20,11 @@
 	<%= stylesheet_link_tag sheet %>
 		<% end %>
 	<% end %>
+	<% if @javascripts %>
+		<% @javascripts.each do |javascript| %>
+	<%= javascript_include_tag javascript %>
+		<% end %>
+	<% end %>
 	<%= csrf_meta_tags %>
 </head>
 <body>

@@ -35,25 +35,25 @@
 			<% shiftindex += 1 %>
 		<% end %>
 	
-		<div class="<%= "se_s#{shift_num} se_#{shift_status}" %>">
+		<div class="<%= "shift se_s#{shift_num} se_#{shift_status}" %>">
 			<ul>
 				<li>
 					<span>EMT 1</span>
 					<%= select_tag "s#{shift_num}_emt1", 
 						options_from_collection_for_select(@portables, :portable_number, :portable_name, emt1), 
-							:include_blank => true %>
+							:class => "choose_member", :include_blank => true %>
 				</li>
 				<li>
 					<span>EMT 2</span>
 					<%= select_tag "s#{shift_num}_emt2", 
 						options_from_collection_for_select(@portables, :portable_number, :portable_name, emt2), 
-							:include_blank => true %>
+							:class => "choose_member", :include_blank => true %>
 				</li>
 				<li>
 					<span>Driver</span>
 					<%= select_tag "s#{shift_num}_d", 
 						options_from_collection_for_select(@portables, :portable_number, :portable_name, d), 
-							:include_blank => true %>
+							:class => "choose_member", :include_blank => true %>
 				</li>
 			</ul>
 		</div>
