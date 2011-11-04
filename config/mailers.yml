@@ -1,0 +1,14 @@
+default: &default
+  address:              smtp.gmail.com
+  port:                 587
+  domain:               whitneyhome.com
+  user_name:            russ@whitneyhome.com
+  password:             Marflon43
+  authentication:       plain
+  enable_starttls_auto: true
+
+development:
+  <<: *default
+
+production:
+  <<: *default

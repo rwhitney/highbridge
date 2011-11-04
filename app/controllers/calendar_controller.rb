@@ -47,7 +47,7 @@ class CalendarController < ApplicationController
   
   def shiftedit2
     @sheets = ["shiftedit2"]
-    @javascripts = ["application","calendar"]
+    @javascripts = ["calendar"]
     @today = Date.today
     @formdate = @today
     begin

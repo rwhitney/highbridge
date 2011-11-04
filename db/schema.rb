@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111101183417) do
+ActiveRecord::Schema.define(:version => 20111104193155) do
 
   create_table "members", :force => true do |t|
     t.string   "full_name"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20111101183417) do
     t.string   "training_level"
   end
 
-  add_index "members", ["email"], :name => "index_members_on_email", :unique => true
+  add_index "members", ["portable_name"], :name => "index_members_on_portable_name", :unique => true
   add_index "members", ["reset_password_token"], :name => "index_members_on_reset_password_token", :unique => true
 
   create_table "shifts", :force => true do |t|

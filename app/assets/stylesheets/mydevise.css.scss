@@ -1,0 +1,43 @@
+// These styles are used for the devise forms
+//
+@import "colors";
+
+.devise_box {
+	margin: 2em auto 1em auto;
+	padding: 0.5em;
+	width: 400px;
+	-moz-border-radius: 0.25em 0.5em 0.25em 0.5em;
+	border-radius: 0.25em;
+	border: 1px solid $primary_yellow;
+	background-color: lighten($primary_yellow, 40%);
+	
+	h2 {
+		margin: 0;
+		padding: 0;
+	}
+	
+	#error_explanation {
+		text-align: left;
+		
+		h2 {
+			font-size: 0.95em;
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+			color: darken($primary_red, 20%);
+		}
+		
+		ul {
+			color: darken($primary_red, 20%);
+			font-size: 0.9em;
+			font-family: "Times New Roman", Times, serif;
+		}
+	}
+	
+	div {
+		margin: 10px 0 0 0;
+
+		.field_with_errors {
+			margin: 0;
+		}
+	}
+}

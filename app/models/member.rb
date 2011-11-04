@@ -2,7 +2,9 @@
 class Member < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  # removed :registerable so new users can only be added by administrators
+  # removed :validatable so email is not forced to be unique
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
@@ -27,19 +29,28 @@ class Member < ActiveRecord::Base
     pattern = /\A#{addr_spec}\z/
   end
 
-  has_many :e1shifts, :class_name => 'Shift', :foreign_key => "e1member_id"
-  has_many :e2shifts, :class_name => 'Shift', :foreign_key => "e2member_id"
+  has_many :e1shifts,     :class_name => 'Shift', :foreign_key => "e1member_id"
+  has_many :e2shifts,     :class_name => 'Shift', :foreign_key => "e2member_id"
   has_many :drivershifts, :class_name => 'Shift', :foreign_key => "dmember_id"
-  
-  validates_presence_of :full_name, :portable_name, :portable_number, :email, :status, :training_level
+
+  # these three normally come from devise but I removed :validatable so I have to take over validations
+  validates_presence_of     :password, :if => :password_required?
+  validates_confirmation_of :password, :if => :password_required?
+  validates_length_of       :password, :within => 6..128, :allow_blank => true
+
+  validates_presence_of   :full_name, :portable_name, :portable_number, :email, :status, :training_level
   validates_uniqueness_of :portable_name, :portable_number
-  validates_format_of :email, :with => EmailAddress
-  validates_inclusion_of :status, :in => ["Associate", "Active", "Probationary", "LOA", "Not Active", "Past Member"]
-  validates_inclusion_of :training_level, :in => ["EMT", "Driver", "First Responder", "Non Call"]
-  validates_inclusion_of :portable_number, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
+  validates_format_of     :email, :with => EmailAddress
+  validates_inclusion_of  :status, :in => ["Associate", "Active", "Probationary", "LOA", "Not Active", "Past Member"]
+  validates_inclusion_of  :training_level, :in => ["EMT", "Driver", "First Responder", "Non Call"]
+  validates_inclusion_of  :portable_number, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
                                                           # but it would be mystifying to be out of this range
+  def password_required?
+    !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+
   def Member.get_all_portable_names
-    Member.find(:all, :select => 'portable_number, portable_name', :order => 'portable_name ASC', :readonly => true)
+    Member.find(:all, :select => 'portable_number, portable_name', :conditions => ['status != "Past Member"'], :order => 'portable_name ASC', :readonly => true)
   end
   
   def Member.get_with_portable_number(portable_number)
