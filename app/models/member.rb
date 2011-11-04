@@ -34,7 +34,7 @@ class Member < ActiveRecord::Base
   validates_presence_of :full_name, :portable_name, :portable_number, :email, :status, :training_level
   validates_uniqueness_of :portable_name, :portable_number
   validates_format_of :email, :with => EmailAddress
-  validates_inclusion_of :status, :in => ["Associate", "Active", "Probationary", "LOA"]
+  validates_inclusion_of :status, :in => ["Associate", "Active", "Probationary", "LOA", "Not Active", "Past Member"]
   validates_inclusion_of :training_level, :in => ["EMT", "Driver", "First Responder", "Non Call"]
   validates_inclusion_of :portable_number, :in => 1..999   # according to Drew (10/30/2011), we don't have a limit here 
                                                           # but it would be mystifying to be out of this range
@@ -47,6 +47,39 @@ class Member < ActiveRecord::Base
       nil
     else
       Member.find(:first, :conditions => ["portable_number = ?", portable_number])
+    end
+  end
+  
+  # used during an import.  It takes a portable name and either finds the member or creates one 
+  # with some made-up data (in order to pass validation)
+  def Member.get_or_create_member(portable_name)
+    member = Member.get_with_portable_name(portable_name)
+    if member.nil?
+      if portable_name =~ /([a-zA-Z]+)(\d{1,3})/
+        base_name = $1
+        portable_number = $2.to_i
+        
+        member = Member.new
+        member.full_name = "#{base_name} Jones"
+        member.first_name = base_name
+        member.last_name = "Jones"
+        member.portable_name = portable_name
+        member.portable_number = portable_number
+        member.email = "#{base_name}@somewhere.net"
+        member.training_level = "Non Call"
+        member.status = "LOA"
+        member.password = "password"
+        member.save
+      end
+    end
+    member
+  end
+  
+  def Member.get_with_portable_name(portable_name)
+    if portable_name.nil? || portable_name.length == 0
+      nil
+    else
+      Member.find(:first, :conditions => ["portable_name = ?", portable_name])
     end
   end
   

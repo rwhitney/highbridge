@@ -16,6 +16,16 @@ class Shift < ActiveRecord::Base
     Shift.find_all_between_days(firstdate, lastdate)
   end
   
+  def Shift.find_or_create(thedate, shiftnum)
+    shift = Shift.find_by_date_and_num(thedate, shiftnum)
+    if shift.nil?
+      shift = Shift.new
+      shift.shiftdate = thedate.to_date
+      shift.shiftnum = shiftnum.to_i
+    end
+    shift
+  end
+  
   def Shift.find_all_between_days(firstdate, lastdate)
     Shift.find(:all, :conditions => ["shiftdate >= ? and shiftdate <= ?", firstdate.to_date, lastdate.to_date], :order => 'shiftdate ASC, shiftnum ASC', :readonly => true)
   end
@@ -99,4 +109,31 @@ class Shift < ActiveRecord::Base
     return "EMT 2" if e2 == user
     return "driver" if driver == user
   end
+  
+  def Shift.import_data(fname, clear_year = nil)
+    if clear_year
+      Shift.delete_all ["YEAR(shiftdate) = ?", clear_year]
+    end
+    
+    File.open(fname, "r") do |infile|
+      while (line = infile.gets)
+        chunks = line.split
+        if chunks.count == 15
+          portable_name = chunks[1]
+          shift_num = chunks[3]
+          shift_date = chunks[5]
+          position = chunks[13]
+          
+          if %w(1 2 3 4).include?(shift_num) && %w(E1 E2 D).include?(position)
+            member = Member.get_or_create_member(portable_name)
+            if member
+              shift = Shift.find_or_create(shift_date, shift_num)
+              shift.assign_member(position, member)
+              shift.save
+            end # if member
+          end # if include?
+        end # if chunks.count
+      end # while
+    end # File.open
+  end # def import_data
 end

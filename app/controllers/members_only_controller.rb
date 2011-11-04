@@ -107,11 +107,6 @@ class MembersOnlyController < ApplicationController
     @desc = "MCA member photos"
   end
   
-  def roster
-    @title = "Roster"
-    @desc = "MCA member roster"
-  end
-  
   def landing_zones
     @title = "Landing Zones"
     @desc = "MCA area landing zones"

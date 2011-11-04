@@ -146,12 +146,24 @@ protected
     end
   end
   
+  # this is the sorted order of statuses for display
+  MemberStatusList = ["Active","Probationary","Not Active","Associate","LOA","Past Member"]
+  
   def get_member_list(monthly_shifts = Shift.find_all_in_month(@caldate))
     @members = Member.find :all
     @members.each do |member|
       member.monthly_total = Shift.calc_monthly_total(monthly_shifts, @caldate.month, member)
     end
-    @members = @members.sort_by { |m| [m.status, -m.monthly_total] }
+    
+    # doing a custom sort here so the members will be grouped by status in the order 
+    # listed in MemberStatusList
+    @members.sort! { |x,y|
+      xc = MemberStatusList.index(x.status)
+      xc = MemberStatusList.count if xc.nil?
+      yc = MemberStatusList.index(y.status)
+      yc = MemberStatusList.count if yc.nil?
+      [xc, -x.monthly_total, x.portable_name] <=> [yc, -y.monthly_total, y.portable_name]
+      }
   end
 
 end

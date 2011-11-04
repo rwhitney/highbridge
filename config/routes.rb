@@ -19,7 +19,6 @@ Highbridge::Application.routes.draw do
   get "members_only/radio_codes"
   get "members_only/radio_alphabet"
   get "members_only/photos"
-  get "members_only/roster"
   get "members_only/landing_zones"
   get "members_only/board_notes"
   get "members_only/general_notes"

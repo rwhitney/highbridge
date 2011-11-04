@@ -11,9 +11,9 @@
 						<td id="tblhdr3">
 							<%= image_tag 'TodayButton.png', :alt => "find today", :class => "img-right", :usemap => "#monthnavmap" %>
 							<map name="monthnavmap">
-								<area shape="rect" coords="2,2,26,21" title=<%= (@caldate - 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "index", :date => "#{@caldate - 1.month}") %> />
-								<area shape="rect" coords="28,2,86,21" title=<%= @today.strftime("\"Show today (%a %b %e)\"") %> href=<%- if @caldate.year == @today.year && @caldate.month == @today.month -%>"#today"<%- else -%><%= url_for(:action => "index", :anchor => "today") %><%- end -%> />
-								<area shape="rect" coords="88,2,113,21" title=<%= (@caldate + 1.month).strftime("\"Show %B %Y\"") %> href=<%= url_for(:action => "index", :date => "#{@caldate + 1.month}") %> />
+								<area shape="rect" coords="2,2,26,21" title="<%= (@caldate - 1.month).strftime("Show %B %Y") %>" href=<%= url_for(:action => "index", :date => "#{@caldate - 1.month}") %> />
+								<area shape="rect" coords="28,2,86,21" title="<%= @today.strftime("Show today (%a %b %e)") %>" href=<%- if @caldate.year == @today.year && @caldate.month == @today.month -%>"#today"<%- else -%><%= url_for(:action => "index", :anchor => "today") %><%- end -%> />
+								<area shape="rect" coords="88,2,113,21" title="<%= (@caldate + 1.month).strftime("Show %B %Y") %>" href=<%= url_for(:action => "index", :date => "#{@caldate + 1.month}") %> />
 							</map>
 						</td>
 					</tr>
