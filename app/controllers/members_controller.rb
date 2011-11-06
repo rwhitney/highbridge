@@ -27,6 +27,8 @@ class MembersController < ApplicationController
   # GET /members/new.json
   def new
     @member = Member.new
+    
+    @available_portable_numbers = Member.get_available_portable_numbers(1..60)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,6 +39,9 @@ class MembersController < ApplicationController
   # GET /members/1/edit
   def edit
     @member = Member.find(params[:id])
+    @available_portable_numbers = Member.get_available_portable_numbers(1..60)
+    @available_portable_numbers.push @member.portable_number
+    @available_portable_numbers.sort!
   end
 
   # POST /members

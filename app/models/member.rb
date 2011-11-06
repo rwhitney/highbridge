@@ -67,6 +67,18 @@ class Member < ActiveRecord::Base
     end
   end
   
+  def Member.get_available_portable_numbers(in_range)
+    members = Member.find(:all, :select => 'portable_number', :order => 'portable_number ASC', :readonly => true)
+    available_numbers = []
+    in_range.each do |num|
+      available_numbers.push(num)
+    end
+    members.each do |member|
+      available_numbers.delete(member.portable_number)
+    end
+    available_numbers
+  end
+  
   # used during an import.  It takes a portable name and either finds the member or creates one 
   # with some made-up data (in order to pass validation)
   def Member.get_or_create_member(portable_name)

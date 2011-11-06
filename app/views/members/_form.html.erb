@@ -29,7 +29,8 @@
   </div>
   <div class="field">
     <%= f.label :portable_number, "Portable number" %><br />
-    <%= f.number_field :portable_number %>
+    <%# f.number_field :portable_number %>
+	<%= f.select :portable_number, @available_portable_numbers %>
   </div>
   <div class="field">
 	<%= f.label :training_level, "Training level (EMT, First Responder, Non Call)"%><br />
