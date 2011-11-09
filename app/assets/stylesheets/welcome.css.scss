@@ -239,6 +239,16 @@ body {
 			width: 50%;
 		}
 	}
+	
+	.ok_hours {
+		background-color: $cal_shiftgreen;
+		font-weight: bold;
+	}
+	
+	.low_hours {
+		background-color: $cal_shiftred;
+		font-weight: bold;
+	}
 }
 
 

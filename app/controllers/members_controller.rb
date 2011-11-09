@@ -11,6 +11,26 @@ class MembersController < ApplicationController
       format.json { render json: @members }
     end
   end
+  
+  def compliance
+    @members = Member.all
+    
+    @today = Date.today
+    @this_month = Date.new(@today.year, @today.month, 1)
+    @last_month = @this_month - 1.month
+    @prev_month = @last_month - 1.month
+    @this_month_name = @this_month.strftime("%b MTD")
+    @last_month_name = @last_month.strftime("%b")
+    @prev_month_name = @prev_month.strftime("%b")
+    @prev_month_shifts = Shift.find_all_in_month(@prev_month)
+    @last_month_shifts = Shift.find_all_in_month(@last_month)
+    @this_month_shifts = Shift.find_all_in_month(@this_month)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @members }
+    end
+  end
 
   # GET /members/1
   # GET /members/1.json

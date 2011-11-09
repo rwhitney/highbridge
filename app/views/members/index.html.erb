@@ -48,5 +48,6 @@
 
 <br />
 <% if current_member.admin? %>
-<%= link_to 'New Member', new_member_path %>
+<%= link_to 'New Member', new_member_path %><br />
+<%= link_to 'Compliance Report', :action => 'compliance' %>
 <% end %>

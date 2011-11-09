@@ -11,7 +11,7 @@ class Member < ActiveRecord::Base
   attr_accessible :portable_name, :full_name, :portable_number, :street_address
   attr_accessible :city, :zip, :area, :home_phone, :work_phone, :cell_or_other_phone
   attr_accessible :shirt_size, :status, :misc_notes, :first_name, :last_name, :training_level
-  attr_accessor :monthly_total
+  attr_accessor :last_total, :prev_total, :monthly_total
 
   EmailAddress = begin
     qtext = /[^\x0d\x22\x5c\x80-\xff]/
