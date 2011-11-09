@@ -5,7 +5,7 @@ FactoryGirl.define do
     last_name "User"
     portable_name "miniu999"
     portable_number 999
-    training_level "First Responder"
+    training_level "EMR"
     email "mini@comcast.net"
     status "Active"           # "Associate", "Active", "Probationary"
     password "fritz1234"
@@ -73,7 +73,7 @@ FactoryGirl.define do
     full_name "Drew Bodie"
     first_name "Drew"
     last_name "Bodie"
-    training_level "First Responder"
+    training_level "EMR"
     portable_name "drew44"
     portable_number 44
     email "drewbodie2002@yahoo.com"

@@ -1,5 +1,5 @@
 module MembersHelper
-  MemberCategories = ["EMT", "First Responder", "Driver", "Non Call", "LOA", "Past Member"] 
+  MemberCategories = ["EMT", "EMR", "Driver", "Non Call", "LOA", "Past Member"] 
   
   def MembersHelper.get_category_index(member)
     mc = MemberCategories.index(member.status)
