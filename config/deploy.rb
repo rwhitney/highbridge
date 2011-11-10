@@ -17,9 +17,9 @@ set :user, 'deploy'
 set :use_sudo, false
 set :deploy_to, "/srv/www/#{application}"
 
-role :web, "66.228.49.148"                          # Your HTTP server, Apache/etc
-role :app, "66.228.49.148"                          # This may be the same as your `Web` server
-role :db,  "66.228.49.148", :primary => true        # This is where Rails migrations will run
+role :web, "96.126.126.31"                          # Your HTTP server, Apache/etc
+role :app, "96.126.126.31"                          # This may be the same as your `Web` server
+role :db,  "96.126.126.31", :primary => true        # This is where Rails migrations will run
 
 after "deploy", "deploy:bundle_gems"
 after "deploy:bundle_gems", "deploy:precompile_assets"
@@ -28,7 +28,7 @@ after "deploy:precompile_assets", "deploy:restart"
 # Passenger mod_rails uses this stuff:
 namespace :deploy do
   task :bundle_gems do
-    run "cd #{current_path} && bundle install --deployment"
+    run "cd #{current_path} && bundle install --deployment --without test development"
   end
 
   desc "precompile the assets"

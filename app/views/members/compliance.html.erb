@@ -1,0 +1,50 @@
+<h1>Member Compliance Report</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Training</th>
+	<th><%= @prev_month_name %></th>
+	<th><%= @last_month_name %></th>
+	<th>Total</th>
+	<th><%= @this_month_name %></th>
+	<th <% if current_member.admin? %>colspan=2<% end %>>
+  </tr>
+
+<% @members = MembersHelper.get_members_in_compliance_order(@prev_month_shifts, @prev_month, @last_month_shifts, @last_month) %>
+<% category = "" %>
+<% @members.each do |member| %>
+	<% member_category = member.status %>
+	<% if category != member_category %>
+		<% category = member_category %>
+		<% count = MembersHelper.get_status_count(@members, category) %>
+	<tr>
+	   	<th colspan=<% if current_member.admin? %>"8"<% else %>"7"<% end %>>
+			<%= pluralize(count, category) %>
+		</th>
+	</tr>
+	<% end %>
+
+  <tr>
+	<td><%= mail_to member.email, member.last_name_first %><br /><%= member.portable_name %></td>
+    <td><%= member.training_level %></td>
+	<td><%= member.prev_total %></td>
+	<td><%= member.last_total %></td>
+	<% if member.monthly_total >= 48 %>
+	<td class="ok_hours"><%= member.monthly_total %></td>
+	<% else %>
+	<td class="low_hours"><%= member.monthly_total %></td>
+	<% end %>
+	<td><%= Shift.calc_monthly_total(@this_month_shifts, @this_month.month, member) %>
+    <td><%= link_to 'Details', member %></td>
+<% if current_member.admin? %>
+    <td><%= link_to 'Edit', edit_member_path(member) %></td>
+<% end %>
+  </tr>
+<% end %> <%# for each member %>
+</table>
+
+<br />
+<% if current_member.admin? %>
+<%= link_to 'New Member', new_member_path %>
+<% end %>
