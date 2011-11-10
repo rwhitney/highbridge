@@ -1,0 +1,13 @@
+ErrorDocument 503 /system/maintenance.html
+
+RewriteEngine On
+
+# This series tells Apache2 to serve up maintenance.html if it is present
+# This is used during web application maintenance.  The remote_host line
+# should be filled in with your IP address so you can browse the site
+# while others are being redirected to the maintenance page.
+# Also, we return a 503 error so Google knows not to index the page.
+RewriteCond %{REQUEST_URI} !.(css|gif|jpg|png)$
+RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
+RewriteCond %{SCRIPT_FILENAME} !maintenance.html
+RewriteRule ^.*$ - [redirect=503,last]
