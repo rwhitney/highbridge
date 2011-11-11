@@ -11,6 +11,7 @@ class Member < ActiveRecord::Base
   attr_accessible :portable_name, :full_name, :portable_number, :street_address
   attr_accessible :city, :zip, :area, :home_phone, :work_phone, :cell_or_other_phone
   attr_accessible :shirt_size, :status, :misc_notes, :first_name, :last_name, :training_level
+  attr_accessible :admin_calendar, :admin_hr, :admin_root, :visitor
   attr_accessor :last_total, :prev_total, :monthly_total
 
   EmailAddress = begin
@@ -49,6 +50,18 @@ class Member < ActiveRecord::Base
   # once I turned off validations, it no longer appears to provide this implementation
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
+  end
+  
+  def can_admin_calendar?
+    admin_calendar || admin_root
+  end
+  
+  def can_admin_members?
+    admin_hr || admin_root
+  end
+  
+  def can_admin_admins?
+    admin_root
   end
   
   def Member.get_all_but_past

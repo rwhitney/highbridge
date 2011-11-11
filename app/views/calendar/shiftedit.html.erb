@@ -35,7 +35,7 @@
 			<% theshift = @shifts[nextshift] unless @shifts.nil? || @shifts.count <= nextshift -%>
 			<% unless theshift.nil? || theshift.shiftnum != shiftindex -%>
 				<% nextshift += 1 -%>
-				<% if current_member.admin? %>
+				<% if current_member.can_admin_calendar? %>
 					EMT1
 					<% select_tag "EMT1", options_from_collection_for_select(@portables, :portable_number, "portable_name"), :include_blank => true, :selected => (theshift.e1.nil? ? nil : theshift.e1.portable_name) %><br />
 					EMT2
@@ -78,7 +78,7 @@
 					<% end -%>
 				<% end %>
 			<% else -%>
-				<% if current_member.admin? %>
+				<% if current_member.can_admin_calendar? %>
 					EMT1 <%= select_tag "EMT1#{shiftindex}", options_from_collection_for_select(@portables, :portable_number, "portable_name"), :include_blank => true %><br />
 					EMT2 <%= select_tag "EMT2#{shiftindex}", options_from_collection_for_select(@portables, :portable_number, "portable_name"), :include_blank => true %><br />
 					D <%= select_tag "D#{shiftindex}", options_from_collection_for_select(@portables, :portable_number, "portable_name"), :include_blank => true %><br />

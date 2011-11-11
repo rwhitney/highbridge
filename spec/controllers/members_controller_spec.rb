@@ -33,7 +33,9 @@ describe MembersController do
       :email => m.email,
       :status => m.status,
       :password => m.password,
-      :admin => m.admin
+      :admin_hr => m.admin_hr,
+      :admin_calendar => m.admin_calendar,
+      :admin_root => m.admin_root,
     }
   end
 

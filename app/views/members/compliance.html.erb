@@ -8,7 +8,7 @@
 	<th><%= @last_month_name %></th>
 	<th>Total</th>
 	<th><%= @this_month_name %></th>
-	<th <% if current_member.admin? %>colspan=2<% end %>>
+	<th <% if current_member.can_admin_members? %>colspan=2<% end %>>
   </tr>
 
 <% @members = MembersHelper.get_members_in_compliance_order(@prev_month_shifts, @prev_month, @last_month_shifts, @last_month) %>
@@ -19,7 +19,7 @@
 		<% category = member_category %>
 		<% count = MembersHelper.get_status_count(@members, category) %>
 	<tr>
-	   	<th colspan=<% if current_member.admin? %>"8"<% else %>"7"<% end %>>
+	   	<th colspan=<% if current_member.can_admin_members? %>"8"<% else %>"7"<% end %>>
 			<%= pluralize(count, category) %>
 		</th>
 	</tr>
@@ -37,7 +37,7 @@
 	<% end %>
 	<td><%= Shift.calc_monthly_total(@this_month_shifts, @this_month.month, member) %>
     <td><%= link_to 'Details', member %></td>
-<% if current_member.admin? %>
+<% if current_member.can_admin_members? %>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
 <% end %>
   </tr>
@@ -45,6 +45,6 @@
 </table>
 
 <br />
-<% if current_member.admin? %>
+<% if current_member.can_admin_members? %>
 <%= link_to 'New Member', new_member_path %>
 <% end %>

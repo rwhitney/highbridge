@@ -40,7 +40,7 @@ class CalendarController < ApplicationController
     end
     @caldate = @shiftdate
     get_member_list
-    if current_member.admin?
+    if current_member.can_admin_calendar?
       @portables = Member.get_all_portable_names
     end
   end
@@ -66,7 +66,7 @@ class CalendarController < ApplicationController
     end
     @caldate = @shiftdate
     get_member_list
-    if current_member.admin?
+    if current_member.can_admin_calendar?
       @portables = Member.get_all_portable_names
     end
   end

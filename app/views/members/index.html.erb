@@ -8,7 +8,7 @@
     <th>Phone</th>
     <th>Status</th>
 	<th>Notes</th>
-	<th <% if current_member.admin? %>colspan=2<% end %>>
+	<th <% if current_member.can_admin_members? %>colspan=2<% end %>>
   </tr>
 
 <% @members = MembersHelper.get_members_in_roster_order(current_member) %>
@@ -19,7 +19,7 @@
 		<% category = member_category %>
 		<% count = MembersHelper.get_category_count(@members, category) %>
 	<tr>
-	   	<th colspan=<% if current_member.admin? %>"8"<% else %>"7"<% end %>>
+	   	<th colspan=<% if current_member.can_admin_members? %>"8"<% else %>"7"<% end %>>
 			<%= pluralize(count, category) %>
 		</th>
 	</tr>
@@ -39,7 +39,7 @@
     <td><%= MembersHelper.get_status(member) %></td>
 	<td class="small"><%= member.misc_notes %></td>
     <td><%= link_to 'Details', member %></td>
-<% if current_member.admin? %>
+<% if current_member.can_admin_members? %>
     <td><%= link_to 'Edit', edit_member_path(member) %></td>
 <% end %>
   </tr>
@@ -47,7 +47,7 @@
 </table>
 
 <br />
-<% if current_member.admin? %>
+<% if current_member.can_admin_members? %>
 <%= link_to 'New Member', new_member_path %><br />
 <%= link_to 'Compliance Report', :action => 'compliance' %>
 <% end %>

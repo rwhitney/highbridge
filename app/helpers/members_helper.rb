@@ -38,7 +38,7 @@ module MembersHelper
   end
   
   def MembersHelper.get_members_in_roster_order(current_member)
-    if current_member.admin?
+    if current_member.can_admin_members?
   	  @members = Member.find :all
   	else
   	  @members = Member.get_all_but_past

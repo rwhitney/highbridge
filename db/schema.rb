@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111104193155) do
+ActiveRecord::Schema.define(:version => 20111111134150) do
 
   create_table "members", :force => true do |t|
     t.string   "full_name"
@@ -39,10 +39,13 @@ ActiveRecord::Schema.define(:version => 20111104193155) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "admin",                                 :default => false
+    t.boolean  "admin_calendar",                        :default => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "training_level"
+    t.boolean  "admin_root",                            :default => false
+    t.boolean  "admin_hr",                              :default => false
+    t.boolean  "visitor",                               :default => false
   end
 
   add_index "members", ["portable_name"], :name => "index_members_on_portable_name", :unique => true

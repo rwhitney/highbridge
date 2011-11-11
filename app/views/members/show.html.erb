@@ -83,10 +83,19 @@
   <%= @member.misc_notes %>
 </p>
 
+<% if current_member.can_admin_members? %>
 <p>
-  <b>Admin:</b>
-  <%= @member.admin %>
+  <b>Calendar Admin:</b>
+  <%= @member.admin_calendar %>
 </p>
+<% end %>
+
+<% if current_member.can_admin_admins? %>
+<p>
+  <b>Personnel Admin:</b>
+  <%= @member.admin_hr %>
+</p>
+<% end %>
 
 <%= link_to 'Destroy', @member, confirm: 'Are you sure?', method: :delete %> |
 <%= link_to 'Edit', edit_member_path(@member) %> |

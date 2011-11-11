@@ -46,7 +46,7 @@
 		end
 			-%>
 		<%- if thedate >= @today - 3.days -%>
-		<div class="daynum"><%= link_to daystr, {:action => current_member.admin? ? :shiftedit2 : :shiftedit, :date => thedate}, :class => 'daylink' %></div>
+		<div class="daynum"><%= link_to daystr, {:action => current_member.can_admin_calendar? ? :shiftedit2 : :shiftedit, :date => thedate}, :class => 'daylink' %></div>
 		<%- else -%>
 		<div class="daynum"><%= daystr %></div>
 		<%- end -%>
