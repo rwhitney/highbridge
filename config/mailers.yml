@@ -11,6 +11,9 @@ development:
   <<: *default
 
 production:
-  address:              locahost
-  port:                 25
-  domain:               mcaems.org
+  <<: *default
+
+# not sure why this is breaking but we will switch it back to the old version until I figure it out.
+#  address:              locahost
+#  port:                 25
+#  domain:               mcaems.org
