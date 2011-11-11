@@ -1,4 +1,6 @@
 class WelcomeController < ApplicationController
+  # no authentication required here - this is for the public
+  
   def index
     @desc = "Mores Creek Ambulance home page"
   end

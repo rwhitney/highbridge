@@ -9,9 +9,9 @@ FactoryGirl.define do
     email "mini@comcast.net"
     status "Active"           # "Associate", "Active", "Probationary"
     password "fritz1234"
-    admin_hr false,
-    admin_calendar false,
-    admin_root false,
+    admin_hr false
+    admin_calendar false
+    admin_root false
   end
   
   factory :admin, :class => Member do
@@ -24,9 +24,9 @@ FactoryGirl.define do
     email "bigd@aol.com"
     status "Active"           # "Associate", "Active", "Probationary"
     password "Zackomoto"
-    admin_hr true,
-    admin_calendar true,
-    admin_root false,
+    admin_hr true
+    admin_calendar true
+    admin_root false
   end
   
   factory :russ, :class => Member do
@@ -48,9 +48,9 @@ FactoryGirl.define do
     status "Probationary"                # "Associate", "Active", "Probationary"
     misc_notes "web admin"
     password "explorer"
-    admin_hr false,
-    admin_calendar false,
-    admin_root true,
+    admin_hr false
+    admin_calendar false
+    admin_root true
   end
   
   factory :lisa, :class => Member do
@@ -72,9 +72,9 @@ FactoryGirl.define do
     status "Probationary"                # "Associate", "Active", "Probationary"
     misc_notes "EMT-B"
     password "password"
-    admin_hr false,
-    admin_calendar false,
-    admin_root false,
+    admin_hr false
+    admin_calendar false
+    admin_root false
   end
 
   factory :drew, :class => Member do
@@ -96,9 +96,9 @@ FactoryGirl.define do
     status "Active"                    # "Associate", "Active", "Probationary"
     misc_notes "President"
     password "password"
-    admin_hr false,
-    admin_calendar true,
-    admin_root false,
+    admin_hr false
+    admin_calendar true
+    admin_root false
   end
 
   factory :paul, :class => Member do
@@ -120,9 +120,9 @@ FactoryGirl.define do
     status "Active"                      # "Associate", "Active", "Probationary"
     misc_notes "WRFPD/Chassis Officer"
     password "password"
-    admin_hr false,
-    admin_calendar false,
-    admin_root false,
+    admin_hr false
+    admin_calendar false
+    admin_root false
   end
 
   factory :dennis, :class => Member do
@@ -144,8 +144,8 @@ FactoryGirl.define do
     status "Active"                      # "Associate", "Active", "Probationary"
     misc_notes "Adv. Board Rep."
     password "password"
-    admin_hr false,
-    admin_calendar true,
-    admin_root false,
+    admin_hr false
+    admin_calendar true
+    admin_root false
   end
 end

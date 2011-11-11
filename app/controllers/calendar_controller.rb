@@ -46,70 +46,82 @@ class CalendarController < ApplicationController
   end
   
   def shiftedit2
-    @sheets = ["shiftedit2"]
-    @javascripts = ["calendar"]
-    @today = Date.today
-    @formdate = @today
-    begin
-      @shiftdate = params[:date].to_date unless params[:date].nil?
-    rescue
-      @shiftdate = nil
-    end
-    if @shiftdate.nil? || @shiftdate < @formdate - 3.days
-      redirect_to :action => 'index'
-    else
-      begin
-        @shifts = Shift.find_all_in_day(@shiftdate)
-      rescue
-        @shifts = nil
-      end
-    end
-    @caldate = @shiftdate
-    get_member_list
     if current_member.can_admin_calendar?
-      @portables = Member.get_all_portable_names
+      @sheets = ["shiftedit2"]
+      @javascripts = ["calendar"]
+      @today = Date.today
+      @formdate = @today
+      begin
+        @shiftdate = params[:date].to_date unless params[:date].nil?
+      rescue
+        @shiftdate = nil
+      end
+      if @shiftdate.nil? || @shiftdate < @formdate - 3.days
+        redirect_to :action => 'index'
+      else
+        begin
+          @shifts = Shift.find_all_in_day(@shiftdate)
+        rescue
+          @shifts = nil
+        end
+      end
+      @caldate = @shiftdate
+      get_member_list
+      if current_member.can_admin_calendar?
+        @portables = Member.get_all_portable_names
+      end
+    else
+      render_forbidden
     end
   end
 
   # used by non-admins to signup for shifts on a particular day
   def shiftsignup
-    formdate = params[:received].to_date
-    shiftdate = params[:shiftdate].to_date
-    position = params[:position].split ','
-    shiftnum = position[1].to_i if position.count == 2
-    position = position[0]
-    oldestdate = Date.today - 3.days
-    if formdate >= oldestdate && shiftdate >= oldestdate && ['e1','e2','d'].include?(position.downcase) && (1..4).include?(shiftnum)
-      shift = Shift.find_by_date_and_num shiftdate, shiftnum
-      if shift.nil?
-        shift = Shift.new
-        shift.shiftdate = shiftdate
-        shift.shiftnum = shiftnum
-        shift.assign_member position, current_member
-        shift.save
-      else
-        shift.assign_member position, current_member
-        shift.save
+    if current_member.visitor?
+      render_forbidden
+    else
+      formdate = params[:received].to_date
+      shiftdate = params[:shiftdate].to_date
+      position = params[:position].split ','
+      shiftnum = position[1].to_i if position.count == 2
+      position = position[0]
+      oldestdate = Date.today - 3.days
+      if formdate >= oldestdate && shiftdate >= oldestdate && ['e1','e2','d'].include?(position.downcase) && (1..4).include?(shiftnum)
+        shift = Shift.find_by_date_and_num shiftdate, shiftnum
+        if shift.nil?
+          shift = Shift.new
+          shift.shiftdate = shiftdate
+          shift.shiftnum = shiftnum
+          shift.assign_member position, current_member
+          shift.save
+        else
+          shift.assign_member position, current_member
+          shift.save
+        end
       end
+      redirect_to :action => 'index', :thedate => shiftdate.to_s
     end
-    redirect_to :action => 'index', :thedate => shiftdate.to_s
   end
   
   # used by admins to change a days worth of shifts (POST)
   def shiftsignup2
-    @today = Date.today
-    oldestdate = @today - 3.days
-    formdate = params[:received].nil? ? @today : params[:received].to_date
-    shiftdate = params[:shiftdate].nil? ? nil : params[:shiftdate].to_date
-    if shiftdate && formdate >= oldestdate && shiftdate >= oldestdate
-      @caldate = shiftdate
-      @shifts = Shift.find_all_in_day(@caldate, false)
-      check_and_change_shift(1, params[:s1_emt1], params[:s1_emt2], params[:s1_d])
-      check_and_change_shift(2, params[:s2_emt1], params[:s2_emt2], params[:s2_d])
-      check_and_change_shift(3, params[:s3_emt1], params[:s3_emt2], params[:s3_d])
-      check_and_change_shift(4, params[:s4_emt1], params[:s4_emt2], params[:s4_d])
+    if current_member.can_admin_calendar?
+      @today = Date.today
+      oldestdate = @today - 3.days
+      formdate = params[:received].nil? ? @today : params[:received].to_date
+      shiftdate = params[:shiftdate].nil? ? nil : params[:shiftdate].to_date
+      if shiftdate && formdate >= oldestdate && shiftdate >= oldestdate
+        @caldate = shiftdate
+        @shifts = Shift.find_all_in_day(@caldate, false)
+        check_and_change_shift(1, params[:s1_emt1], params[:s1_emt2], params[:s1_d])
+        check_and_change_shift(2, params[:s2_emt1], params[:s2_emt2], params[:s2_d])
+        check_and_change_shift(3, params[:s3_emt1], params[:s3_emt2], params[:s3_d])
+        check_and_change_shift(4, params[:s4_emt1], params[:s4_emt2], params[:s4_d])
+      end
+      redirect_to :action => 'index', :thedate => shiftdate.to_s
+    else
+      render_forbidden
     end
-    redirect_to :action => 'index', :thedate => shiftdate.to_s
   end
   
 protected
