@@ -26,7 +26,7 @@ class ShiftsController < ApplicationController
   # GET /shifts/new
   # GET /shifts/new.json
   def new
-    if current_member.can_admin_admins?
+    if current_member.can_admin_calendar?
       @shift = Shift.new
 
       respond_to do |format|
@@ -40,7 +40,7 @@ class ShiftsController < ApplicationController
 
   # GET /shifts/1/edit
   def edit
-    if current_member.can_admin_admins?
+    if current_member.can_admin_calendar?
       @shift = Shift.find(params[:id])
     else
       render_forbidden
@@ -50,7 +50,7 @@ class ShiftsController < ApplicationController
   # POST /shifts
   # POST /shifts.json
   def create
-    if current_member.can_admin_admins?
+    if current_member.can_admin_calendar?
       @shift = Shift.new(params[:shift])
 
       respond_to do |format|
@@ -70,7 +70,7 @@ class ShiftsController < ApplicationController
   # PUT /shifts/1
   # PUT /shifts/1.json
   def update
-    if current_member.can_admin_admins?
+    if current_member.can_admin_calendar?
       @shift = Shift.find(params[:id])
 
       respond_to do |format|
@@ -90,7 +90,7 @@ class ShiftsController < ApplicationController
   # DELETE /shifts/1
   # DELETE /shifts/1.json
   def destroy
-    if current_member.can_admin_admins?
+    if current_member.can_admin_calendar?
       @shift = Shift.find(params[:id])
       @shift.destroy
 

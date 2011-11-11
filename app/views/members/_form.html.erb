@@ -85,6 +85,11 @@
     <%= f.label :password %><br />
     <%= f.text_field :password %>
   </div>
+<% if current_member.can_admin_admins? %>
+  <div class="field">
+	<%= f.check_box :visitor %> <%= f.text_field :visitor %>
+  </div>
+<% end %>
 <% if current_member.can_admin_members? %>
   <div class="field">
 	<%= f.check_box :admin_calendar %> Administers the calendar (board member)

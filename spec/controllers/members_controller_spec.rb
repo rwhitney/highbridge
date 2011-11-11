@@ -159,7 +159,17 @@ describe MembersController do
   end
 
   describe "DELETE destroy" do
+    it "returns forbidden for a normal admin" do
+      member = Member.create! valid_attributes
+      delete :destroy, :id => member.id
+      response.response_code.should == 403   # normal admin should fail with forbidden
+    end
+    
     it "destroys the requested member" do
+      @request.env["devise.mapping"] = Devise.mappings[:russ]
+      @current_user = FactoryGirl.create(:russ) # login as root admin to do deletes
+      sign_in @current_user
+
       member = Member.create! valid_attributes
       expect {
         delete :destroy, :id => member.id
@@ -167,6 +177,10 @@ describe MembersController do
     end
 
     it "redirects to the members list" do
+      @request.env["devise.mapping"] = Devise.mappings[:russ]
+      @current_user = FactoryGirl.create(:russ) # login as root admin to do member deletes
+      sign_in @current_user
+
       member = Member.create! valid_attributes
       delete :destroy, :id => member.id
       response.should redirect_to(members_url)
