@@ -19,12 +19,12 @@
 <body>
   <!-- This file lives in maintenance.html -->
   <div class="dialog">
-    <h1>The website is currently under maintenance.</h1>
+    <h1>This website is currently under maintenance.</h1>
 	<p>
-		We’re currently offline for <%= reason ? reason : 'maintenance' %> as of <%= Time.now.strftime('%I:%M%p %Z') %>.
+		We are currently offline for <%= reason ? reason : 'maintenance' %> as of <%= Time.now.strftime('%I:%M%p %Z') %>.
 	</p>
 	<p>
-		Sorry for the inconvenience. We’ll be back <%= deadline ? "by #{deadline}" : 'shortly' %>.
+		Sorry for the inconvenience. We will be back <%= deadline ? "by #{deadline}" : 'shortly' %>.
 	</p>
   </div>
 </body>
