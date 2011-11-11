@@ -2,12 +2,12 @@ class MembersOnlyController < ApplicationController
   before_filter :authenticate_member!
   
   BoardMeetingHour    = 19
-  BoardMeetingMin     = 30
+  BoardMeetingMin     = 0
   BoardMeetingWeek    = 1     # 1st week of the month
   BoardMeetingWday    = 2     # Tuesday
   
   GeneralMeetingHour  = 19
-  GeneralMeetingMin   = 30
+  GeneralMeetingMin   = 0
   GeneralMeetingWeek  = 2     # 2nd week of the month
   GeneralMeetingWday  = 2     # Tuesday
   
