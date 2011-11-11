@@ -5,7 +5,7 @@ Highbridge::Application.configure do
   config.cache_classes = true
   
   # Need a default url for devise
-  config.action_mailer.default_url_options = { :host => 'http://www.mcaems.org' }
+  config.action_mailer.default_url_options = { :host => '96.126.126.31' }  # needs to be 'www.mcaems.org'
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false

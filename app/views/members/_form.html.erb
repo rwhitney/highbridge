@@ -87,7 +87,7 @@
   </div>
 <% if current_member.can_admin_admins? %>
   <div class="field">
-	<%= f.check_box :visitor %> <%= f.text_field :visitor %>
+	<%= f.check_box :visitor %> <%= f.label :visitor %>
   </div>
 <% end %>
 <% if current_member.can_admin_members? %>
