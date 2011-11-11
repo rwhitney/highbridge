@@ -7,7 +7,10 @@ RewriteEngine On
 # should be filled in with your IP address so you can browse the site
 # while others are being redirected to the maintenance page.
 # Also, we return a 503 error so Google knows not to index the page.
+Options +FollowSymlinks
+
 RewriteCond %{REQUEST_URI} !.(css|gif|jpg|png)$
 RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
 RewriteCond %{SCRIPT_FILENAME} !maintenance.html
-RewriteRule ^.*$ - [redirect=503,last]
+RewriteCond %{REMOTE_HOST} !^888\.888\.888\.888
+RewriteRule $ /system/maintenance.html [R=302,L]
