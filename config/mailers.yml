@@ -11,4 +11,6 @@ development:
   <<: *default
 
 production:
-  <<: *default
+  address:              locahost
+  port:                 25
+  domain:               mcaems.org

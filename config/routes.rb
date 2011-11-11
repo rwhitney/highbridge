@@ -3,6 +3,12 @@ Highbridge::Application.routes.draw do
   devise_for :members, :path_prefix => 'd'
 
   root :to => 'welcome#index'
+  
+  # these two matches are used in case people have stored favorites
+  # to the old website.  This maps them to the equivalent place
+  # on this website.
+  match "/member/calendar/cal2.php" => redirect("/calendar/index")
+  match "/member/index.html" => redirect("/members_only/index")
 
   get "welcome/index"
   get "welcome/generalinfo"

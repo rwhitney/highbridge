@@ -17,9 +17,9 @@ set :user, 'deploy'
 set :use_sudo, false
 set :deploy_to, "/srv/www/#{application}"
 
-role :web, "96.126.126.31"                          # Your HTTP server, Apache/etc
-role :app, "96.126.126.31"                          # This may be the same as your `Web` server
-role :db,  "96.126.126.31", :primary => true        # This is where Rails migrations will run
+role :web, "mcaems.org"                          # Your HTTP server, Apache/etc
+role :app, "mcaems.org"                          # This may be the same as your `Web` server
+role :db,  "mcaems.org", :primary => true        # This is where Rails migrations will run
 
 after "deploy", "deploy:bundle_gems"
 after "deploy:bundle_gems", "deploy:precompile_assets"
