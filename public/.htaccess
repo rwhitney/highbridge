@@ -13,4 +13,4 @@ RewriteCond %{REQUEST_URI} !.(css|gif|jpg|png)$
 RewriteCond %{DOCUMENT_ROOT}/system/maintenance.html -f
 RewriteCond %{SCRIPT_FILENAME} !maintenance.html
 RewriteCond %{REMOTE_HOST} !^888\.888\.888\.888
-RewriteRule ^.*$ /system/maintenance.html [L]
+RewriteRule ^.*$ /system/maintenance.html [R=302,L]
