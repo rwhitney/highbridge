@@ -167,10 +167,10 @@ protected
         subpath = "#{path}/#{entry}"
         filelist = [];
         Dir.foreach(subpath) do |subentry|
-          subentry.downcase!
-          if subentry =~ /\A\d{4}(#{MonthAbbrevs})(.*)\.(htm)\Z/ ||
-            subentry =~ /\A\d{4}-\d{2}(#{MonthAbbrevs})(.*)\.(pdf)\Z/ ||
-            subentry =~ /\A(#{MonthAbbrevs})(.*)\d{4}\.(htm)\Z/
+          lcsubentry = subentry.downcase
+          if lcsubentry =~ /\A\d{4}(#{MonthAbbrevs})(.*)\.(htm)\Z/ ||
+            lcsubentry =~ /\A\d{4}-\d{2}(#{MonthAbbrevs})(.*)\.(pdf)\Z/ ||
+            lcsubentry =~ /\A(#{MonthAbbrevs})(.*)\d{4}\.(htm)\Z/
             month_abbr = $1
             extra_name = $2
             file_type = $3
