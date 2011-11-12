@@ -12,6 +12,10 @@ module ApplicationHelper
     fortime.utc.strftime("%a, %d %b %Y %H:%M:%S GMT")
   end
   
+  def utc_string_15min
+    utc_string(Time.now + 15.minutes)
+  end
+  
   def utc_string_tomorrow
     utc_string(Time.now + 1.day)
   end

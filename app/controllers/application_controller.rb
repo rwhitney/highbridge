@@ -11,4 +11,12 @@ class ApplicationController < ActionController::Base
       format.json { render :json => { :error => true, :message => "Error 403, you don't have permissions for this operation." } }
     end
   end
+  
+  def utc_string(fortime = Time.now)
+    fortime.utc.strftime("%a, %d %b %Y %H:%M:%S GMT")
+  end
+  
+  def utc_string_15min
+    utc_string(Time.now + 15.minutes)
+  end
 end

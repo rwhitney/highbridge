@@ -14,6 +14,7 @@ class MembersOnlyController < ApplicationController
   def index
     @title = "Home Page"
     @desc = "MCA members-only home page"
+    @content_expires = utc_string_15min
     @date_general = MembersOnlyController.find_next_nth_day_of_week(GeneralMeetingWday, 
       GeneralMeetingWeek, GeneralMeetingHour, GeneralMeetingMin)
     @date_board   = MembersOnlyController.find_next_nth_day_of_week(BoardMeetingWday, 

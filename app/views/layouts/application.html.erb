@@ -10,8 +10,12 @@
  	<meta name="description" content="<%= @desc %>">
 <%- end -%>
  	<meta name="keywords" content="mores creek ambulance east boise county ems emt"> 
-	<%# force page to expire from browser cache in 1 day %>
+	<%# force page to expire from browser cache in 1 day, unless a time is specified %>
+	<% if @content_expires %>
+	<meta HTTP-EQUIV="Expires" CONTENT="<%= @content_expires %>">
+	<% else %>
 	<meta HTTP-EQUIV="Expires" CONTENT="<%= utc_string_tomorrow %>">
+	<% end %>
 	<%# Date: 2011-10-29 %>
 	<%= favicon_link_tag %>
 	<%= stylesheet_link_tag "application" %>
