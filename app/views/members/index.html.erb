@@ -29,18 +29,18 @@
 	<td><%= mail_to member.email, member.last_name_first %><br /><%= member.portable_name %></td>
     <td><%= member.portable_number %></td>
     <td><%= member.area %></td>
-    <td>
+    <td class="small">
 		<% if member.has_home_phone %>h.&nbsp;<%= member.home_phone %><% end %>
 		<% if member.has_home_phone && (member.has_work_phone || member.has_cell_phone) %><br /><% end %>
 		<% if member.has_work_phone %>w.&nbsp;<%= member.work_phone %><% end %>
 		<% if member.has_work_phone && member.has_cell_phone %><br /><% end %>
 		<% if member.has_cell_phone %>m.&nbsp;<%= member.cell_or_other_phone %><% end %>
 	</td>
-    <td><%= MembersHelper.get_status(member) %></td>
+    <td class="small"><%= MembersHelper.get_status(member) %></td>
 	<td class="small"><%= member.misc_notes %></td>
-    <td><%= link_to 'Details', member %></td>
+    <td class="small"><%= link_to 'Details', member %></td>
 <% if current_member.can_admin_members? %>
-    <td><%= link_to 'Edit', edit_member_path(member) %></td>
+    <td class="small"><%= link_to 'Edit', edit_member_path(member) %></td>
 <% end %>
   </tr>
 <% end %> <%# for each member %>
