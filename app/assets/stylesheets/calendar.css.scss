@@ -70,18 +70,22 @@ body {
 	background: url(med-sign-watermark.png) no-repeat center;
 	min-height: 492px;
 
-	.notice, .alert {
-		background-color: $primary_yellow;
+	.notice, .alert, .error {
+		color: $standard_text;
 		font-weight: bold;
 		text-align: center;
 	}
 	
 	.notice {
-		color: $standard_text;
+		background-color: $cal_shiftgreen;
 	}
 	
 	.alert {
-		color: $primary_red;
+		background-color: $cal_shiftyellow;
+	}
+	
+	.error {
+		background-color: $cal_shiftred;
 	}
 	
 	h3 {

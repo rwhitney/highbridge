@@ -38,9 +38,27 @@ class Shift < ActiveRecord::Base
     Shift.find(:first, :conditions => ["shiftdate = ? and shiftnum = ?", thedate.to_date, shiftnum])
   end
   
+  def position_member(position)
+    position = position.downcase
+    case position
+      when 'e1' then self.e1
+      when 'e2' then self.e2
+      when 'd' || 'driver' then self.driver
+    end
+  end
+    
+  def position_empty?(position)
+    position = position.downcase
+    case position
+      when 'e1' then self.e1.nil?
+      when 'e2' then self.e2.nil?
+      when 'd' || 'driver' then self.driver.nil?
+    end
+  end
+  
   def assign_member(position, member)
     position = position.downcase
-    case position.downcase
+    case position
       when 'e1' then self.e1 = member
       when 'e2' then self.e2 = member
       when 'd' || 'driver' then self.driver = member

@@ -80,6 +80,7 @@ class CalendarController < ApplicationController
     if current_member.visitor?
       render_forbidden
     else
+      already_redirected = false
       formdate = params[:received].to_date
       shiftdate = params[:shiftdate].to_date
       position = params[:position].split ','
@@ -94,12 +95,17 @@ class CalendarController < ApplicationController
           shift.shiftnum = shiftnum
           shift.assign_member position, current_member
           shift.save
-        else
+        elsif shift.position_empty?(position)
           shift.assign_member position, current_member
           shift.save
+        else
+          # somebody snuck in and grabbed the shift position before us!
+          flash[:error] = "#{shift.position_member(position).portable_name} grabbed the #{position} position before you!"
+          redirect_to :action => 'shiftedit', :date => shiftdate
+          already_redirected = true
         end
       end
-      redirect_to :action => 'index', :thedate => shiftdate.to_s
+      redirect_to :action => 'index', :thedate => shiftdate unless already_redirected
     end
   end
   
