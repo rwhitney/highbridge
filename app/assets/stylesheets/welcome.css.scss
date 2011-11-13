@@ -93,6 +93,7 @@ body {
 		text-align: center;
 		color: $subtle_text;
 	}
+	
 }
 
 #maincontent {
@@ -157,6 +158,13 @@ body {
 			margin: 0 0 10px 0;
 			padding: 0 5px 0 0;
 		}
+	}
+
+	#idaho_ems {
+		margin: 0 0 0 10px;
+		padding: 0;
+		border: 0;
+		float: right;
 	}
 
 	.img-right {
