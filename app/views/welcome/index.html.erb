@@ -1,23 +1,35 @@
-<h2>Unity... Compassion... Diligence... Professionalism...</h2>
+<h2>Unity. Compassion. Diligence. Professionalism.</h2>
 <p>
-	Mores Creek Ambulance is a volunteer organization commited to providing emergency
-	medical service with care and compassion for our community, friends and neighbors.
+	Mores Creek Ambulance is a local volunteer-based organization committed to providing
+	emergency medical service with consideration and compassion for our community. We have
+	been actively aiding our friends and neighbors since 1990, at which time our organization
+	consisted of only 13 volunteers and an "ambulance," which was actually a battered
+	old van kept in a tin shed.
+</p>
+<p>	
+	Since then, we have expanded to include <%= pluralize(@emt_count, 'EMT') %>, 
+	<%= pluralize(@emr_count, 'EMR') %>, and <%= pluralize(@driver_count, 'driver') %>
+	and we boast a fully operational fire and EMS 
+	<%= link_to 'station', 'http://www.wroa.org/fire_dpmt.php' %>, which houses a 2009 ambulance.
 </p>
 <%= image_tag("MCA-Area-Map.png", :size => "308x326", :alt => "Mores Creek service area") %>
 <p>
-	The Mores Creek Ambulance services are extends from High Bridge (the county line
-	on Highway 21) to milemarker 29.5 on Highway 21 and from Bogus Basin to Atlanta.
+	Our service area extends from the high bridge over Lucky Peak Reservoir (the Ada/Boise 
+	County boundary) on	Highway 21, to a half-mile past mile marker 29 on Highway 21 and 
+	from Bogus Basin to Atlanta.
+</p>
+<%= link_to image_tag("EMS_LogoSm.jpg", :id => "idaho_ems", :size => "116 × 171", :alt => ""), "http://healthandwelfare.idaho.gov/Medical/EmergencyMedicalServicesHome/tabid/117/Default.aspx" %>
+<p>
+	Mores Creek Ambulance is one of several ambulance services of East Boise County EMS; 
+	our sister units are located in Idaho City, Placerville, and Lowman. When necessary, we
+	provide back up for other units and they for us.
 </p>
 <p>
-	Mores Creek Ambulance is a part of East Boise County EMS. Our sister units are Idaho
-	City, Placerville and Lowman. Where necessary, we back up the other units and they
-	back up ours.
+	Our units are all EMT-B certified, which means they are licensed in Idaho and have 
+	obtained the national EMS certification required for the job.
 </p>
 <p>
-	Our units are all EMT-B certified.
-</p>
-<p>
-	If you live in the area of Mores Creek, consider 
-	<%= link_to 'volunteering', :action => 'volunteerinfo' %> to be part of our ambulance
-	staff.
+	If you live in or around the Mores Creek area, consider 
+	<%= link_to 'joining', :action => 'volunteerinfo' %> our staff of volunteers to better
+	aid your community.
 </p>

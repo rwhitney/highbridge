@@ -2,6 +2,19 @@ class WelcomeController < ApplicationController
   # no authentication required here - this is for the public
   
   def index
+    @members = Member.get_all_but_past
+    
+    @emt_count = 0
+    @emr_count = 0
+    @driver_count = 0
+    @members.each do |member|
+      case member.training_level
+        when 'EMT' then @emt_count += 1
+        when 'EMR' then @emr_count += 1
+        when 'Driver' then @driver_count += 1
+      end
+    end
+    
     @desc = "Mores Creek Ambulance home page"
   end
 
