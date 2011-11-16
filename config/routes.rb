@@ -32,6 +32,7 @@ Highbridge::Application.routes.draw do
   get "members_only/treasury_notes"
   get "members_only/sops"
   get "members_only/bylaws"
+  get "members_only/directives"
   get "members_only/ambulance_ops"
   get "members_only/serve_file"
 

@@ -73,6 +73,9 @@ class MembersOnlyController < ApplicationController
     send_file "app/assets/documents/misc/Bylaws.htm", :type => "text/html", :disposition => "inline"
   end
   
+  def directives
+  end
+  
   def ambulance_ops
     @title = "Ambulance Operations"
     @desc = "MCA ambulance operations page"
