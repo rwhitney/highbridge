@@ -1,5 +1,6 @@
 # See how all your routes lay out with "rake routes"
 Highbridge::Application.routes.draw do
+  # this was added as part of turning off registerable
   devise_for :members, :path_prefix => 'd'
 
   root :to => 'welcome#index'
