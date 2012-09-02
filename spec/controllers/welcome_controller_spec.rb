@@ -45,12 +45,6 @@ describe WelcomeController do
       response.should have_selector("title",
         :content => @base_title + " | Volunteer Info")
     end
-    
-    it "should have an email link" do
-      get 'volunteerinfo'
-      response.should have_selector("a",
-        :content => "email address")
-    end
   end
 
   describe "GET 'links'" do
