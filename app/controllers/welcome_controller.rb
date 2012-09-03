@@ -34,7 +34,15 @@ class WelcomeController < ApplicationController
   end
 
   def memberapp
-    send_file "app/assets/documents/misc/application.pdf", :type => "application/pdf", :disposition => "attachment"
+    send_file "app/assets/documents/misc/App-Membership-Application.pdf", :type => "application/pdf", :disposition => "attachment"
+  end
+  
+  def providerapp
+    send_file "app/assets/documents/misc/App-Initial-Provider-Application-July-2011.pdf", :type => "application/pdf", :disposition => "attachment"
+  end
+  
+  def reciprocityapp
+    send_file "app/assets/documents/misc/App-Reciprocity-Application.pdf", :type => "application/pdf", :disposition => "attachment"
   end
   
   def brochure

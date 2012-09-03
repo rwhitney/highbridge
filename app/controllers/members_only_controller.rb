@@ -1,15 +1,15 @@
 class MembersOnlyController < ApplicationController
   before_filter :authenticate_member!
   
-  BoardMeetingHour    = 19
-  BoardMeetingMin     = 0
-  BoardMeetingWeek    = 1     # 1st week of the month
-  BoardMeetingWday    = 2     # Tuesday
+  EBCAMeetingHour    = 18    # 6pm
+  EBCAMeetingMin     = 0
+  EBCAMeetingWeek    = 2     # 2nd week of the month
+  EBCAMeetingWday    = 4     # Tuesday
   
   GeneralMeetingHour  = 19
   GeneralMeetingMin   = 0
-  GeneralMeetingWeek  = 2     # 2nd week of the month
-  GeneralMeetingWday  = 2     # Tuesday
+  GeneralMeetingWeek  = 3     # 3rd week of the month
+  GeneralMeetingWday  = 3     # Wednesday
   
   def index
     @title = "Home Page"
@@ -17,11 +17,11 @@ class MembersOnlyController < ApplicationController
     @content_expires = utc_string_15min
     @date_general = MembersOnlyController.find_next_nth_day_of_week(GeneralMeetingWday, 
       GeneralMeetingWeek, GeneralMeetingHour, GeneralMeetingMin)
-    @date_board   = MembersOnlyController.find_next_nth_day_of_week(BoardMeetingWday, 
-    BoardMeetingWeek, BoardMeetingHour, BoardMeetingMin)
+    @date_board   = MembersOnlyController.find_next_nth_day_of_week(EBCAMeetingWday, 
+    EBCAMeetingWeek, EBCAMeetingHour, EBCAMeetingMin)
     
     @time_general = Time.new(@date_general.year, @date_general.month, @date_general.day, GeneralMeetingHour, GeneralMeetingMin)
-    @time_board   = Time.new(@date_board.year, @date_board.month, @date_board.day, BoardMeetingHour, BoardMeetingMin)
+    @time_board   = Time.new(@date_board.year, @date_board.month, @date_board.day, EBCAMeetingHour, EBCAMeetingMin)
     @sheets = ["members_only"]
   end
   
@@ -66,7 +66,7 @@ class MembersOnlyController < ApplicationController
   end
   
   def sops
-    send_file "app/assets/documents/misc/SOPs.htm", :type => "text/html", :disposition => "inline"
+    send_file "app/assets/documents/misc/EBCA-Operation-Plan.pdf", :type => "application/pdf", :disposition => "attachment"
   end
   
   def bylaws

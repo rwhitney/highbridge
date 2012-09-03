@@ -16,6 +16,8 @@ Highbridge::Application.routes.draw do
   get "welcome/volunteerinfo"
   get "welcome/links"
   get "welcome/memberapp"
+  get "welcome/providerapp"
+  get "welcome/reciprocityapp"
   get "welcome/brochure"
   get "welcome/lifeflight"
 
