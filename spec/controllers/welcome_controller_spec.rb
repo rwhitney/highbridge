@@ -69,7 +69,7 @@ describe WelcomeController do
     it "returns a document of type pdf" do
       get 'memberapp'
       response.headers['Content-Type'].should == "application/pdf"
-      response.headers['Content-Disposition'].should == 'attachment; filename="application.pdf"'
+      response.headers['Content-Disposition'].should == 'attachment; filename="App-Membership-Application.pdf"'
     end
   end
 
