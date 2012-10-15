@@ -4,12 +4,12 @@ class MembersOnlyController < ApplicationController
   EBCAMeetingHour    = 18    # 6pm
   EBCAMeetingMin     = 0
   EBCAMeetingWeek    = 2     # 2nd week of the month
-  EBCAMeetingWday    = 4     # Tuesday
+  EBCAMeetingWday    = 4     # Thursday
   
   GeneralMeetingHour  = 19
   GeneralMeetingMin   = 0
   GeneralMeetingWeek  = 3     # 3rd week of the month
-  GeneralMeetingWday  = 3     # Wednesday
+  GeneralMeetingWday  = 2     # Tuesday
   
   def index
     @title = "Home Page"
