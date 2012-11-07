@@ -15,10 +15,11 @@ class MembersOnlyController < ApplicationController
     @title = "Home Page"
     @desc = "MCA members-only home page"
     @content_expires = utc_string_15min
-    @date_general = MembersOnlyController.find_next_nth_day_of_week(GeneralMeetingWday, 
-      GeneralMeetingWeek, GeneralMeetingHour, GeneralMeetingMin)
+    #@date_general = MembersOnlyController.find_next_nth_day_of_week(GeneralMeetingWday,
+    #  GeneralMeetingWeek, GeneralMeetingHour, GeneralMeetingMin)
     @date_board   = MembersOnlyController.find_next_nth_day_of_week(EBCAMeetingWday, 
     EBCAMeetingWeek, EBCAMeetingHour, EBCAMeetingMin)
+    @date_general = @date_board + 5.days  # general meeting is on the Tue following the board meeting
     
     @time_general = Time.new(@date_general.year, @date_general.month, @date_general.day, GeneralMeetingHour, GeneralMeetingMin)
     @time_board   = Time.new(@date_board.year, @date_board.month, @date_board.day, EBCAMeetingHour, EBCAMeetingMin)
