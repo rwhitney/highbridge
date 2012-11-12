@@ -19,9 +19,19 @@ class MembersOnlyController < ApplicationController
     #  GeneralMeetingWeek, GeneralMeetingHour, GeneralMeetingMin)
     @date_board   = MembersOnlyController.find_next_nth_day_of_week(EBCAMeetingWday, 
     EBCAMeetingWeek, EBCAMeetingHour, EBCAMeetingMin)
-    @date_general = @date_board + 5.days  # general meeting is on the Tue following the board meeting
-    
+
+    today = Time.now
+
+    @date_general = MembersOnlyController.find_nth_day_of_week(today.year, today.month, EBCAMeetingWday, EBCAMeetingWeek)
+    @date_general = @date_general + 5.days  # general meeting is on the Tue following the board meeting
+
     @time_general = Time.new(@date_general.year, @date_general.month, @date_general.day, GeneralMeetingHour, GeneralMeetingMin)
+
+    if @time_general < today
+      @date_general = @date_board + 5.days
+      @time_general = Time.new(@date_general.year, @date_general.month, @date_general.day, GeneralMeetingHour, GeneralMeetingMin)
+    end
+
     @time_board   = Time.new(@date_board.year, @date_board.month, @date_board.day, EBCAMeetingHour, EBCAMeetingMin)
     @sheets = ["members_only"]
   end
